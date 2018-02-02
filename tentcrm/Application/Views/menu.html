@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TechAarna CRM Menus</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+
+
+	<style> 
+		input[type=button], input[type=submit], input[type=reset] {
+		    background-color: #616A6B;
+		    border: none;
+		    color: white;
+		    padding: 20px 50px;
+		    text-decoration: none;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		    font-weight: bolder;
+		    font-size: 20px;
+		}
+		.list-inline li input:hover{
+			background-color:#D35400;
+		}
+		.list-inline li input{
+			width: 300px;
+		}
+	</style>
+
+
+</head>
+<body style="background-color:#154360;">
+	<div class="container" style="padding-top:9vw;background-color:#154360;">
+		<center><span style="color:white; font-weight:900;"><h1><strong>MAIN PANEL</strong></h1></span></center>
+		{% if message %}
+	    <div class="alert alert-danger">{{message}}</div>
+	    {% endif %}
+		<div class="alert well" style="width:max-content;margin:0 auto;background-color:#424949;">
+			<ul class="list-inline">
+				<li><a href="/billing/index"><input type="button" value="BILLING"></a></li>
+				<li><a href="/employee/index"><input type="button" value="EMPLOYEE"></a></li>				
+			</ul>
+			<ul class="list-inline">
+				<li><a href="/inventory/index"><input type="button" value="INVENTORY"></a></li>
+				<li><a href="/supplier/index"><input type="button" value="SUPPLIER"></a></li>				
+			</ul>
+			<ul class="list-inline">
+				<li><a href="/stock/index"><input type="button" value="STOCK"></a></li>
+				<li><a href="/rent/index"><input type="button" value="RENTOR"></a></li>
+			</ul>
+			<ul class="list-inline">
+				<li onclick="document.getElementById('id01').style.display='block'"><input type="button" value="DASHBOARD"></li>
+				<li onclick="document.getElementById('id02').style.display='block'"><input type="button" value="SETTINGS"></li>
+			</ul>
+		</div>
+		
+	</div>	
+
+	<div id="id01" class="modal" style="display: none;">
+	  <form class="modal-content animate" action="/menu/dashboard" method="post">
+
+	    <div style="text-align:center;"><h1>Login to get Dashboard Access</h1></div>
+	    <div class="container">
+	      <label><b>Password</b></label>
+	      <input type="password" placeholder="Enter Password" name="dpsw" required>
+	        
+	      <button type="submit">Login</button>
+	    </div>
+	  </form>
+	</div>
+
+	<div id="id02" class="modal" style="display: none;">
+	  <form class="modal-content animate" method="post" action="/menu/setting">
+
+	    <div style="text-align:center;"><h1>Login to get Setting Access</h1></div>
+	    <div class="container">
+	      <label><b>Password</b></label>
+	      <input type="password" placeholder="Enter Password" name="spsw" required>
+	        
+	      <button type="submit">Login</button>
+	    </div>
+	  </form>
+	</div>	
+
+
+
+	<script>
+		// Get the modal
+		var modal2 = document.getElementById('id01');
+		// Get the modal
+		var modal1 = document.getElementById('id02');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		    if ((event.target == modal1) || (event.target == modal2)) {
+		        modal1.style.display = "none";
+		        modal2.style.display = "none";
+		    }
+		}
+	</script>
+
+</body>
+</html>

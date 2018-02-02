@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Supplier Panel</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+
+	<style>
+		.bk i{
+			color:white;
+		}
+
+		input[type=button], input[type=submit], input[type=reset] {
+	    background-color: #4CAF50;
+	    border: none;
+	    color: white;
+	    padding: 10px 32px;
+	    text-decoration: none;
+	    margin: 4px 2px;
+	    cursor: pointer;
+		}
+
+		th, td{
+			text-align: center;
+		}
+
+		a{
+			text-decoration: none;
+			color:#F0F3F4;
+			font-family: "Times New Roman", Georgia, Serif;
+			font-weight: 600;
+		}
+	</style>
+
+	<script type="text/javascript">
+	    function printitemsupbill(){
+			var printContents = document.getElementById('printitembills').innerHTML;
+		    var originalContents = document.body.innerHTML;
+		    document.body.innerHTML = printContents;
+		    window.print();
+		    document.body.innerHTML = originalContents;
+		    window.location.href = "/supplier/index";
+	    }
+	    function printviewitembill(){
+			var printContents = document.getElementById('vitembill').innerHTML;
+		    var originalContents = document.body.innerHTML;
+		    document.body.innerHTML = printContents;
+		    window.print();
+		    document.body.innerHTML = originalContents;
+		    window.location.href = "/supplier/index";
+	    }
+	    function printvieworkerbill(){
+			var printContents = document.getElementById('workerbill').innerHTML;
+		    var originalContents = document.body.innerHTML;
+		    document.body.innerHTML = printContents;
+		    window.print();
+		    document.body.innerHTML = originalContents;
+		    window.location.href = "/supplier/index";
+	    }
+		function printtbpaydetail(){
+			var printContents = document.getElementById('paybdatadetail').innerHTML;
+		    var originalContents = document.body.innerHTML;
+		    document.body.innerHTML = printContents;
+		    window.print();
+		    document.body.innerHTML = originalContents;
+		    window.location.href = "/supplier/index";
+	    }
+	</script>
+</head>
+<body style="background-color:#2F4F4F;font-size:15px;">
+	<header class="container-fluid">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom:1px solid black;">
+			<div class="bk col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<h1><a href="/menu/index"><i class="fa fa-arrow-left"></i></a></h1>
+			</div>
+			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<h1 style="color:white;">Supplier Section</h1>
+			</div>
+		</div>
+	</header>
+	<div class="container-fluid" style="margin-top:10px;">
+		<div class="well large-well" style="background-color:#424949;">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#reg_sup" data-toggle="tab">Register Supplier</a></li>
+				<li><a href="#view_sup" data-toggle="tab">View Supplier</a></li>
+				<li><a href="#add_bill" data-toggle="tab">Add New Bill</a></li>
+				<li><a href="#view_bill" data-toggle="tab">View Bill Record</a></li>
+				<li><a href="#add_pay" data-toggle="tab">Add Payment</a></li>
+				<li><a href="#pay_detail" data-toggle="tab">Payment Detail</a></li>
+			</ul>
+			<div class="container-fluid" style="margin-top:30px;">
+				<div class="tab-content">
+					<div id="reg_sup" class="tab-pane fade in active" style="background-color:#616A6B;">
+						<form method="post" action="registersup">
+					    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+					    		<legend>Personal Detail :</legend>
+					    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-group">
+					    				<div>
+					    					<label>First Name :</label>
+									    	<input type="text" class="form-control" name="fname" placeholder="Enter Your First Name" required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label>Contact :</label>
+									    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="contact" placeholder="Enter Your Contact"  required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label>Email :</label>
+									    	<input type="email" class="form-control" name="email" placeholder="Enter Your Email">
+					    				</div>
+					    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-left:0px;">
+					    					<label>Date Of Birth :</label>
+									    	<input type="date" class="form-control" name="dob" placeholder="Enter Your Date Of Birth">
+					    				</div>
+					    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-right:0px;">
+					    					<label>Gender :</label>
+									    	<div class="radio">
+		  										<label><input type="radio" name="gender" value="Male" required>Male&nbsp;&nbsp;&nbsp;</label>
+		  										<label><input type="radio" name="gender" value="Female" required>Female</label>
+											</div>
+					    				</div>
+					    			</div>
+					    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    		</div>
+					    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-group">
+									    <div>
+					    					<label>Last Name :</label>
+									    	<input type="text" class="form-control" name="lname" placeholder="Enter Your Last Name" required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label>Alternate Contact :</label>
+									    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="acontact" placeholder="Enter Your Alternate Contact">
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label>Address :</label>
+		  									<textarea class="form-control" rows="4" name="address" placeholder="Enter Your Residential Address Here..."></textarea>
+					    				</div>
+									</div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    		</div>
+					    	</div>
+					    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+					    		<legend>Firm Detail :</legend>
+					    		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+				    				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" style="padding:0px 40px 0px 40px;">
+				    					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+					    					<label>Firm Name :</label>
+									    	<input type="text" class="form-control" name="firmname" placeholder="Enter Your Firm Name" required>
+					    				</div>
+					    				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					    					<label>Office Contact :</label>
+									    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="fcontact" placeholder="Enter Office Contact" required>
+					    				</div>
+					    				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					    					<label>Supplier Type :</label>
+									    	<input type="text" class="form-control" name="stype" placeholder="Enter Product Type" required>
+					    				</div>
+				    				</div>
+				    				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" style="padding:0px 55px 0px 55px;">
+				    					<label>Office Address :</label>
+		  								<textarea class="form-control" rows="2" name="faddress" placeholder="Enter Your Office Address Here..." required></textarea>
+						    		</div>
+					    		</div>					    		
+					    	</div>
+					    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+					    		<input type="submit" value="Submit" >
+					    	</div>
+				    	</form>
+					</div>
+					<div id="view_sup" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label>Search By Type :</label>
+							    <input type="text" id="suptype" class="form-control" onkeyup="srctype()" placeholder="Search for types..">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label>Search By Name :</label>
+							    <input type="text" id="supname" class="form-control" onkeyup="srcname()" placeholder="Search for names..">
+							</div>
+						</div>
+						<script>
+							function srctype() {
+							  var input, filter, table, tr, td, i;
+							  input = document.getElementById("suptype");
+							  filter = input.value.toUpperCase();
+							  table = document.getElementById("supTable");
+							  tr = table.getElementsByTagName("tr");
+							  for (i = 0; i < tr.length; i++) {
+							    td = tr[i].getElementsByTagName("td")[0];
+							    if (td) {
+							      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+							        tr[i].style.display = "";
+							      } else {
+							        tr[i].style.display = "none";
+							      }
+							    }       
+							  }
+							}
+
+							function srcname() {
+							  var input, filter, table, tr, td, i;
+							  input = document.getElementById("supname");
+							  filter = input.value.toUpperCase();
+							  table = document.getElementById("supTable");
+							  tr = table.getElementsByTagName("tr");
+							  for (i = 0; i < tr.length; i++) {
+							    td = tr[i].getElementsByTagName("td")[2];
+							    if (td) {
+							      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+							        tr[i].style.display = "";
+							      } else {
+							        tr[i].style.display = "none";
+							      }
+							    }       
+							  }
+							}
+						</script>
+				    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="table-responsive">          
+									<table class="table" id="supTable">
+								    <thead>
+								      <tr>
+								      	<th>Sup_Type</th>
+								        <th>Sid</th>
+								        <th>Name</th>
+								        <th>Contact</th>
+								        <th>Firm_Name</th>
+								        <th>F_Contact</th>
+								        <th>ACTION</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+								    	{% for sdata in supdata %}
+									    <tr>
+									        <td>{{sdata.Stype}}</td>
+									        <td>{{sdata.Sid}}</td>
+									        <td>{{sdata.Fname}} {{sdata.Lname}}</td>
+									        <td>{{sdata.Contact}}</td>
+									        <td>{{sdata.Firmname}}</td>
+									        <td>{{sdata.Fcontact}}</td>
+									        <td><a href="editsup?sid={{sdata.Sid}}" data-toggle="modal" data-target="#supedit" style="color:blue;">Edit&nbsp;/&nbsp;Delete</a></td>
+									    </tr>
+									    {% endfor %}
+								    </tbody>
+								</table>
+							</div>
+				    	</div>
+				    	<div class="modal fade" id="supedit" role="dialog" >
+						    <div class="modal-dialog modal-lg" style="border:2px solid lightblue;height:885px;background-color:#117A65;padding:10px;">
+						    	<div class="modal-content"></div>
+						    </div>
+						</div>
+					</div>
+					<div id="add_bill" class="tab-pane fade well large-well" style="background-color:#616A6B;">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#add_itembill" data-toggle="tab">Item Bill</a></li>
+							<li><a href="#add_workerbill" data-toggle="tab">Worker Bill</a></li>
+						</ul>
+						<div class="container-fluid" style="margin-top:10px;">
+							<div class="tab-content">
+								<div id="add_itembill" class="tab-pane fade in active">
+									<form class="form-inline" id="billitemsid">
+									  	<div class="well form-group" style="margin-top:10px;">
+										    <lable>Supplier Id :</label>
+										    <input type="text" name="itemsupid" id="itemsupid" class="form-control" placeholder="Enter Supplier Id"  list="additemsupbillid" onkeyup="itemsupbillidsearch()" required>
+											<script type="text/javascript">
+									    		function itemsupbillidsearch(){
+									    			var sid = $('#itemsupid').val();
+									    			$.post('getitemsupidpname',{sid:sid},function(data){
+									    				$("#additemsupbillid").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+						    				<datalist id="additemsupbillid"></datalist>
+										    <input type="submit" class="btn btn-default" value="Get Detail" style="padding: 7px 20px;">
+										</div>
+									</form>
+									<script type="text/javascript">
+										$(function(){
+								    		$("#billitemsid").bind('submit',function(){
+								    			var sid = $('#itemsupid').val();
+								    			$.post('additemnewtrans',{sid:sid},function(data){
+								    				$("#additemtrans").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+									</script>
+									<div id="additemtrans"></div>
+									<div id="additembilldata" class="collapse">
+							    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div  class="form-inline">
+												<span style="font-size:18px;">Latest Transaction Detail :&nbsp;</span>
+												<input type="text" class="form-control" id="ibno" placeholder="Enter Bill No." required>
+												<input type="date" class="form-control" id="ibdate" placeholder="Enter Bill Date" required>
+											</div>			
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<h4>Item Detail</h4>
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+														<lable>Product Name :</label>
+												    	<input type="text" class="form-control" id="ipname" list="idpname" onkeyup="localsearchitem()" required>
+													</div>
+
+													<script type="text/javascript">
+														function localsearchtent(){
+											    			var pname = $('#ipname').val();
+											    			$.post('getitempname',{pname:pname},function(data){
+											    				$("#idpname").html(data);
+											    			});
+											    			return false;
+											    		}
+													</script>
+
+													<datalist id="idpname"></datalist>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+														<lable>Quantity :</label>
+												    	<input type="text" class="form-control" id="qty" required>
+													</div>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+														<lable>Unit :</label>
+												    	<select id="unit" class="form-control">
+												    		<option>Kg</option>
+												    		<option>Pkts</option>
+												    		<option>Pcs</option>
+												    		<option>Litre</option>
+												    	</select>
+													</div>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+														<lable>Price :</label>
+												    	<input type="text" class="form-control" id="cost" required>
+													</div>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group" style="padding-top:19px;">
+												    	<a class="btn btn-success" onclick="addtrans()">Add Next</a>
+													</div>
+													<script type="text/javascript">
+														function addtrans(){
+											    			var sid= $('#itemsupid').val();
+											    			var bno = $('#ibno').val();
+											    			var date = $('#ibdate').val();
+											    			if(bno!='' & date!=''){
+											    			var pname = $('#ipname').val();
+											    			var qty = $('#qty').val();
+											    			var unit = $('#unit').val();
+											    			var cost = $('#cost').val();
+											    			$.post('tableitemprod',{sid:sid,bno:bno,date:date,pname:pname,qty:qty,unit:unit,cost:cost},function(data){
+											    				$("#itemlist").html(data);
+											    			});	
+											    			return false;	
+											    			}
+											    			else{
+											    				alert("Bill no. and date is mandatory");
+											    			}	  
+											    		}
+													</script>
+												</div>
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<div class="table-responsive">
+														<table class="table" id="countit" style="border:1px solid gray;">
+															<thead>
+																<tr>
+																	<th>P_Name</th>
+																	<th>Cost</th>
+																	<th>Quantity</th>
+																	<th>Amount</th>
+																</tr>
+															</thead>
+															<tbody id="itemlist">
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<form id="formitem" name="formitem" method="post">
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+														<a class="btn btn-primary" onclick="calculeitem()">Calcuate</a>
+													</div>
+													<script type="text/javascript">
+														function calculeitem(){
+											    			var sum=0;
+											    			$(".icountme").each(function(){
+											    				var value=$(this).text();
+											    				if(!isNaN(value)&&value.length!=0){
+											    					sum += parseInt(value);
+											    				}
+											    			});	
+											    			document.getElementById('itotalamt').value=sum;	
+											    		}
+													</script>
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+															<div class="form-inline">
+																<lable>Total Amount :&nbsp;&nbsp;&nbsp;</label>
+													    		<input type="text" class="form-control" id="itotalamt" value="0" readonly>
+													    	</div>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+															<div class="form-inline">
+																<lable>Advance Paid :&nbsp;&nbsp;</label>
+														    	<input type="text" class="form-control" id="iadpay" onkeyup="caltballeft()" required>
+														    </div>
+
+														    <script type="text/javascript">
+														    function caltballeft(){
+														    	var amt=document.getElementById('itotalamt').value;
+														    	var adv=document.getElementById('iadpay').value;
+														    	document.getElementById('iballeft').value=amt-adv;
+
+														    	var itemsupid= document.getElementById('itemsupid').value;
+														    	document.getElementById('sidi').value = itemsupid ;
+
+																var isname= document.getElementById('isname').value;
+																document.getElementById('snamei').value = isname ;
+
+																var ibno= document.getElementById('ibno').value;
+																document.getElementById('bnoi').value = ibno ;
+
+																var ibdate= document.getElementById('ibdate').value;
+																document.getElementById('datei').value = ibdate ;
+
+																var itotalamt= document.getElementById('itotalamt').value;
+																document.getElementById('amti').value = itotalamt ;
+
+																var iadpay= document.getElementById('iadpay').value;
+																document.getElementById('advi').value = iadpay ;
+
+																var iballeft= document.getElementById('iballeft').value;
+																document.getElementById('bali').value = iballeft ;
+
+														    }
+														    </script>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+															<div class="form-inline">
+																<lable>Balance Left :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+														    	<input type="text" class="form-control" id="iballeft" readonly>
+														    </div>
+														</div>
+													</div>													
+												</div>
+
+												<script type="text/javascript">
+													$(document).ready(function() {
+															$("#submititem").click(function() {
+															var sid = $("#sidi").val();
+															var sname = $("#snamei").val();
+															var bno = $("#bnoi").val();
+															var date = $("#datei").val();
+															var amt = $("#amti").val();
+															var adv = $("#advi").val();
+															var bal = $("#bali").val();
+															$.post("itembilltrans", {sid:sid, sname:sname, bno:bno, date:date, amt:amt, adv:adv, bal:bal});
+															});
+														});
+												</script>
+											
+												<input type="hidden" id="sidi" name="sidi">
+												<input type="hidden" id="snamei" name="snamei">
+												<input type="hidden" id="bnoi" name="bnoi">
+												<input type="hidden" id="datei" name="datei">
+												<input type="hidden" id="amti" name="amti">
+												<input type="hidden" id="advi" name="advi">
+												<input type="hidden" id="bali" name="bali">
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+													<input type="submit" id="submititem" class="button btn-success" value="Submit">
+												</div>
+											</form>
+										</div>
+							    	</div>
+								</div>							
+							    <div id="add_workerbill" class="tab-pane fade">
+									<form class="form-inline" id="billworkersid">
+										<div class="well form-group" style="margin-top:10px;">
+											<label>Supplier Id:</label>
+											<input type="text" name="workersupid" id="workersupid" class="form-control" placeholder="Enter Supplier Id"  list="addworksupbillid" onkeyup="worksupbillidsearch()" required>
+											<script type="text/javascript">
+									    		function worksupbillidsearch(){
+									    			var sid = $('#workersupid').val();
+									    			$.post('getitemsupidpname',{sid:sid},function(data){
+									    				$("#addworksupbillid").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+						    				<datalist id="addworksupbillid"></datalist>
+											<input type="submit" class="btn btn-default" value="Get Detail" style="padding:7px 20px;">
+										</div>
+									</form>
+									<script type="text/javascript">
+										$(function(){
+								    		$("#billworkersid").bind('submit',function(){
+								    			var sid = $('#workersupid').val();
+								    			$.post('addworkernewtrans',{sid:sid},function(data){
+								    				$("#addworkertrans").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+									</script>
+									<div id="addworkertrans"></div>
+									<div id="addworkerbilldata" class="collapse">
+							    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div  class="form-inline">
+												<span style="font-size:18px;">Latest Transaction Detail :&nbsp;</span>
+												<input type="text" class="form-control" id="wbno" placeholder="Enter Bill No." required>
+												<input type="date" class="form-control" id="wbdate" placeholder="Enter Bill Date" required>
+											</div>			
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<h4>Worker Detail</h4>
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+														<lable>Worker Name :</label>
+												    	<input type="text" class="form-control" id="wname" required>
+													</div>													
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+														<lable>Age :</label>
+												    	<input type="text" class="form-control" id="wage" required>
+													</div>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+														<lable>Work Type :</label>
+												    	<select id="wtype" class="form-control">
+												    		<option>Cook</option>
+												    		<option>Washerman</option>
+												    		<option>Labour</option>
+												    		<option>Waiter</option>
+												    	</select>
+													</div>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+														<lable>Rate :</label>
+												    	<input type="text" class="form-control" id="wcost" required>
+													</div>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group" style="padding-top:19px;">
+												    	<a class="btn btn-success" onclick="addwtrans()">Add Next</a>
+													</div>
+													<script type="text/javascript">
+														function addwtrans(){
+											    			var sid= $('#workersupid').val();
+											    			var bno = $('#wbno').val();
+											    			var date = $('#wbdate').val();
+											    			if(bno!='' & date!=''){
+											    			var name = $('#wname').val();
+											    			var age = $('#wage').val();
+											    			var type = $('#wtype').val();
+											    			var cost = $('#wcost').val();
+											    			$.post('tableworkeritem',{sid:sid, bno:bno, date:date,name:name, age:age, type:type, cost:cost},function(data){
+											    				$("#workertablelist").html(data);
+											    				});	
+											    			return false;	
+											    			}
+											    			else{
+											    				alert("Bill no. and date is mandatory");
+											    			}	  
+											    		}
+													</script>
+												</div>
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<div class="table-responsive">
+														<table class="table" id="counwit" style="border:1px solid gray;">
+															<thead>
+																<tr>
+																	<th>Name</th>
+																	<th>Age</th>
+																	<th>Worktype</th>
+																	<th>Rate</th>
+																</tr>
+															</thead>
+															<tbody id="workertablelist">
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<form id="formworker" name="formworker" method="post">
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+														<a class="btn btn-primary" onclick="calculeworker()">Calcuate</a>
+													</div>
+													<script type="text/javascript">
+														function calculeworker(){
+											    			var sum=0;
+											    			$(".wcountme").each(function(){
+											    				var value=$(this).text();
+											    				if(!isNaN(value)&&value.length!=0){
+											    					sum += parseInt(value);
+											    				}
+											    			});	
+											    			document.getElementById('wtotalamt').value=sum;	
+											    		}
+													</script>
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+															<div class="form-inline">
+																<lable>Total Amount :&nbsp;&nbsp;&nbsp;</label>
+													    		<input type="text" class="form-control" id="wtotalamt" value="0" readonly>
+													    	</div>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+															<div class="form-inline">
+																<lable>Advance Paid :&nbsp;&nbsp;</label>
+														    	<input type="text" class="form-control" id="wadpay" onkeyup="calwballeft()" required>
+														    </div>
+
+														    <script type="text/javascript">
+														    function calwballeft(){
+														    	var amt=document.getElementById('wtotalamt').value;
+														    	var adv=document.getElementById('wadpay').value;
+														    	document.getElementById('wballeft').value=amt-adv;
+
+														    	var workersupid= document.getElementById('workersupid').value;
+														    	document.getElementById('sidw').value = workersupid ;
+
+																var wsname= document.getElementById('wsname').value;
+																document.getElementById('snamew').value = wsname ;
+
+																var wbno= document.getElementById('wbno').value;
+																document.getElementById('bnow').value = wbno ;
+
+																var wbdate= document.getElementById('wbdate').value;
+																document.getElementById('datew').value = wbdate ;
+
+																var wtotalamt= document.getElementById('wtotalamt').value;
+																document.getElementById('amtw').value = wtotalamt ;
+
+																var wadpay= document.getElementById('wadpay').value;
+																document.getElementById('advw').value = wadpay ;
+
+																var wballeft= document.getElementById('wballeft').value;
+																document.getElementById('balw').value = wballeft ;
+
+														    }
+														    </script>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+															<div class="form-inline">
+																<lable>Balance Left :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+														    	<input type="text" class="form-control" id="wballeft" readonly>
+														    </div>
+														</div>
+													</div>													
+												</div>
+
+												<script type="text/javascript">
+													$(document).ready(function() {
+															$("#submitworker").click(function() {
+															var sid = $("#sidw").val();
+															var sname = $("#snamew").val();
+															var bno = $("#bnow").val();
+															var date = $("#datew").val();
+															var amt = $("#amtw").val();
+															var adv = $("#advw").val();
+															var bal = $("#balw").val();
+															$.post("workerbilltrans", {sid:sid, sname:sname, bno:bno, date:date, amt:amt, adv:adv, bal:bal});
+															});
+														});
+												</script>
+											
+												<input type="hidden" id="sidw" name="sidw">
+												<input type="hidden" id="snamew" name="snamew">
+												<input type="hidden" id="bnow" name="bnow">
+												<input type="hidden" id="datew" name="datew">
+												<input type="hidden" id="amtw" name="amtw">
+												<input type="hidden" id="advw" name="advw">
+												<input type="hidden" id="balw" name="balw">
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+													<input type="submit" id="submitworker" class="button btn-success" value="Submit">
+												</div>
+											</form>
+										</div>
+							    	</div>
+							    </div>	
+							</div>
+						</div>
+					</div>
+					<div id="view_bill" class="tab-pane fade well large-well" style="background-color:#616A6B;">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#view_itembill" data-toggle="tab">Item Bill</a></li>
+							<li><a href="#view_workerbill" data-toggle="tab">Worker Bill</a></li>
+						</ul>
+						<div class="container-fluid" style="margin-top:10px;">
+							<div class="tab-content">
+								<div id="view_itembill" class="tab-pane fade in active">
+									<form class="form-inline" id="itembillrcd">
+									  	<div class="well form-group" style="margin-top:10px;">
+										    <lable>Supplier Id :</label>
+										    <input type="text" id="ibsid" name="ibsid" class="form-control" placeholder="Enter Supplier Id"  list="viewitemsupbillid" onkeyup="viewitemsupbillidsearch()" required>
+											<script type="text/javascript">
+									    		function viewitemsupbillidsearch(){
+									    			var sid = $('#ibsid').val();
+									    			$.post('getitemsupidpname',{sid:sid},function(data){
+									    				$("#viewitemsupbillid").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+						    				<datalist id="viewitemsupbillid"></datalist>
+										    <input type="submit" class="btn btn-default" value="Proceed">
+										</div>
+									</form>
+									<script type="text/javascript">
+							    		$(function(){
+								    		$("#itembillrcd").bind('submit',function(){
+								    			var sid = $('#ibsid').val();
+								    			$.post('itemsupbill',{sid:sid},function(data){
+								    				$("#itembills").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+							    	<div id="itembills" style="margin-top:10px;"></div>
+								</div>
+								<div id="view_workerbill" class="tab-pane fade">
+									<form class="form-inline" id="workbillrcd">
+									  	<div class="well form-group" style="margin-top:10px;">
+										    <lable>Supplier Id :</label>
+										    <input type="text" id="wbsid" name="wbsid" class="form-control" placeholder="Enter Supplier Id"  list="viewworksupbillid" onkeyup="viewworksupbillidsearch()" required>
+											<script type="text/javascript">
+									    		function viewworksupbillidsearch(){
+									    			var sid = $('#wbsid').val();
+									    			$.post('getitemsupidpname',{sid:sid},function(data){
+									    				$("#viewworksupbillid").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+						    				<datalist id="viewworksupbillid"></datalist>
+										    <input type="submit" class="btn btn-default" value="Proceed">
+										</div>
+									</form>
+									<script type="text/javascript">
+							    		$(function(){
+								    		$("#workbillrcd").bind('submit',function(){
+								    			var sid = $('#wbsid').val();
+								    			$.post('worksupbill',{sid:sid},function(data){
+								    				$("#workbills").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+							    	<div id="workbills" style="margin-top:10px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="add_pay" class="tab-pane fade well large-well" style="background-color:#616A6B;">
+						<form class="form-inline" id="suppayment">
+							<div class="well form-group" style="margin-top:10px;">
+							    <label>Enter S_Id :</label>
+							    <input type="text" class="form-control" id="paymentsid" name="paymentsid" placeholder="Enter Supplier Id" list="payaddsupid" onkeyup="addpaysupidsearch()" required>
+								<script type="text/javascript">
+						    		function addpaysupidsearch(){
+						    			var sid = $('#paymentsid').val();
+						    			$.post('getitemsupidpname',{sid:sid},function(data){
+						    				$("#payaddsupid").html(data);
+						    			});
+						    			return false;
+						    		}
+					    		</script>
+			    				<datalist id="payaddsupid"></datalist>
+							    <input type="submit" class="btn btn-default" value="Proceed">
+							</div>
+				    	</form>
+				    	<script type="text/javascript">
+				    		$(function(){
+					    		$("#suppayment").bind('submit',function(){
+					    			var sid = $('#paymentsid').val();
+					    			$.post('suppaydetail',{sid:sid},function(data){
+					    				$("#paymentsup").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="paymentsup" style="margin-top:10px;"></div>
+					</div>
+					<div id="pay_detail" class="tab-pane fade well large-well" style="background-color:#616A6B;">
+						<form class="form-inline" id="paymentrcd">
+							<div class="well form-group" style="margin-top:10px;">
+							    <label>Enter S_Id :</label>
+							    <input type="text" class="form-control" id="supssid" name="supssid" placeholder="Enter Supplier Id" list="detailpaysupid" onkeyup="paydetailsupidsearch()" required>
+								<script type="text/javascript">
+						    		function paydetailsupidsearch(){
+						    			var sid = $('#supssid').val();
+						    			$.post('getitemsupidpname',{sid:sid},function(data){
+						    				$("#detailpaysupid").html(data);
+						    			});
+						    			return false;
+						    		}
+					    		</script>
+			    				<datalist id="detailpaysupid"></datalist>
+							    <input type="submit" class="btn btn-default" value="Proceed">
+							</div>
+				    	</form>
+						<script type="text/javascript">
+				    		$(function(){
+					    		$("#paymentrcd").bind('submit',function(){
+					    			var sid = $('#supssid').val();
+					    			$.post('paybdetails',{sid:sid},function(data){
+					    				$("#paybdata").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="paybdata" style="margin-top:10px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

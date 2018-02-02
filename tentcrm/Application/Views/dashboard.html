@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard Panel</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+
+	<style>
+		.bk i{
+			color:gray;
+		}
+		.sidenav li a{
+			text-decoration: none;
+			text-transform: uppercase;
+			color:white;
+		}
+		.sidenav li a:hover{
+			text-decoration: none;
+			color: gray;
+		}
+		.sidenav ul li{
+			margin:10px 30px;
+			padding: 12px 10px;
+			text-align: center;
+		}
+
+		.sidenav ul li.active{
+			background-color: green;
+		}
+
+		.ht table tbody {
+		    counter-reset: rowNumber;
+		}
+		.ht table tbody tr {
+		    counter-increment: rowNumber;
+		}
+		.ht table tr td:first-child::before {
+		    content: counter(rowNumber);
+		}
+		a{
+			text-decoration: none;
+			color: white;
+		}
+	</style>
+	<script type="text/javascript">
+		function printcaterbilldetail(){
+			var printContents = document.getElementById('caterbillbookdetail').innerHTML;
+		    var originalContents = document.body.innerHTML;
+
+		    document.body.innerHTML = printContents;
+		    window.print();
+		    document.body.innerHTML = originalContents;
+		    //window.location.reload(true);
+		    window.location.href = "/dashboard/index";
+	    }
+	    function printtentbilldetail(){
+			var printContents = document.getElementById('tentbillbookdetail').innerHTML;
+		    var originalContents = document.body.innerHTML;
+
+		    document.body.innerHTML = printContents;
+		    window.print();
+		    document.body.innerHTML = originalContents;
+		    //window.location.reload(true);
+		    window.location.href = "/dashboard/index";
+	    }
+	    function printpaymentbilsdetail(){
+			var printContents = document.getElementById('paybilsdetail').innerHTML;
+		     var originalContents = document.body.innerHTML;
+
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     //window.location.reload(true);
+		     window.location.href = "/dashboard/index";
+
+	    }
+	    function datefunc(){
+	    	$("#cbookdt").val(getFormattedDate(new Date()));
+	    }
+	</script>
+</head>
+<body style="font-size:15px;" onload="datefunc()">	
+	<div class="container-fluid" style="margin:0px;padding:0px;">
+		<div class="sidenav" style="width:15%;background-color:black;float:left;margin-left:0px;position:fixed;overflow:auto;height:100%;">
+			<ul style="list-style-type:none;margin-left:-50px;">
+				<li class="active"><a href="#home" data-toggle="tab">HOME</a></li>
+				<li><a href="#book" data-toggle="tab">BOOKINGS</a></li>
+				<li><a href="#duepay" data-toggle="tab">PAYMENTS</a></li>
+				<li><a href="#expense" data-toggle="tab">EXPENSES</a></li>
+				<li><a href="#attendance" data-toggle="tab">ATTENDANCE</a></li>
+				<li><a href="/employee/index">EMPLOYEE</a></li>
+				<li><a href="supplier/index">SUPPLIER</a></li>
+				<li><a href="/rent/index">RENTOR</a></li>
+				<li><a href="/inventory/index">INVENTORY</a></li>
+				<li><a href="/billing/index">BILLING</a></li>
+				<li><a href="/settings/index">Settings</a></li>				
+			</ul>
+		</div>
+		<div class="mainpage" style="width:85%;float:right;margin-right:0px;padding-right:0px;border-left:1px solid gray;">
+			<header class="header" style="margin:0px;padding:0px;">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom:1px solid black;padding-right:0px;background-color:white;">
+					<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding: 5px 0px;">
+						<h1 style="font-weight:600;color:orange;">DASHBOARD</h1>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right;">
+						<i class="fa fa-book" aria-hidden="true" style="font-size:35px; margin-top:15px; z-index:10; color:gray;"></i>
+						<span class="badge" style="margin:-50px 0px 0px -15px;  z-index:100; background-color:orange;">{{booknum}}</span>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center;">
+						<i class="fa fa-paypal" aria-hidden="true" style="font-size:35px; margin-top:15px; z-index:10; color:gray;"></i>
+						<span class="badge" style="margin:-93px 0px 0px 42px;  z-index:100; background-color:#40aa17;">{{duenum}}</span>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-align:center;">
+						<div style="float:left;">
+							<img src="/assets/images/pic.png" class="img-circle" alt="Raj Singh" style="height:50px; width:50px; margin:10px 0px 0px 8px;">
+						</div>
+						<div style="float:right;"><span style="color:orange;font-size:24px;">Deepak</span><br><i  style="font-size:16px;">Proprietor</i></div>
+					</div>
+					<div class="bk col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center;padding-top:6px;">
+						<a href="/menu/index">
+							<span><i class="fa fa-sign-out" style="font-size:30px;"></i></span>
+							<span style="color:gray;margin-top:-10px;">Logout</span>
+						</a>
+					</div>					
+				</div>
+			</header>
+			<div class="container-fluid">
+				<div class="tab-content">
+					<div id="home" class="tab-pane fade in active">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:40px;color:white;">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class="well" style="background-color:#40aa17;height:160px;">
+									<div>
+										<span>
+											<h2>Total <br>Earned</h2>
+											<i class="fa fa-cloud-download" aria-hidden="true" style="float:right; font-size:50px; margin:-93px 0px 0px 0px; border:2px solid white;  background-color:white; color:#40aa17; border-radius:50%; padding:15px 17px 15px 19px;"></i>
+										</span>								
+									</div>
+									<div style="border-top:1px solid black;font-size:20px;text-align:center;margin-top:20px;">
+										 ₹ {{tearn}}
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class="well" style="background-color:#ff8000;height:160px;">
+									<div>
+										<span>
+											<h2>Total <br>Expensed</h2>
+											<i class="fa fa-cloud-upload" aria-hidden="true" style="float:right; font-size:50px;  margin:-93px 0px 0px 0px; border:2px solid white;  background-color:white; color:#ff8000; border-radius:50%; padding:15px 15px 15px 15px;"></i>
+										</span>
+									</div>
+									<div style="border-top:1px solid black;font-size:20px;text-align:center;margin-top:20px;">₹ {{texp}} </div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class="well" style="background-color:#3366cc;height:160px;">
+									<div>
+										<span>
+											<h2>Total <br>Income</h2>
+											<i class="fa fa-cloud" aria-hidden="true" style="float:right; font-size:50px;  margin:-93px 0px 0px 0px; border:2px solid white;  background-color:white; color:#3366cc; border-radius:50%; padding:15px 15px 15px 15px;"></i>
+										</span>
+									</div>
+									<div style="border-top:1px solid black;font-size:20px;text-align:center;margin-top:20px;">₹ {{tinc}} </div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<div class="well" style="padding:10px;background-color:white;">							
+									<div class="ht table-responsive" style="height:500px;">
+										<table class="table" style="border:1px solid #EAEDED;background-color:white;">
+											<caption style="color:gray;font-size:20px;font-weight:600;">BOOKINGS</caption>
+											<thead>
+												<tr>
+													<th>#</th>
+													<th>Cus_Id</th>
+													<th>Cus_Name</th>
+													<th>Bill_No.</th>
+													<th>Event</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for bbook in cbreak %}
+												<tr>
+													<td></td>
+													<td>{{bbook.Cid}}</td>
+													<td>{{bbook.Cname}}</td>
+													<td>{{bbook.Bno}}</td>
+													<td>Breakfast</td>
+												</tr>
+								      			{% endfor %}
+												{% for lbook in clunch %}
+												<tr>
+													<td></td>
+													<td>{{lbook.Cid}}</td>
+													<td>{{lbook.Cname}}</td>
+													<td>{{lbook.Bno}}</td>
+													<td>Lunch</td>
+												</tr>
+								      			{% endfor %}
+												{% for hbook in chight %}
+												<tr>
+													<td></td>
+													<td>{{hbook.Cid}}</td>
+													<td>{{hbook.Cname}}</td>
+													<td>{{hbook.Bno}}</td>
+													<td>High Tea</td>
+												</tr>
+								      			{% endfor %}
+												{% for rbook in cdinner %}
+												<tr>
+													<td></td>
+													<td>{{rbook.Cid}}</td>
+													<td>{{rbook.Cname}}</td>
+													<td>{{rbook.Bno}}</td>
+													<td>Dinner</td>
+												</tr>
+								      			{% endfor %}
+												{% for cdbook in cdecor %}
+												<tr>
+													<td></td>
+													<td>{{cdbook.Cid}}</td>
+													<td>{{cdbook.Cname}}</td>
+													<td>{{cdbook.Bno}}</td>
+													<td>{{cdbook.Sname}}</td>
+												</tr>
+								      			{% endfor %}
+												{% for tdbook in tdecor %}
+												<tr>
+													<td></td>
+													<td>{{tdbook.Cid}}</td>
+													<td>{{tdbook.Cname}}</td>
+													<td>{{tdbook.Bno}}</td>
+													<td>{{tdbook.Sname}}</td>
+												</tr>
+								      			{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<script type="text/javascript">
+
+							</script>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<div class="well"  style="padding:10px;background-color:white;">
+									<div class="ht table-responsive" style="height:500px;">
+										<table class="table" style="border:1px solid #EAEDED;">
+											<caption style="color:gray;font-size:20px;font-weight:600;">Due Payments</caption>
+											<thead>
+												<tr>
+													<th>#</th>
+													<th>Cus_Id</th>
+													<th>Cus_Name</th>
+													<th>Bill_No.</th>
+													<th>Amount</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for data in tdue %}
+												<tr>
+													<td></td>
+													<td>{{data.Cid}}</td>
+													<td>{{data.Cname}}</td>
+													<td>{{data.Bno}}</td>
+													<td>{{data.Balance}}</td>
+												</tr>
+								      			{% endfor %}
+												{% for data in cdue %}
+												<tr>
+													<td></td>
+													<td>{{data.Cid}}</td>
+													<td>{{data.Cname}}</td>
+													<td>{{data.Bno}}</td>
+													<td>{{data.Balance}}</td>
+												</tr>
+								      			{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer" style="height:100px; border-top:1px solid gray; padding:20px 0px;text-align:center;">
+							<span style="font-size:20px;">&copy; 2017 Techaarna Software &amp; Solutions. All Rights Reserved / Design by Raj Singh</center>
+						</div>						
+					</div>					
+					<div id="book" class="tab-pane fade">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;background-color:#148F77;">
+							<ul class="nav nav-tabs" style="width:100%;">			    
+							    <li class="active"><a data-toggle="tab" href="#caterbook">Cater Bookings</a></li>
+							    <li><a data-toggle="tab" href="#tentbook">Tent Bookings</a></li>
+							</ul>
+							<div class="container-fluid">
+								<div class="tab-content">				    
+								    <div id="caterbook" class="tab-pane fade in active">
+								    	<form class="form-inline" id="cbookrcd">
+										  	<div class="well form-group" style="margin-top:10px;">
+											    <lable>Enter Date :</label>
+											    <input type="date" id="cbookdt" name="cbookdt" class="form-control" required>
+											    <input type="submit" class="btn btn-success" value="Proceed">
+											</div>
+										</form>
+										<script type="text/javascript">
+								    		$(function(){
+									    		$("#cbookrcd").bind('submit',function(){
+									    			var bdt = $('#cbookdt').val();
+									    			$.post('cbillbookings',{bdt:bdt},function(data){
+									    				$("#cbookbills").html(data);
+									    			});
+									    			return false;
+									    		});
+											});
+								    	</script>
+								    	<div id="cbookbills" style="margin-top:10px;"></div>
+								    </div>
+								    <div id="tentbook" class="tab-pane fade">
+								    	<form class="form-inline" id="tbookrcd">
+										  	<div class="well form-group" style="margin-top:10px;">
+											    <lable>Enter Date :</label>
+											    <input type="date" id="tbookdt" name="tbookdt" class="form-control" required>
+											    <input type="submit" class="btn btn-success" value="Proceed">
+											</div>
+										</form>
+										<script type="text/javascript">
+								    		$(function(){
+									    		$("#tbookrcd").bind('submit',function(){
+									    			var bdt = $('#tbookdt').val();
+									    			$.post('tbillbookings',{bdt:bdt},function(data){
+									    				$("#tbookbills").html(data);
+									    			});
+									    			return false;
+									    		});
+											});
+								    	</script>
+								    	<div id="tbookbills" style="margin-top:10px;"></div>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>					
+					<div id="duepay" class="tab-pane fade">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;background-color:#148F77;">
+							<ul class="nav nav-tabs" style="width:100%;">			    
+							    <li class="active"><a data-toggle="tab" href="#caterdue">Cater Dues</a></li>
+							    <li><a data-toggle="tab" href="#tentdue">Tent Dues</a></li>
+							</ul>
+							<div class="container-fluid">
+								<div class="tab-content">				    
+								    <div id="caterdue" class="tab-pane fade in active">
+								    	<form class="form-inline" id="cduercd">
+										  	<div class="well form-group" style="margin-top:10px;">
+											    <lable>Enter Date :</label>
+											    <input type="date" id="cduedt" name="cduedt" class="form-control" required>
+											    <input type="submit" class="btn btn-success" value="Proceed">
+											</div>
+										</form>
+										<script type="text/javascript">
+								    		$(function(){
+									    		$("#cduercd").bind('submit',function(){
+									    			var bdt = $('#cduedt').val();
+									    			$.post('cbilldues',{bdt:bdt},function(data){
+									    				$("#cduebills").html(data);
+									    			});
+									    			return false;
+									    		});
+											});
+								    	</script>
+								    	<div id="cduebills" style="margin-top:10px;"></div>
+								    </div>
+								    <div id="tentdue" class="tab-pane fade">
+								    	<form class="form-inline" id="tduercd">
+										  	<div class="well form-group" style="margin-top:10px;">
+											    <lable>Enter Date :</label>
+											    <input type="date" id="tduedt" name="tduedt" class="form-control" required>
+											    <input type="submit" class="btn btn-success" value="Proceed">
+											</div>
+										</form>
+										<script type="text/javascript">
+								    		$(function(){
+									    		$("#tduercd").bind('submit',function(){
+									    			var bdt = $('#tduedt').val();
+									    			$.post('tbilldues',{bdt:bdt},function(data){
+									    				$("#tduebills").html(data);
+									    			});
+									    			return false;
+									    		});
+											});
+								    	</script>
+								    	<div id="tduebills" style="margin-top:10px;"></div>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>					
+					<div id="expense" class="tab-pane fade">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;background-color:#148F77;">
+							<ul class="nav nav-tabs">			    
+							    <li class="active"><a data-toggle="tab" href="#caterexpense">Cater Expenses</a></li>
+							    <li><a data-toggle="tab" href="#tentexpense">Tent Expenses</a></li>
+							    <li><a data-toggle="tab" href="#persexpense">Personal Expenses</a></li>
+							    <li><a data-toggle="tab" href="#expensedetail">Expenses Detail</a></li>
+							</ul>
+							<div class="container-fluid">
+								<div class="tab-content">
+								    <div id="caterexpense" class="tab-pane fade in active">
+								    	<form class="form-inline" id="caterbillexp">
+											<div class="well form-group" style="margin-top:10px;">
+											    <label>Enter Bill No. :</label>
+											    <input type="text" class="form-control" id="bnoc" name="bnoc" placeholder="Enter Bill No." required>
+											    <input type="submit" class="btn btn-success" value="Proceed">
+											</div>
+								    	</form>
+								    	<script type="text/javascript">
+								    		$(function(){
+									    		$("#caterbillexp").bind('submit',function(){
+									    			var bno = $('#bnoc').val();
+									    			$.post('expcaterbilldetail',{bno:bno},function(data){
+									    				$("#caterbillexpense").html(data);
+									    			});
+									    			return false;
+									    		});
+											});
+								    	</script>
+										<div id="caterbillexpense" style="margin-top:10px;"></div>
+								    </div>
+								    <div id="tentexpense" class="tab-pane fade">
+								    	<form class="form-inline" id="tentbillexp">
+											<div class="well form-group" style="margin-top:10px;">
+											    <label>Enter Bill No. :</label>
+											    <input type="text" class="form-control" id="bnot" name="bnot" placeholder="Enter Bill No." required>
+											    <input type="submit" class="btn btn-success" value="Proceed">
+											</div>
+								    	</form>
+								    	<script type="text/javascript">
+								    		$(function(){
+									    		$("#tentbillexp").bind('submit',function(){
+									    			var bno = $('#bnot').val();
+									    			$.post('exptentbilldetail',{bno:bno},function(data){
+									    				$("#tentbillexpense").html(data);
+									    			});
+									    			return false;
+									    		});
+											});
+								    	</script>
+										<div id="tentbillexpense" style="margin-top:10px;"></div>
+								    </div>
+								    <div id="persexpense" class="tab-pane fade">
+								    	<form id="personalexp">
+											<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+												<legend>Add Other Expenses</legend>
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+														<label>Date:</label>
+														<input class="form-control" type="date" class="pdate" id="pdate" required>
+													</div>
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+														<label>Amount:</label>
+														<input class="form-control" type="text" class="pamt" id="pamt" required>
+													</div>
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+														<label>Expensed On:</label>
+														<input class="form-control" list="expon" class="presn" id="presn">
+														<datalist id="expon">
+															<option value="Employee Payment">
+															<option value="Customer Service">
+															<option value="Self Refreshment">
+															<option value="Newspaper Bill">
+															<option value="Shop Rent">
+															<option value="Light Bill">
+															<option value="Others">
+														</datalist>
+													</div>
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+														<label>Mode</label>
+														<input class="form-control" list="modep" class="pmode" id="pmode">
+														<datalist id="modep">
+															<option value="Cash Payment">
+															<option value="Cheque Payment">
+															<option value="Online Payment">
+															<option value="A/c. Deposit">
+															<option value="NEFT">
+															<option value="RTGS">
+															<option value="Others">
+														</datalist>
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+													<input id="submitp" class="btn btn-success" value="submit">
+												</div>											
+											</div>
+								    	</form>
+								    	<script type="text/javascript">
+									    	$(document).ready(function() {
+												$("#submitp").click(function() {
+													var date = $("#pdate").val();
+													var amount = $("#pamt").val();
+													var reason = $("#presn").val();
+													var mode = $("#pmode").val();
+													$.post("personalesxpense", 
+														{date: date,amount: amount,reason: reason,mode: mode}, 
+														function(data) {
+															alert('Expense added successfully');
+															$('#personalexp')[0].reset(); // To reset form fields
+														});
+												});
+											});
+								    	</script>
+								    </div>
+								    <div id="expensedetail" class="tab-pane fade">
+								    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;background-color:#148F77;">
+								    		<ul class="nav nav-tabs">			    
+											    <li class="active"><a data-toggle="tab" href="#billexpd">Bill Expenses</a></li>
+											    <li><a data-toggle="tab" href="#persexpd">Personal Expenses</a></li>
+											</ul>
+											<div class="container-fluid">
+												<div class="tab-content">
+								    				<div id="billexpd" class="tab-pane fade in active">
+								    					<form class="form-inline" id="expensedetailrcd" style="margin-top:10px;background-color:#148F77;">
+															<div class="well form-group">
+															    <label>Bill Type:</label>
+															    <select class="form-control" id="btype">
+															    	<option>Catering</option>
+															    	<option>Tent</option>
+															    </select>
+															    <label>Bill No. :</label>
+															    <input type="text" class="form-control" id="edbno" name="edbno" placeholder="Enter Bill No." required>
+														    	<input type="submit" class="btn btn-success" value="Proceed">
+															</div>
+												    	</form>											    	
+														<script type="text/javascript">
+												    		$(function(){
+													    		$("#expensedetailrcd").bind('submit',function(){
+													    			var type = $('#btype').val();
+													    			var bno = $('#edbno').val();
+													    			$.post('expensedetails',{type:type,bno:bno},function(data){
+													    				$("#paybdata").html(data);
+													    			});
+													    			return false;
+													    		});
+															});
+												    	</script>
+												    	<div id="paybdata" style="margin-top:10px;"></div>
+								    				</div>							    				
+								    				<div id="persexpd" class="tab-pane fade">
+								    					<form class="form-inline" id="persexpdatade" style="margin-top:10px;background-color:#148F77;">
+															<div class="well form-group">
+															    <label>Enter Date:</label>
+															    <input type="date" class="form-control" id="edatas">
+														    	<input type="submit" class="btn btn-success" value="Proceed">
+															</div>
+												    	</form>
+												    	<script type="text/javascript">
+												    		$(function(){
+													    		$("#persexpdatade").bind('submit',function(){
+													    			var date = $('#edatas').val();
+													    			$.post('expensepdetails',{date:date},function(data){
+													    				$("#expbdata").html(data);
+													    			});
+													    			return false;
+													    		});
+															});
+												    	</script>
+												    	<div id="expbdata" style="margin-top:10px;"></div>
+								    				</div>
+												</div>
+											</div>
+								    	</div>							    	
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>					
+					<div id="attendance" class="tab-pane fade">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;background-color:#148F77;">
+							<form id="attendemp">
+								<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+									<legend>Add Employee Attendance</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+											<label>Date:</label>
+											<input class="form-control" type="date" id="adate" required>
+										</div>
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+											<label>Employee Id:</label>
+											<input class="form-control" type="text" id="aname" list="eidname" placeholder="Enter Employee Id" onkeyup="empsearch()" required>
+										</div>
+							    		<script type="text/javascript">
+								    		function empsearch(){
+								    			var ename = $('#aname').val();
+								    			$.post('getename',{ename:ename},function(data){
+								    				$("#eidname").html(data);
+								    			});
+								    			return false;
+								    		}
+							    		</script>
+							    		<datalist id="eidname"></datalist>
+										<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin-top:24px;">
+											<div class="radio">
+		  										<label><input type="radio" name="attd" value="2" required>Full Day&nbsp;&nbsp;</label>
+		  										<label><input type="radio" name="attd" value="1" required>HalfDay&nbsp;&nbsp;</label>
+		  										<label><input type="radio" name="attd" value="0" required>Absent&nbsp;&nbsp;</label>
+		  										<label><input type="radio" name="attd" value="2" required>Leave&nbsp;&nbsp;</label>
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin-top:25px;text-align:left;">
+											<button type="button" class="btn btn-success"  onclick="addattendance()">Add</button>
+										</div>
+										<script type="text/javascript">
+									    	function addattendance(){
+								    			var date = $('#adate').val();
+								    			var id = $('#aname').val();
+								    			var attd = $('input[type=radio]:checked').val();
+								    			$.post('listempppp',{date:date,id:id,attd:attd},function(data){
+								    				$("#tableemp").html(data);
+								    			});	
+								    			return false;	  
+								    		}
+								    	</script>
+									</div>											
+								</div>								
+								<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="table-responsive">          
+										<table class="table table-bordered">
+											<thead>
+										      	<tr>
+										      		<th>Date</th>
+											        <th>Emp_Id</th>
+											        <th>Emp_Name</th>
+										      	</tr>
+										    </thead>
+										    <tbody id="tableemp">
+										    </tbody>
+										</table>										
+									</div>
+								</div>
+								<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+									<button type="submit" class="btn btn-danger">Submit</button>
+								</div>
+					    	</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

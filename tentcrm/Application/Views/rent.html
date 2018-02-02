@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rent Panel</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+
+	<style>
+		.bk i{
+			color:white;
+		}
+
+		input[type=button], input[type=submit], input[type=reset] {
+	    background-color: #4CAF50;
+	    border: none;
+	    color: white;
+	    padding: 10px 32px;
+	    text-decoration: none;
+	    margin: 4px 2px;
+	    cursor: pointer;
+		}
+
+		th, td{
+			text-align: center;
+		}
+
+		a{
+			text-decoration: none;
+			color:#F0F3F4;
+			font-family: "Times New Roman", Georgia, Serif;
+			font-weight: 600;
+		}
+	</style>
+	<script type="text/javascript">
+	    function printitemsupbill(){
+			var printContents = document.getElementById('printitembills').innerHTML;
+		    var originalContents = document.body.innerHTML;
+		    document.body.innerHTML = printContents;
+		    window.print();
+		    document.body.innerHTML = originalContents;
+		    window.location.href = "/rent/index";
+	    }
+		function printbilldetail(){
+			var printContents = document.getElementById('billdetailview').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     //window.location.reload(true);
+		     window.location.href = "/rent/index";
+	     }
+	     function printpaydatadetail(){
+			var printContents = document.getElementById('paydatadetail').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     //window.location.reload(true);
+		     window.location.href = "/rent/index";
+	     }
+	</script>
+</head>
+<body style="background-color:#2F4F4F;font-size:15px;">
+	<header class="container-fluid">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom:1px solid black;">
+			<div class="bk col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<h1><a href="/menu/index"><i class="fa fa-arrow-left"></i></a></h1>
+			</div>
+			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<h1 style="color:white;">Rentor Section</h1>
+			</div>
+		</div>
+	</header>
+	<div class="container-fluid" style="margin-top:10px;">
+		<div class="well large-well" style="background-color:#424949;">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#reg_rent" data-toggle="tab">Register Rentor</a></li>
+				<li><a href="#view_rent" data-toggle="tab">View Detail</a></li>
+				<li><a href="#add_bill" data-toggle="tab">Add New Bill</a></li>
+				<li><a href="#view_bill" data-toggle="tab">View Bill Record</a></li>
+				<li><a href="#add_pay" data-toggle="tab">Add Payment</a></li>
+				<li><a href="#pay_detail" data-toggle="tab">Payment Detail</a></li>
+			</ul>
+			<div class="container-fluid" style="margin-top:30px;">
+				<div class="tab-content">
+					<div id="reg_rent" class="tab-pane fade in active" style="background-color:#616A6B;">
+						<form method="post" action="regrentor">
+					    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+					    		<legend>Personal Detail :</legend>
+					    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-group">
+					    				<div>
+					    					<label>First Name :</label>
+									    	<input type="text" class="form-control" name="fname" placeholder="Enter Your First Name" required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label>Contact :</label>
+									    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="contact" placeholder="Enter Your Contact"  required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label>Email :</label>
+									    	<input type="email" class="form-control" name="email" placeholder="Enter Your Email">
+					    				</div>
+					    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-left:0px;">
+					    					<label>Date Of Birth :</label>
+									    	<input type="date" class="form-control" name="dob" placeholder="Enter Your Date Of Birth">
+					    				</div>
+					    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-right:0px;">
+					    					<label>Gender :</label>
+									    	<div class="radio">
+		  										<label><input type="radio" name="gender" value="Male" required>Male&nbsp;&nbsp;&nbsp;</label>
+		  										<label><input type="radio" name="gender" value="Female" required>Female</label>
+											</div>
+					    				</div>
+					    			</div>
+					    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    		</div>
+					    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-group">
+									    <div>
+					    					<label>Last Name :</label>
+									    	<input type="text" class="form-control" name="lname" placeholder="Enter Your Last Name" required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label>Alternate Contact :</label>
+									    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="acontact" placeholder="Enter Your Alternate Contact">
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label>Address :</label>
+		  									<textarea class="form-control" rows="4" name="address" placeholder="Enter Your Residential Address Here..."></textarea>
+					    				</div>
+									</div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    		</div>
+					    	</div>
+					    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+					    		<legend>Firm Detail :</legend>
+					    		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+				    				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" style="padding:0px 40px 0px 40px;">
+				    					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+					    					<label>Firm Name :</label>
+									    	<input type="text" class="form-control" name="firmname" placeholder="Enter Your Firm Name" required>
+					    				</div>
+					    				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					    					<label>Office Contact :</label>
+									    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="fcontact" placeholder="Enter Office Contact" required>
+					    				</div>
+					    				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					    					<label>Rentor Type :</label>
+									    	<input type="text" class="form-control" name="rtype" placeholder="Enter Product Type" required>
+					    				</div>
+				    				</div>
+				    				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" style="padding:0px 55px 0px 55px;">
+				    					<label>Office Address :</label>
+		  								<textarea class="form-control" rows="2" name="faddress" placeholder="Enter Your Office Address Here..." required></textarea>
+						    		</div>
+					    		</div>					    		
+					    	</div>
+					    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+					    		<input type="submit" value="Submit" >
+					    	</div>
+				    	</form>
+					</div>
+					<div id="view_rent" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label>Search By Type :</label>
+							    <input type="text" id="renttype" class="form-control" onkeyup="srctype()" placeholder="Search for types..">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label>Search By Name :</label>
+							    <input type="text" id="rentname" class="form-control" onkeyup="srcname()" placeholder="Search for names..">
+							</div>
+						</div>
+						<script>
+							function srctype() {
+							  var input, filter, table, tr, td, i;
+							  input = document.getElementById("renttype");
+							  filter = input.value.toUpperCase();
+							  table = document.getElementById("rentTable");
+							  tr = table.getElementsByTagName("tr");
+							  for (i = 0; i < tr.length; i++) {
+							    td = tr[i].getElementsByTagName("td")[0];
+							    if (td) {
+							      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+							        tr[i].style.display = "";
+							      } else {
+							        tr[i].style.display = "none";
+							      }
+							    }       
+							  }
+							}
+
+							function srcname() {
+							  var input, filter, table, tr, td, i;
+							  input = document.getElementById("rentname");
+							  filter = input.value.toUpperCase();
+							  table = document.getElementById("rentTable");
+							  tr = table.getElementsByTagName("tr");
+							  for (i = 0; i < tr.length; i++) {
+							    td = tr[i].getElementsByTagName("td")[2];
+							    if (td) {
+							      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+							        tr[i].style.display = "";
+							      } else {
+							        tr[i].style.display = "none";
+							      }
+							    }       
+							  }
+							}
+						</script>
+				    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="table-responsive">          
+									<table class="table" id="rentTable">
+								    <thead>
+								      <tr>
+								      	<th>Rent_Type</th>
+								        <th>R_id</th>
+								        <th>Name</th>
+								        <th>Contact</th>
+								        <th>Firm_Name</th>
+								        <th>F_Contact</th>
+								        <th>ACTION</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+								    	{% for rdata in rentdata %}
+									    <tr>
+									        <td>{{rdata.Rtype}}</td>
+									        <td>{{rdata.Rid}}</td>
+									        <td>{{rdata.Fname}} {{rdata.Lname}}</td>
+									        <td>{{rdata.Contact}}</td>
+									        <td>{{rdata.Firmname}}</td>
+									        <td>{{rdata.Fcontact}}</td>
+									        <td><a href="editrent?rid={{rdata.Rid}}" data-toggle="modal" data-target="#rentedit" style="color:blue;">Edit&nbsp;/&nbsp;Delete</a></td>
+									    </tr>
+									    {% endfor %}
+								    </tbody>
+								</table>
+							</div>
+				    	</div>
+				    	<div class="modal fade" id="rentedit" role="dialog" >
+						    <div class="modal-dialog modal-lg" style="border:2px solid lightblue;height:885px;background-color:#117A65;padding:10px;">
+						    	<div class="modal-content"></div>
+						    </div>
+						</div>
+					</div>
+					<div id="add_bill" class="tab-pane fade" style="background-color:#616A6B;">
+						<form class="form-inline" id="billrentsid">
+						  	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+							    <lable>Rentor Id :</label>
+							    <input type="text" name="rentrid" id="rentrid" class="form-control" placeholder="Enter Rentor Id" list="addbillidname" onkeyup="addbillnamesearch()" required>
+								<script type="text/javascript">
+						    		function addbillnamesearch(){
+						    			var rid = $('#rentrid').val();
+						    			$.post('getrentridname',{rid:rid},function(data){
+						    				$("#addbillidname").html(data);
+						    			});
+						    			return false;
+						    		}
+					    		</script>
+						    	<datalist id="addbillidname"></datalist>
+							    <input type="submit" class="btn btn-success" value="Get Detail" style="padding: 7px 20px;">
+							</div>
+						</form>
+						<script type="text/javascript">
+							$(function(){
+					    		$("#billrentsid").bind('submit',function(){
+					    			var rid = $('#rentrid').val();
+					    			$.post('addrentnewtrans',{rid:rid},function(data){
+					    				$("#addrenttrans").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+						</script>
+						<div id="addrenttrans"></div>
+						<div id="addrentbilldata" class="collapse">
+				    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div  class="form-inline">
+									<span style="font-size:18px;">Transaction Detail :&nbsp;</span>
+									<input type="text" class="form-control" id="rbno" placeholder="Enter Bill No." required>
+									<input type="date" class="form-control" id="rbdate" placeholder="Enter Bill Date" required>
+								</div>			
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<h4>Item Detail</h4>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<lable>Product Name :</label>
+									    	<input type="text" class="form-control" id="rpname" required>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<lable>Description :</label>
+									    	<input type="text" class="form-control" id="desc" required>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<lable>Rate :</label>
+									    	<input type="text" class="form-control" id="cost" required>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<lable>No. of Days :</label>
+									    	<input type="text" class="form-control" id="days" required>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group" style="padding-top:19px;">
+									    	<a class="btn btn-success" onclick="addtrans()">Add Next</a>
+										</div>
+										<script type="text/javascript">
+											function addtrans(){
+								    			var rid= $('#rentrid').val();
+								    			var bno = $('#rbno').val();
+								    			var date = $('#rbdate').val();
+								    			if(bno!='' & date!=''){
+								    			var pname = $('#rpname').val();
+								    			var desc = $('#desc').val();
+								    			var cost = $('#cost').val();
+								    			var days = $('#days').val();
+								    			$.post('tablerentitem',{rid:rid,bno:bno,date:date,pname:pname,desc:desc,cost:cost,days:days},function(data){
+								    				$("#tablelist").html(data);
+								    			});	
+								    			return false;	
+								    			}
+								    			else{
+								    				alert("Bill no. and date is mandatory");
+								    			}	  
+								    		}
+										</script>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="table-responsive">
+											<table class="table" id="countit" style="border:1px solid gray;">
+												<thead>
+													<tr>
+														<th>P_Name</th>
+														<th>Description</th>
+														<th>Rate</th>
+														<th>N.Days</th>
+														<th>Amount</th>
+													</tr>
+												</thead>
+												<tbody id="tablelist">
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<form id="formrent" name="formrent" method="post">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+											<a class="btn btn-primary" onclick="calculerent()">Calcuate</a>
+										</div>
+										<script type="text/javascript">
+											function calculerent(){
+								    			var sum=0;
+								    			$(".countme").each(function(){
+								    				var value=$(this).text();
+								    				if(!isNaN(value)&&value.length!=0){
+								    					sum += parseInt(value);
+								    				}
+								    			});	
+								    			document.getElementById('totalamt').value=sum;	
+								    		}
+										</script>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+												<div class="form-inline">
+													<lable>Total Amount :&nbsp;&nbsp;&nbsp;</label>
+										    		<input type="text" class="form-control" id="totalamt" value="0" readonly>
+										    	</div>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+												<div class="form-inline">
+													<lable>Advance Paid :&nbsp;&nbsp;</label>
+											    	<input type="text" class="form-control" id="adpay" onkeyup="calballeft()" required>
+											    </div>
+
+											    <script type="text/javascript">
+											    function calballeft(){
+											    	var amt=document.getElementById('totalamt').value;
+											    	var adv=document.getElementById('adpay').value;
+											    	document.getElementById('balleft').value=amt-adv;
+
+											    	var rentrid= document.getElementById('rentrid').value;
+											    	document.getElementById('ridr').value = rentrid ;
+
+													var rname= document.getElementById('rname').value;
+													document.getElementById('rnamer').value = rname ;
+
+													var rbno= document.getElementById('rbno').value;
+													document.getElementById('bnor').value = rbno ;
+
+													var rbdate= document.getElementById('rbdate').value;
+													document.getElementById('dater').value = rbdate ;
+
+													var totalamt= document.getElementById('totalamt').value;
+													document.getElementById('amtr').value = totalamt ;
+
+													var adpay= document.getElementById('adpay').value;
+													document.getElementById('advr').value = adpay ;
+
+													var balleft= document.getElementById('balleft').value;
+													document.getElementById('balr').value = balleft ;
+
+											    }
+											    </script>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+												<div class="form-inline">
+													<lable>Balance Left :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+											    	<input type="text" class="form-control" id="balleft" readonly>
+											    </div>
+											</div>
+										</div>													
+									</div>
+
+									<script type="text/javascript">
+										$(document).ready(function() {
+												$("#submitrent").click(function() {
+												var rid = $("#ridr").val();
+												var rname = $("#rnamer").val();
+												var bno = $("#bnor").val();
+												var date = $("#dater").val();
+												var amt = $("#amtr").val();
+												var adv = $("#advr").val();
+												var bal = $("#balr").val();
+												$.post("rentbilltrans", {rid:rid, rname:rname, bno:bno, date:date, amt:amt, adv:adv, bal:bal});
+												});
+											});
+									</script>
+								
+									<input type="hidden" id="ridr" name="ridr">
+									<input type="hidden" id="rnamer" name="rnamer">
+									<input type="hidden" id="bnor" name="bnor">
+									<input type="hidden" id="dater" name="dater">
+									<input type="hidden" id="amtr" name="amtr">
+									<input type="hidden" id="advr" name="advr">
+									<input type="hidden" id="balr" name="balr">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+										<input type="submit" id="submitrent" class="button btn-success" value="Submit">
+									</div>
+								</form>
+							</div>
+				    	</div>
+					</div>
+					<div id="view_bill" class="tab-pane fade" style="background-color:#616A6B;">
+						<form id="viewbillrcd">
+							<div class="well form-inline">
+							    <lable>Rentor Id :</label>
+							    <input type="text" id="rbid" name="rbid" class="form-control" placeholder="Enter Rentor Id" list="viewbillidname" onkeyup="viewbillnamesearch()" required>
+								<script type="text/javascript">
+						    		function viewbillnamesearch(){
+						    			var rid = $('#rbid').val();
+						    			$.post('getrentridname',{rid:rid},function(data){
+						    				$("#viewbillidname").html(data);
+						    			});
+						    			return false;
+						    		}
+					    		</script>
+						    	<datalist id="viewbillidname"></datalist>
+							    <input type="submit" class="btn btn-success" value="Proceed">
+							</div>
+						</form>
+						<script type="text/javascript">
+				    		$(function(){
+					    		$("#viewbillrcd").bind('submit',function(){
+					    			var rid = $('#rbid').val();
+					    			$.post('viewbillrcdetail',{rid:rid},function(data){
+					    				$("#vbrcd").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="vbrcd" style="margin-top:10px;"></div>
+					</div>
+					<div id="add_pay" class="tab-pane fade" style="background-color:#616A6B;">
+						<form class="form-inline" id="payitembill">
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+							    <label>Enter Rentor Id :</label>
+							    <input type="text" class="form-control" id="payitemrid" name="payitemrid" placeholder="Enter Rentor Id" list="addpayidname" onkeyup="addpaynamesearch()" required>
+								<script type="text/javascript">
+						    		function addpaynamesearch(){
+						    			var rid = $('#payitemrid').val();
+						    			$.post('getrentridname',{rid:rid},function(data){
+						    				$("#addpayidname").html(data);
+						    			});
+						    			return false;
+						    		}
+					    		</script>
+						    	<datalist id="addpayidname"></datalist>
+							    <input type="submit" class="btn btn-success" value="Proceed">
+							</div>
+				    	</form>
+				    	<script type="text/javascript">
+				    		$(function(){
+					    		$("#payitembill").bind('submit',function(){
+					    			var rid = $('#payitemrid').val();
+					    			$.post('itempaydetail',{rid:rid},function(data){
+					    				$("#itempayment").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="itempayment" style="margin-top:10px;"></div>
+					</div>
+					<div id="pay_detail" class="tab-pane fade" style="background-color:#616A6B;">
+						<form id="paymentbrcdd">
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+							    <label>Enter Rentor Id :</label>
+							    <input type="text" class="form-control" id="pbrid" name="pbrid" placeholder="Enter Rentor Id" list="viewpayidname" onkeyup="viewpaynamesearch()" required>
+								<script type="text/javascript">
+						    		function viewpaynamesearch(){
+						    			var rid = $('#pbrid').val();
+						    			$.post('getrentridname',{rid:rid},function(data){
+						    				$("#viewpayidname").html(data);
+						    			});
+						    			return false;
+						    		}
+					    		</script>
+						    	<datalist id="viewpayidname"></datalist>
+							    <input type="submit" class="btn btn-success" value="Proceed">
+							</div>
+				    	</form>
+				    	<script type="text/javascript">
+				    		$(function(){
+					    		$("#paymentbrcdd").bind('submit',function(){
+					    			var rid = $('#pbrid').val();
+					    			$.post('billpaymentdetail',{rid:rid},function(data){
+					    				$("#paidbdatas").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="paidbdatas" style="margin-top:10px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

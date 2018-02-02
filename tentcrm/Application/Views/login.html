@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login To  CRM</title>
+	<link rel="icon" type="image/png" href="/assets/images/lgo.jpg" />
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+
+</head>
+<body style="background-color:#154360;">
+	<div id="id01" class="modal">	  
+	  <form class="well modal-content animate" action="/menu/login" method="post" style="background-color:#424949;padding:5px 10px;">
+	    <div>
+	    	<div style="text-align:center;color:white;"><span style="font-weight:600;font-size:50px;">DEEPAK</span><br><span style="font-weight:800;font-size:24px;">(<i> Tent &amp; Caterers </i>)</span></div>
+	    </div>
+	    {% if message %}
+	    <div class="alert alert-danger">{{message}}</div>
+	    {% endif %}
+	    <div class="well form-group" style="background-color:white;margin-top:20px;">
+	      <label style="font-size:18px;">Username</label>
+	      <input type="text" class="form-control" placeholder="Enter Username" name="uname" required>
+
+	      <label style="font-size:18px;">Password</label>
+	      <input type="password" class="form-control" placeholder="Enter Password" name="psw" required>
+	        
+	      <button type="submit" style="border-radius:5px;background-color:#8B0000;font-size:24px; padding:5px 15px;">Login</button>
+	    </div>
+	  </form>
+	</div>		
+
+</body>
+</html>

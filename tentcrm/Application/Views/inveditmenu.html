@@ -1,0 +1,58 @@
+<form method="post" action="mupdate">
+	<input type="hidden" name="pid" value="{{edata.Pid}}">
+	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+			<h2>UPDATE&nbsp;/&nbsp;DELETE&nbsp;PRODUCT</h2><br>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+    				<div>
+    					<label>Menu Type :</label>
+				    	<select class="form-control" name="mtype" id="mtype" required>
+				    		<option>{{edata.Mtype}}</option>
+					    	<option>Breakfast</option>
+					    	<option>Lunch</option>
+					    	<option>High_Tea</option>
+					    	<option>Dinner</option>
+				  		</select>
+    				</div>
+    				<div style="margin-top:10px;">
+    					<label>Sub Menu Type :</label>
+				    	<select class="form-control" name="smtype" id="smtype" required>
+				    		<option>{{edata.Smtype}}</option>
+					    	<option>Main Course</option>
+					    	<option>Live Station</option>
+					    	<option>Stall</option>
+				  		</select>
+    				</div>					    				
+    				<div style="margin-top:10px;">
+    					<label>Item Name :</label>
+				    	<input type="text" class="form-control" name="mpname" id="mpname" value="{{edata.Pname}}" required>
+    				</div>		    
+				</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    		</div>
+    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+				    <div>
+				    	<label>Cost Price :</label>
+				    	<input type="text" class="form-control" name="mcp" id="mcp" value="{{edata.Cp}}" required>
+    				</div>
+    				<div style="margin-top:10px;">
+    					<label>Booking Price :</label>
+				    	<input type="text" class="form-control" name="mbp" id="mbp" value="{{edata.Bp}}" required>
+    				</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+    		</div>
+    	</div>
+	</div>	
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+		<label style="background:red;padding:10px 32px;margin: 4px 2px; cursor: pointer;"><a href="" style="text-decoration:none;color:white">Close</a></label>
+		<input type="submit" value="Update">
+		<a class="btn btn-primary" href="mdelete?pid={{edata.Pid}}" style="padding:11px 20px;margin-top:-5px;">Delete</a>
+	</div>
+</form>

@@ -1,0 +1,55 @@
+<form method="post" action="tupdate">
+	<input type="hidden" name="pid" value="{{edata.Pid}}">
+	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+			<h2>UPDATE&nbsp;/&nbsp;DELETE&nbsp;PRODUCT</h2><br>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+					<div>
+						<label>Product Name :</label>
+				    	<input type="text" class="form-control" name="tpname" id="tpname" value="{{edata.Pname}}" required>
+					</div>					    				
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-left:0px;">
+						<label>Quantity :</label>
+				    	<input type="text" class="form-control" name="tqty" id="tqty" value="{{edata.Qty}}"  required>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-right:0px;">
+						<label>Unit :</label>
+				    	<select class="form-control" name="tunit" id="tunit" required>
+				    		<option>{{edata.Unit}}</option>
+					    	<option>Numbers</option>
+					    	<option>Pieces</option>
+					    	<option>Pkts</option>
+					    	<option>Bundle</option>
+					    	<option>Kg</option>
+					    	<option>Litre</option>
+				  		</select>
+					</div>			    									    
+				</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+				    <div>
+				    	<label>Cost Price :</label>
+				    	<input type="text" class="form-control" name="tcp" id="tcp" value="{{edata.Cp}}" required>
+					</div>
+					<div style="margin-top:10px;">
+						<label>Booking Price :</label>
+				    	<input type="text" class="form-control" name="tbp" id="tbp" value="{{edata.Bp}}" required>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+			</div>
+		</div>
+	</div>	
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+		<label style="background:red;padding:10px 32px;margin: 4px 2px; cursor: pointer;"><a href="" style="text-decoration:none;color:white">Close</a></label>
+		<input type="submit" value="Update">
+		<a class="btn btn-primary" href="tdelete?pid={{edata.Pid}}" style="padding:11px 20px;margin-top:-5px;">Delete</a>
+	</div>
+</form>

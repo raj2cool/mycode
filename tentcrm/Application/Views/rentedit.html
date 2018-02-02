@@ -1,0 +1,74 @@
+<form method="post" action="rentupdate">
+	<input type="hidden" name="rid" value="{{edata.Rid}}">
+	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+			<h2>UPDATE&nbsp;/&nbsp;DELETE&nbsp;RECORD</h2>
+		</div>
+		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+			<legend>Personal Detail :</legend>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+				<div>
+					<label>First Name :</label>
+			    	<input type="text" class="form-control" name="fname" value="{{edata.Fname}}" required>
+				</div>
+				<div style="margin-top:10px;">
+					<label>Contact :</label>
+			    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="contact" value="{{edata.Contact}}" required>
+				</div>
+				<div style="margin-top:10px;">
+					<label>Email :</label>
+			    	<input type="email" class="form-control" name="email" value="{{edata.Email}}">
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-left:0px;">
+					<label>Date Of Birth :</label>
+			    	<input type="date" class="form-control" name="dob" value="{{edata.Dob}}">
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-right:0px;">
+					<label>Gender :</label>
+			    	<div class="radio">
+						<label><input type="radio" name="gender" value="Male" required>Male&nbsp;&nbsp;&nbsp;</label>
+						<label><input type="radio" name="gender" value="Female" required>Female</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+			    <div>
+					<label>Last Name :</label>
+			    	<input type="text" class="form-control" name="lname" value="{{edata.Lname}}" required>
+				</div>
+				<div style="margin-top:10px;">
+					<label>Alternate Contact :</label>
+			    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="acontact" value="{{edata.Acontact}}">
+				</div>
+				<div style="margin-top:10px;">
+					<label>Address :</label>
+					<textarea class="form-control" rows="4" name="address">{{edata.Address}}</textarea>
+				</div>
+			</div>
+		</div>
+		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+			<legend>Firm Detail :</legend>
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 form-group">
+				<label>Firm Name :</label>
+		    	<input type="text" class="form-control" name="firmname" value="{{edata.Firmname}}" required>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				<label>Office Contact :</label>
+		    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="fcontact" value="{{edata.Fcontact}}" required>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+				<label>Supplier Type :</label>
+		    	<input type="text" class="form-control" name="rtype" value="{{edata.Rtype}}" required>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+				<label>Office Address :</label>
+				<textarea class="form-control" rows="2" name="faddress" required>{{edata.Faddress}}</textarea>
+			</div>					    		
+		</div>
+	</div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+		<a href="" style="text-decoration:none;color:white"><label style="background:red;padding:10px 32px;margin: 4px 2px; cursor: pointer;">Close</label></a>
+		<input type="submit" value="Update" >
+		<a class="btn btn-primary" href="deleterent?rid={{edata.Rid}}" style="padding:11px 20px;margin-top:-5px;">Delete</a>
+	</div>
+</form>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inventory Panel</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+
+	<style>
+		.bk i{
+			color:white;
+		}
+
+		input[type=button], input[type=submit], input[type=reset] {
+	    background-color: #4CAF50;
+	    border: none;
+	    color: white;
+	    padding: 10px 32px;
+	    text-decoration: none;
+	    margin: 4px 2px;
+	    cursor: pointer;
+		}
+
+		th, td{
+			text-align: center;
+		}
+		a{
+			text-decoration: none;
+			color:#F0F3F4;
+			font-family: "Times New Roman", Georgia, Serif;
+			font-weight: 600;
+		}
+	</style>
+</head>
+<body style="background-color:#2F4F4F;font-size:15px;">
+	<header class="container-fluid">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom:1px solid black;">
+			<div class="bk col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<h1><a href="/menu/index"><i class="fa fa-arrow-left"></i></a></h1>
+			</div>
+			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<h1 style="color:white;">Inventory Section</h1>
+			</div>
+		</div>
+	</header>
+
+
+	<div class="container-fluid" style="margin-top:10px;">
+		<div class="well large-well" style="background-color:#424949;">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#add_inv" data-toggle="tab">Add Inventory</a></li>
+				<li><a href="#view_inv" data-toggle="tab">View Inventory</a></li>
+				<li><a href="#incg_inv" data-toggle="tab">Incoming Inventory</a></li>
+				<li><a href="#outg_inv" data-toggle="tab">Outgoing Inventory</a></li>
+			</ul>
+			<div class="container-fluid" style="margin-top:30px;">
+				<div class="tab-content">
+					<div id="add_inv" class="tab-pane fade in active well large-well" style="background-color:#616A6B;">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#add_tent" data-toggle="tab">Add Tent Item</a></li>
+							<li><a href="#add_cater" data-toggle="tab">Add Catering Item</a></li>
+							<li><a href="#add_menu" data-toggle="tab">Add Menu Item</a></li>
+							<li><a href="#add_decor" data-toggle="tab">Add Decoration Item</a></li>
+							<li><a href="#add_other" data-toggle="tab">Add Other Item</a></li>
+						</ul>
+						<div class="container-fluid" style="margin-top:10px;">
+							<div class="tab-content">
+								<div id="add_tent" class="tab-pane fade in active">
+									<form method="post" action="regtent" style="margin-top:20px;">
+								    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	
+								    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+								    			<div class="col-lg-2 col-md-2 col-sm-2  col-xs-2"></div>
+								    			<div class="col-lg-9 col-md-9 col-sm-9  col-xs-9">
+								    				<div>
+								    					<label>Product Name :</label>
+												    	<input type="text" class="form-control" name="tpname" id="tpname" placeholder="Enter Product Name" required>
+								    				</div>					    				
+								    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-left:0px;">
+								    					<label>Quantity :</label>
+												    	<input type="text" class="form-control" name="tqty" id="tqty" placeholder="Enter Quantity"  required>
+								    				</div>
+								    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-right:0px;">
+								    					<label>Unit :</label>
+												    	<select class="form-control" name="tunit" id="tunit" required>
+													    	<option>Numbers</option>
+													    	<option>Pieces</option>
+													    	<option>Pkts</option>
+													    	<option>Bundle</option>
+													    	<option>Kg</option>
+													    	<option>Litre</option>
+												  		</select>
+								    				</div>
+								    				<div class="col-lg-1 col-md-1 col-sm-1  col-xs-1"></div>
+								    			</div>
+								    		</div>    		
+								    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+								    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+								    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								    				<div>
+												    	<label>Cost Price :</label>
+												    	<input type="text" class="form-control" name="tcp" id="tcp" placeholder="Enter Product Cost Price" required>
+								    				</div>
+								    				<div style="margin-top:10px;">
+								    					<label>Booking Price :</label>
+												    	<input type="text" class="form-control" name="tbp" id="tbp" placeholder="Enter Product Booking Price" required>
+								    				</div>
+								    			</div>
+								    			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>    				
+								    		</div>
+								    	</div>
+								    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+								    		<input type="submit" value="Submit" >
+								    	</div>
+							    	</form>
+								</div>
+								<div id="add_cater" class="tab-pane fade">
+									<form method="post" action="regcater" style="margin-top:20px;">
+								    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+								    			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+								    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								    				<div>
+								    					<label>Product Name :</label>
+												    	<input type="text" class="form-control" name="cpname" id="cpname" placeholder="Enter Product Name" required>
+								    				</div>   								    				
+								    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-left:0px;">
+								    					<label>Quantity :</label>
+												    	<input type="text" class="form-control" name="cqty" id="cqty" placeholder="Enter Quantity" required>
+								    				</div>
+								    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-right:0px;">
+								    					<label>Unit :</label>
+												    	<select class="form-control" name="cunit" id="cunit" required>
+													    	<option>Numbers</option>
+													    	<option>Pieces</option>
+													    	<option>Pkts</option>
+													    	<option>Bundle</option>
+													    	<option>Kg</option>
+													    	<option>Litre</option>
+												  		</select>
+								    				</div>
+								    				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+								    			</div>
+								    		</div>
+						    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+						    					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+						    					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+						    						<div>
+												    	<label>Cost Price :</label>
+												    	<input type="text" class="form-control" name="ccp" id="ccp" placeholder="Enter Product Cost Price" required>
+								    				</div>
+						    					</div>
+						    					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+						    				</div>
+								    	</div>
+								    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+								    		<input type="submit" value="Submit" >
+								    	</div>
+							    	</form>
+								</div>
+								<div id="add_menu" class="tab-pane fade">
+									<form method="post" action="regmenu" style="margin-top:20px;">
+								    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+								    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								    			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+								    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+								    				<div>
+								    					<label>Menu Type :</label>
+												    	<select class="form-control" name="mtype" id="mtype" required>
+													    	<option>Breakfast</option>
+													    	<option>Lunch</option>
+													    	<option>High_Tea</option>
+													    	<option>Dinner</option>
+												  		</select>
+								    				</div>
+								    				<div style="margin-top:10px;">
+								    					<label>Sub Menu Type :</label>
+												    	<select class="form-control" name="smtype" id="smtype" required>
+													    	<option>Main Course</option>
+													    	<option>Live Station</option>
+													    	<option>Welcome Drinks</option>
+													    	<option>Soups</option>
+													    	<option>Mocktails</option>
+													    	<option>Juice</option>
+													    	<option>Starters</option>
+													    	<option>Snacks</option>
+													    	<option>Vegetarian Entries</option>
+													    	<option>Breads(Tandoor Se.)</option>
+													    	<option>Breads(Tawa Se.)</option>
+													    	<option>Breads(Kadhai Se.)</option>
+													    	<option>Rice Specialities</option>
+													    	<option>Daal</option>
+													    	<option>Yogurts</option>
+													    	<option>Deserts</option>
+													    	<option>Delightful Deserts</option>
+													    	<option>Salad</option>
+													    	<option>Condiments</option>
+													    	<option>Beverages</option>
+													    	<option>South Indian</option>
+													    	<option>Chinese</option>
+													    	<option>Italian</option>
+													    	<option>Others</option>
+												  		</select>
+								    				</div>					    				
+								    				<div style="margin-top:10px;">
+								    					<label>Item Name :</label>
+												    	<input type="text" class="form-control" name="mpname" id="mpname" placeholder="Enter Item Name" required>
+								    				</div>		    
+												</div>
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+								    		</div>
+								    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+								    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+												    <div>
+												    	<label>Cost Price :</label>
+												    	<input type="text" class="form-control" name="mcp" id="mcp" placeholder="Enter Product Cost Price" required>
+								    				</div>
+								    				<div style="margin-top:10px;">
+								    					<label>Booking Price :</label>
+												    	<input type="text" class="form-control" name="mbp" id="mbp" placeholder="Enter Product Booking Price" required>
+								    				</div>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+								    		</div>
+								    	</div>
+								    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+								    		<input type="submit" value="Submit" >
+								    	</div>
+							    	</form>
+								</div>
+								<div id="add_decor" class="tab-pane fade">
+									<form method="post" action="regdecor" style="margin-top:20px;">
+								    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">	    		
+								    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								    			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+								    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+								    				<div>
+								    					<label>Service Name :</label>
+												    	<input type="text" class="form-control" name="dsname" id="dsname" placeholder="Enter service name" required>
+								    				</div>
+								    				<div style="margin-top:10px;">
+												    	<label>Cost Price :</label>
+												    	<input type="text" class="form-control" name="dcp" id="dcp" placeholder="Enter Product Cost Price" required>
+								    				</div>	    
+												</div>
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+								    		</div>
+								    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+								    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+								    				<div>
+								    					<label>Booking Price :</label>
+												    	<input type="text" class="form-control" name="dbp" id="dbp" placeholder="Enter Product Booking Price" required>
+								    				</div>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+								    		</div>
+								    	</div>
+								    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+								    		<input type="submit" value="Submit" >
+								    	</div>
+							    	</form>
+								</div>
+								<div id="add_other" class="tab-pane fade">
+									<form method="post" action="regother" style="margin-top:20px;">
+								    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+								    			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+								    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								    				<div>
+								    					<label>Product Name :</label>
+												    	<input type="text" class="form-control" name="opname" id="opname" placeholder="Enter Product Name" required>
+								    				</div>   								    				
+								    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-left:0px;">
+								    					<label>Quantity :</label>
+												    	<input type="text" class="form-control" name="oqty" id="oqty" placeholder="Enter Quantity" required>
+								    				</div>
+								    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;padding-right:0px;">
+								    					<label>Unit :</label>
+												    	<select class="form-control" name="ounit" id="ounit" required>
+													    	<option>Numbers</option>
+													    	<option>Pieces</option>
+													    	<option>Pkts</option>
+													    	<option>Bundle</option>
+													    	<option>Kg</option>
+													    	<option>Litre</option>
+												  		</select>
+								    				</div>
+								    				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+								    			</div>
+								    		</div>
+						    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+						    					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+						    					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+						    						<div>
+												    	<label>Cost Price :</label>
+												    	<input type="text" class="form-control" name="ocp" id="ocp" placeholder="Enter Product Cost Price" required>
+								    				</div>
+						    					</div>
+						    					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+						    				</div>
+								    	</div>
+								    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+								    		<input type="submit" value="Submit" >
+								    	</div>
+							    	</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="view_inv" class="tab-pane fade well large-well" style="background-color:#616A6B;">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#view_tent" data-toggle="tab">View Tent Item</a></li>
+							<li><a href="#view_cater" data-toggle="tab">View Catering Item</a></li>
+							<li><a href="#view_menu" data-toggle="tab">View Menu Item</a></li>
+							<li><a href="#view_decor" data-toggle="tab">View Decoration Item</a></li>
+							<li><a href="#view_other" data-toggle="tab">View Other Item</a></li>
+						</ul>
+						<div class="container-fluid" style="margin-top:10px;">
+							<div class="tab-content">
+								<div id="view_tent" class="tab-pane fade in active">
+									<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 0px 0px 0px;">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+											<label>Search By Name :</label>
+										    <input type="text" id="tentInput" class="form-control" onkeyup="tnameFunction()" placeholder="Search for names..">
+										    <script>
+												function tnameFunction() {
+												  var input, filter, table, tr, td, i;
+												  input = document.getElementById("tentInput");
+												  filter = input.value.toUpperCase();
+												  table = document.getElementById("tentTable");
+												  tr = table.getElementsByTagName("tr");
+												  for (i = 0; i < tr.length; i++) {
+												    td = tr[i].getElementsByTagName("td")[1];
+												    if (td) {
+												      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+												        tr[i].style.display = "";
+												      } else {
+												        tr[i].style.display = "none";
+												      }
+												    }       
+												  }
+												}
+											</script>
+										</div>
+									</div>									
+								  	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="table-responsive">          
+											<table class="table" id="tentTable">
+											    <thead>
+											    	<tr>
+												        <th>P_Id</th>
+												        <th>P_Name</th>
+												        <th>Quantity</th>
+												        <th>Cost_Price</th>
+												        <th>Book_Price</th>
+												        <th>Action</th>
+											     	</tr>
+											    </thead>
+											    <tbody>
+											    	{% for tdata in tentdata %}
+											      	<tr>
+												        <td>{{tdata.Pid}}</td>
+												        <td>{{tdata.Pname}}</td>
+												        <td>{{tdata.Qty}} {{tdata.Unit}}</td>
+												        <td>{{tdata.Cp}}</td>
+												        <td>{{tdata.Bp}}</td>
+												        <td>
+												        	<div>
+																<a href="tedit?pid={{tdata.Pid}}" data-toggle="modal" data-target="#tent_edit" style="color:blue;">Edit/Delete</a>
+															</div>
+												        </td>
+											      	</tr>
+											      	{% endfor %}
+											    </tbody>
+											</table>
+								  		</div>
+								  	</div>
+									<div id="tent_edit" class="modal fade" role="dialog">
+										<div class="modal-dialog modal-lg" style="border:2px solid lightblue;height:440px;background-color:#117A65;padding:10px;">
+										    <div class="modal-content"></div>
+										</div>
+									</div>
+								</div>
+								<div id="view_cater" class="tab-pane fade">
+									<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 0px 0px 0px;">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+											<label>Search By Name :</label>
+										    <input type="text" id="caterInput" class="form-control" onkeyup="cnameFunction()" placeholder="Search for names..">
+										    <script>
+												function cnameFunction() {
+												  var input, filter, table, tr, td, i;
+												  input = document.getElementById("caterInput");
+												  filter = input.value.toUpperCase();
+												  table = document.getElementById("caterTable");
+												  tr = table.getElementsByTagName("tr");
+												  for (i = 0; i < tr.length; i++) {
+												    td = tr[i].getElementsByTagName("td")[1];
+												    if (td) {
+												      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+												        tr[i].style.display = "";
+												      } else {
+												        tr[i].style.display = "none";
+												      }
+												    }       
+												  }
+												}
+											</script>
+										</div>
+									</div>									
+								  	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="table-responsive">          
+											<table class="table" id="caterTable">
+											    <thead>
+											    	<tr>
+												        <th>P_Id</th>
+												        <th>P_Name</th>
+												        <th>Quantity</th>
+												        <th>Cost_Price</th>
+												        <th>Action</th>
+											     	</tr>
+											    </thead>
+											    <tbody>
+											    	{% for cdata in caterdata %}
+											      	<tr>
+												        <td>{{cdata.Pid}}</td>
+												        <td>{{cdata.Pname}}</td>
+												        <td>{{cdata.Qty}} {{cdata.Unit}}</td>
+												        <td>{{cdata.Cp}}</td>
+												        <td>
+												        	<div>
+																<a href="cedit?pid={{cdata.Pid}}" data-toggle="modal" data-target="#cater_edit" style="color:blue;">Edit/Delete</a>
+															</div>
+												        </td>
+											      	</tr>
+											      	{% endfor %}
+											    </tbody>
+											</table>
+								  		</div>
+								  	</div>
+									<div id="cater_edit" class="modal fade" role="dialog">
+										<div class="modal-dialog modal-lg" style="border:2px solid lightblue;height:375px;background-color:#117A65;padding:10px;">
+										    <div class="modal-content"></div>
+										</div>
+									</div>
+								</div>
+								<div id="view_menu" class="tab-pane fade">
+									<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 0px 0px 0px;">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+											<label>Search By Name :</label>
+										    <input type="text" id="menuInput" class="form-control" onkeyup="mnameFunction()" placeholder="Search for names..">
+										    <script>
+												function mnameFunction() {
+												  var input, filter, table, tr, td, i;
+												  input = document.getElementById("menuInput");
+												  filter = input.value.toUpperCase();
+												  table = document.getElementById("menuTable");
+												  tr = table.getElementsByTagName("tr");
+												  for (i = 0; i < tr.length; i++) {
+												    td = tr[i].getElementsByTagName("td")[3];
+												    if (td) {
+												      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+												        tr[i].style.display = "";
+												      } else {
+												        tr[i].style.display = "none";
+												      }
+												    }       
+												  }
+												}
+											</script>
+										</div>
+									</div>									
+								  	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="table-responsive">          
+											<table class="table" id="menuTable">
+											    <thead>
+											    	<tr>
+											    		<th>P_Id</th>
+											    		<th>Menu_Type</th>
+												        <th>Sub_Type</th>									        
+												        <th>Item_Name</th>
+												        <th>Cost_Price</th>
+												        <th>Book_Price</th>
+												        <th>Action</th>
+											     	</tr>
+											    </thead>
+											    <tbody>
+											    	{% for mdata in menudata %}
+											      	<tr>
+											      		<td>{{mdata.Pid}}</td>
+											      		<td>{{mdata.Mtype}}</td>
+												        <td>{{mdata.Smtype}}</td>
+												        <td>{{mdata.Pname}}</td>
+												        <td>{{mdata.Cp}}</td>
+												        <td>{{mdata.Bp}}</td>
+												        <td>
+												        	<div>
+																<a href="medit?pid={{mdata.Pid}}" data-toggle="modal" data-target="#menu_edit" style="color:blue;">Edit/Delete</a>
+															</div>
+												        </td>
+											      	</tr>
+											      	{% endfor %}
+											    </tbody>
+											</table>
+								  		</div>
+								  	</div>
+									<div id="menu_edit" class="modal fade" role="dialog">
+										<div class="modal-dialog modal-lg" style="border:2px solid lightblue;height:445px;background-color:#117A65;padding:10px;">
+										    <div class="modal-content"></div>
+										</div>
+									</div>
+								</div>
+								<div id="view_decor" class="tab-pane fade">
+									<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 0px 0px 0px;">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+											<label>Search By Name :</label>
+										    <input type="text" id="decorInput" class="form-control" onkeyup="dnameFunction()" placeholder="Search for names..">
+										    <script>
+												function dnameFunction() {
+												  var input, filter, table, tr, td, i;
+												  input = document.getElementById("decorInput");
+												  filter = input.value.toUpperCase();
+												  table = document.getElementById("decorTable");
+												  tr = table.getElementsByTagName("tr");
+												  for (i = 0; i < tr.length; i++) {
+												    td = tr[i].getElementsByTagName("td")[1];
+												    if (td) {
+												      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+												        tr[i].style.display = "";
+												      } else {
+												        tr[i].style.display = "none";
+												      }
+												    }       
+												  }
+												}
+											</script>
+										</div>
+									</div>									
+								  	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="table-responsive">          
+											<table class="table" id="decorTable">
+											    <thead>
+											    	<tr>
+											    		<th>P_Id</th>
+												        <th>Service_Name</th>
+												        <th>Cost_Price</th>
+												        <th>Book_Price</th>
+												        <th>Action</th>
+											     	</tr>
+											    </thead>
+											    <tbody>
+											    	{% for ddata in decordata %}
+											      	<tr>
+											      		<td>{{ddata.Pid}}</td>
+												        <td>{{ddata.Sname}}</td>
+												        <td>{{ddata.Cp}}</td>
+												        <td>{{ddata.Bp}}</td>
+												        <td>
+												        	<div>
+																<a href="dedit?pid={{ddata.Pid}}" data-toggle="modal" data-target="#decor_edit" style="color:blue;">Edit/Delete</a>
+															</div>
+												        </td>
+											      	</tr>
+											      	{% endfor %}
+											    </tbody>
+											</table>
+								  		</div>
+								  	</div>
+									<div id="decor_edit" class="modal fade" role="dialog">
+										<div class="modal-dialog modal-lg" style="border:2px solid lightblue;height:375px;background-color:#117A65;padding:10px;">
+										    <div class="modal-content"></div>
+										</div>
+									</div>
+								</div>
+								<div id="view_other" class="tab-pane fade">
+									<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 0px 0px 0px;">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+											<label>Search By Name :</label>
+										    <input type="text" id="otherInput" class="form-control" onkeyup="onameFunction()" placeholder="Search for names..">
+										    <script>
+												function onameFunction() {
+												  var input, filter, table, tr, td, i;
+												  input = document.getElementById("otherInput");
+												  filter = input.value.toUpperCase();
+												  table = document.getElementById("otherTable");
+												  tr = table.getElementsByTagName("tr");
+												  for (i = 0; i < tr.length; i++) {
+												    td = tr[i].getElementsByTagName("td")[1];
+												    if (td) {
+												      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+												        tr[i].style.display = "";
+												      } else {
+												        tr[i].style.display = "none";
+												      }
+												    }       
+												  }
+												}
+											</script>
+										</div>
+									</div>									
+								  	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="table-responsive">          
+											<table class="table" id="otherTable">
+											    <thead>
+											    	<tr>
+												        <th>P_Id</th>
+												        <th>P_Name</th>
+												        <th>Quantity</th>
+												        <th>Cost_Price</th>
+												        <th>Action</th>
+											     	</tr>
+											    </thead>
+											    <tbody>
+											    	{% for odata in otherdata %}
+											      	<tr>
+												        <td>{{odata.Pid}}</td>
+												        <td>{{odata.Pname}}</td>
+												        <td>{{odata.Qty}} {{odata.Unit}}</td>
+												        <td>{{odata.Cp}}</td>
+												        <td>
+												        	<div>
+																<a href="oedit?pid={{odata.Pid}}" data-toggle="modal" data-target="#other_edit" style="color:blue;">Edit/Delete</a>
+															</div>
+												        </td>
+											      	</tr>
+											      	{% endfor %}
+											    </tbody>
+											</table>
+								  		</div>
+								  	</div>
+									<div id="other_edit" class="modal fade" role="dialog">
+										<div class="modal-dialog modal-lg" style="border:2px solid lightblue;height:375px;background-color:#117A65;padding:10px;">
+										    <div class="modal-content"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="incg_inv" class="tab-pane fade well large-well" style="background-color:#616A6B;">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#inc_tent" data-toggle="tab">Tent Incomings</a></li>
+							<li><a href="#inc_cater" data-toggle="tab">Catering Incomings</a></li>
+							<li><a href="#inc_other" data-toggle="tab">Other Incomings</a></li>
+						</ul>
+						<div class="container-fluid" style="margin-top:10px;">
+							<div class="tab-content">
+								<div id="inc_tent" class="tab-pane fade in active">
+									<form class="form-inline" id="addtent">
+									  	<div class="well form-group" style="margin-top:10px;">
+								  			<lable>Product Id :</label>
+									    	<input type="text" class="form-control" id="atpid" name="atpid" placeholder="Enter Product Id" list="tentincidname" onkeyup="tentincsearch()" required>
+											<script type="text/javascript">
+									    		function tentincsearch(){
+									    			var pid = $('#atpid').val();
+									    			$.post('gettentpname',{pid:pid},function(data){
+									    				$("#tentincidname").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+									    	<datalist id="tentincidname"></datalist>
+								  			<input type="submit" class="btn btn-default" value="Proceed">										    
+										</div>
+									</form>
+
+									<script type="text/javascript">
+							    		$(function(){
+								    		$("#addtent").bind('submit',function(){
+								    			var pid = $('#atpid').val();
+								    			$.post('addtentinv',{pid:pid},function(data){
+								    				$("#addtentpane").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+									<div id="addtentpane" style="margin-top:10px;"></div>
+								</div>
+								<div id="inc_cater" class="tab-pane fade">
+									<form class="form-inline" id="addcater">
+									  	<div class="well form-group" style="margin-top:10px;">
+								  			<lable>Product Id :</label>
+									    	<input type="text" class="form-control" id="acpid" name="acpid" placeholder="Enter Product Id" list="caterincidname" onkeyup="caterincsearch()" required>
+											<script type="text/javascript">
+									    		function caterincsearch(){
+									    			var pid = $('#acpid').val();
+									    			$.post('getcaterpname',{pid:pid},function(data){
+									    				$("#caterincidname").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+									    	<datalist id="caterincidname"></datalist>
+								  			<input type="submit" class="btn btn-default" value="Proceed">			    
+										</div>
+									</form>
+
+									<script type="text/javascript">
+							    		$(function(){
+								    		$("#addcater").bind('submit',function(){
+								    			var pid = $('#acpid').val();
+								    			$.post('addcaterinv',{pid:pid},function(data){
+								    				$("#addcaterpane").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+									<div id="addcaterpane" style="margin-top:10px;"></div>
+								</div>
+								<div id="inc_other" class="tab-pane fade">
+									<form class="form-inline" id="addother">
+									  	<div class="well form-group" style="margin-top:10px;">
+								  			<lable>Product Id :</label>
+									    	<input type="text" class="form-control" id="aopid" name="aopid" placeholder="Enter Product Id" list="otherincidname" onkeyup="otherincsearch()" required>
+											<script type="text/javascript">
+									    		function otherincsearch(){
+									    			var pid = $('#aopid').val();
+									    			$.post('getotherpname',{pid:pid},function(data){
+									    				$("#otherincidname").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+									    	<datalist id="otherincidname"></datalist>
+								  			<input type="submit" class="btn btn-default" value="Proceed">		    
+										</div>
+									</form>
+
+									<script type="text/javascript">
+							    		$(function(){
+								    		$("#addother").bind('submit',function(){
+								    			var pid = $('#aopid').val();
+								    			$.post('addotherinv',{pid:pid},function(data){
+								    				$("#addotherpane").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+									<div id="addotherpane" style="margin-top:10px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="outg_inv" class="tab-pane fade well large-well" style="background-color:#616A6B;">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#out_tent" data-toggle="tab">Tent Outgoings</a></li>
+							<li><a href="#out_cater" data-toggle="tab">Catering Outgoings</a></li>
+							<li><a href="#out_other" data-toggle="tab">Others Outgoings</a></li>
+						</ul>
+						<div class="container-fluid" style="margin-top:10px;">
+							<div class="tab-content">
+								<div id="out_tent" class="tab-pane fade in active">
+									<form class="form-inline" id="subtent">
+									  	<div class="well form-group" style="margin-top:10px;">
+								  			<lable>Product Id :</label>
+									    	<input type="text" class="form-control" id="stpid" name="stpid" placeholder="Enter Product Id" list="tentdecidname" onkeyup="tentdecsearch()" required>
+											<script type="text/javascript">
+									    		function tentdecsearch(){
+									    			var pid = $('#stpid').val();
+									    			$.post('gettentpname',{pid:pid},function(data){
+									    				$("#tentdecidname").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+									    	<datalist id="tentdecidname"></datalist>
+								  			<input type="submit" class="btn btn-primary" value="Proceed">
+										</div>
+									</form>
+									<script type="text/javascript">
+							    		$(function(){
+								    		$("#subtent").bind('submit',function(){
+								    			var pid = $('#stpid').val();
+								    			$.post('subtentinv',{pid:pid},function(data){
+								    				$("#subtentpane").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+									<div id="subtentpane" style="margin-top:10px;"></div>
+								</div>
+								<div id="out_cater" class="tab-pane fade">
+									<form class="form-inline" id="subcater">
+									  	<div class="well form-group" style="margin-top:10px;">
+								  			<lable>Product Id :</label>
+									    	<input type="text" class="form-control" id="scpid" name="scpid" placeholder="Enter Product Id" list="caterdecidname" onkeyup="caterdecsearch()" required>
+											<script type="text/javascript">
+									    		function caterdecsearch(){
+									    			var pid = $('#scpid').val();
+									    			$.post('getcaterpname',{pid:pid},function(data){
+									    				$("#caterdecidname").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+									    	<datalist id="caterdecidname"></datalist>
+								  			<input type="submit" class="btn btn-default" value="Proceed">
+										</div>
+									</form>
+									<script type="text/javascript">
+							    		$(function(){
+								    		$("#subcater").bind('submit',function(){
+								    			var pid = $('#scpid').val();
+								    			$.post('subcaterinv',{pid:pid},function(data){
+								    				$("#subcaterpane").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+									<div id="subcaterpane" style="margin-top:10px;"></div>
+								</div>
+								<div id="out_other" class="tab-pane fade">
+									<form class="form-inline" id="subother">
+									  	<div class="well form-group" style="margin-top:10px;">
+								  			<lable>Product Id :</label>
+									    	<input type="text" class="form-control" id="sopid" name="sopid" placeholder="Enter Product Id" list="otherdecidname" onkeyup="otherdecsearch()" required>
+											<script type="text/javascript">
+									    		function otherdecsearch(){
+									    			var pid = $('#sopid').val();
+									    			$.post('getotherpname',{pid:pid},function(data){
+									    				$("#otherdecidname").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+									    	<datalist id="otherdecidname"></datalist>
+								  			<input type="submit" class="btn btn-default" value="Proceed">
+										</div>
+									</form>
+									<script type="text/javascript">
+							    		$(function(){
+								    		$("#subother").bind('submit',function(){
+								    			var pid = $('#sopid').val();
+								    			$.post('subotherinv',{pid:pid},function(data){
+								    				$("#subotherpane").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+									<div id="subotherpane" style="margin-top:10px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

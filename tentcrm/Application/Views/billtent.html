@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+table {
+	width: 100%;
+    border:1px solid gray;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+th{
+background:gray;
+border-bottom:1px solid black;
+color:white;
+}
+</style>
+
+<script type="text/javascript">
+	function printbill(){
+		var printContents = document.getElementById('billformat1').innerHTML;
+	     var originalContents = document.body.innerHTML;
+
+	     document.body.innerHTML = printContents;
+	     window.print();
+	     document.body.innerHTML = originalContents;
+	     //window.location.reload(true);
+	     window.location.href = "/billing/index";
+	     //$('#tentModal').modal('show');
+
+    }
+</script>
+</head>
+<body>
+	<div id="billformat1" class="tab-pane fade in active">
+		<div style="margin:4px;text-align:center;">{{sdata.Btype}}</div>
+		<div style="margin:4px;text-align:center;"><h1>{{sdata.Header1}}</h1></div>
+		<div style="margin:4px;text-align:center;"><h4>{{sdata.Header2}}</h4></div>
+		<div style="margin:4px;text-align:center;"><h5>{{sdata.Header3}}</h5></div>
+		<div style="padding-left:81%;"><label>Date :</label>{{tdata.Bdate}}</div>
+		<div style="margin:4px;"><label>Bill No. :</label> {{tdata.Bno}}</div>
+		<div style="margin:4px;"><label>Cust. Id :</label> {{tdata.Cid}}</div>
+		<div style="margin:4px;"><label>Customer Name :</label>{{tdata.Cname}}</div>
+		<div style="margin:4px;"><label>Contact :</label>{{tdata.Contact}}</div>
+		<table class="table table-bordered" style="margin:4px;">
+			<tbody>
+				<caption><label>Tent</label></caption>
+				<tr style="height:35px;">
+					<th width="5%">#</th>
+					<th>Product Name</th>
+					<th>Quantity</th>
+					<th>Book_Dt</th>
+					<th>Return_Dt</th>
+					<th>NDays</th>
+					<th>Rate/Day</th>
+					<th>Amount</th>
+				</tr>
+				{% for data in bdata %}
+				<tr>
+					<td></td>
+					<td>{{data.Pname}}</td>
+					<td>{{data.Quantity}} {{data.Unit}}</td>
+					<td>{{data.Bookdt}}</td>
+					<td>{{data.Returndt}}</td>
+					<td>{{data.Ndays}}</td>
+					<td>{{data.Rate}}</td>
+					<td>{{data.T_amount}}</td>
+				</tr>
+				{% endfor %}
+				<tr>
+					<td colspan="7" style="text-align:right;">Total</td>
+					<td>{{tdata.Ttotal}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table table-bordered" style="margin:4px;">
+			<tbody>
+				<caption><label>Decoration</label></caption>
+				<tr style="height:35px;">
+					<th width="5%">#</th>
+					<th>Service_Name</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Venue</th>
+					<th>Rate</th>
+				</tr>
+				{% for data in ddata %}
+				<tr>
+					<td></td>
+					<td>{{data.Sname}}</td>
+					<td>{{data.Date}}</td>
+					<td>{{data.Time}}</td>
+					<td>{{data.Venue}}</td>
+					<td>{{data.Rate}}</td>
+				</tr>
+				{% endfor %}
+				<tr>
+					<td colspan="5" style="text-align:right;">Total</td>
+					<td>{{tdata.Dtotal}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="margin:15px 4px 4px 4px;padding-left:71%;">
+			<label>Total Amount:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tdata.Totalamt}}
+		</div>
+		<div style="margin:4px;padding-left:74.5%;">
+			<label>Discount:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tdata.Discount}}
+		</div>
+		<div style="margin:4px;padding-left:71.2%;">
+			<label>New Amount:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tdata.Newamt}}
+		</div>
+		<div style="margin:4px;padding-left:70.4%;">
+			<label>Advance Paid:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tdata.Paid}}
+		</div>
+		<div style="margin:4px;padding-left:71.5%;">
+			<label>Balance Left:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tdata.Balance}}
+		</div>
+		<div style="margin:4px;padding-left:70.6%;">
+			<label>Due Pay Date:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tdata.Duedt}}
+		</div>
+		<div style="margin:10px;text-align:left;">
+			&nbsp;&nbsp;&nbsp;<label>Amount (in words.) :</label> .............................................................................................
+		</div>
+		<div style="margin-top:20px;;text-align:left;">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><label>Customer Signature</label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><label>Proprietor Signature</label></span>
+		</div>
+		<div style="border-top:1px solid gray;"></div>
+		<div class="form-group" style="margin:4px;">
+			<label>Terms &amp; Conditions&nbsp;:</label>
+			<textarea class="form-control" name="terms" rows="5" style="font-size:14px;width:100%;border:none;" placeholder="Terms &amp; Conditions :">{{sdata.Terms}}</textarea>
+		</div>
+		<div style="border-top:1px solid gray;margin:10px;"></div>
+		<div class="form-group" style="margin:4px;text-align:center;">
+			<textarea class="form-control" name="footer1" rows="3" style="text-align:center;width:80%;font-size:16px;margin:0 auto;border:none;" placeholder="Footer 1">{{sdata.Footer1}}</textarea>
+		</div>
+		<div class="form-group" style="margin:4px;text-align:center;">{{sdata.Footer2}}</div>	
+	</div>
+	<div style="text-align:center;">
+		<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+		<button class="btn btn-danger" onclick="printbill()">Print</button>
+	</div>
+</body>
+</html>

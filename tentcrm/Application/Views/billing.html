@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Billing Page</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta http-equiv="Cache-control" content="no-cache">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+
+	<style>
+
+		#myInput {
+		  width: 30%;
+		  padding: 20px 20px 20px 40px;
+		  border: 1px solid #ddd;
+		  margin-bottom: 12px;
+		}
+
+		#myTable {
+		  border-collapse: collapse;
+		  width: 100%;
+		  border: 1px solid #ddd;
+		  font-size: 14px;
+		}
+
+		#myTable th, #myTable td {
+		  text-align: left;
+		  padding: 12px;
+		}
+
+		#myTable tr {
+		  border-bottom: 1px solid #ddd;
+		}
+
+		#myTable tr.header, #myTable tr:hover {
+		  background-color: #f1f1f1;
+		}
+
+		.bk i{
+			color:white;
+		}
+
+		input[type=button], input[type=submit], input[type=reset] {
+	    background-color: #4CAF50;
+	    border: none;
+	    color: white;
+	    padding: 10px 32px;
+	    text-decoration: none;
+	    margin: 4px 2px;
+	    cursor: pointer;
+		}
+
+		th, td{
+			text-align: center;
+		}
+
+		a{
+			text-decoration: none;
+			color:#F0F3F4;
+			font-family: "Times New Roman", Georgia, Serif;
+			font-weight: 600;
+		}
+
+		.list-inline li input:hover{
+			background-color:#D35400;
+		}
+
+		.list-inline li input{
+			width: 300px;
+		}
+	</style>
+	<script type="text/javascript">
+		function caterprintbill(){
+			var printContents = document.getElementById('caterbillformat').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     window.location.href = "/billing/index";
+	     }
+	     function estimateprintbill(){
+			var printContents = document.getElementById('estimatebillformat').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     window.location.href = "/billing/index";
+	     }
+		function printtentbilldetail(){
+			var printContents = document.getElementById('tentbilldetail').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     window.location.href = "/billing/index";
+
+	    }
+	    function printcaterbilldetail(){
+			var printContents = document.getElementById('caterbilldetail').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     window.location.href = "/billing/index";
+	    }
+	    function printestimatebilldetail(){
+			var printContents = document.getElementById('estimatebilldetail').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     window.location.href = "/billing/index";
+	    }
+	    function printpaymentbilsdetail(){
+			var printContents = document.getElementById('paybilsdetail').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		     window.location.href = "/billing/index";
+	    }
+	</script>
+</head>
+<body style="background-color:#2F4F4F;font-size:15px;">
+	<header class="container-fluid">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom:1px solid black;">
+			<div class="bk col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<h1><a href="/menu/index"><i class="fa fa-arrow-left"></i></a></h1>
+			</div>
+			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<h1 style="color:white;">Billing Section</h1>
+			</div>
+		</div>
+	</header>
+
+	<div class="container-fluid" style="margin-top:10px;">
+		<div class="well large-well" style="background-color:#424949;">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#tentbill">Tent Bill</a></li>
+			    <li><a data-toggle="tab" href="#caterbill">Catering Agreement</a></li>			    
+			    <li><a data-toggle="tab" href="#estimatebill">Estimate Bill</a></li>
+			    <li><a data-toggle="tab" href="#tentbillrcd">Tent Bill Record</a></li>
+			    <li><a data-toggle="tab" href="#caterbillrcd">Cater Bill Record</a></li>
+			    <li><a data-toggle="tab" href="#estimbillrcd">Estimate Bill Record</a></li>
+			    <li><a data-toggle="tab" href="#addpayment">Add Payment</a></li>			    
+			    <li><a data-toggle="tab" href="#paydetail">Payment Detail</a></li>
+			</ul>
+			<div class="container-fluid" style="margin-top:15px;">
+				<div class="tab-content">
+					<div id="tentbill" class="tab-pane fade in active" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+				    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+		    					<label>Bill No. :</label>
+						    	<input type="text" name="tbno" id="tbno" class="form-control" value="{{tentdata}}" readonly>
+				    		</div>
+				    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+		    					<label>Date :</label>
+						    	<input type="date" name="tbdate" id="tbdate" class="form-control" required>
+				    		</div>
+				    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+		    					<label>Customer Name :</label>
+						    	<input type="text"name="tcname" id="tcname" class="form-control" placeholder="Enter Customer Name" required>
+				    		</div>
+				    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+		    					<label>Contact :</label>
+						    	<input type="text" name="tcontact" id="tcontact" pattern="[0-9]{10}" maxlength="10" class="form-control" placeholder="Enter Your Contact" required>
+				    		</div>
+				    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+						    	<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Proceed</button>								
+				    		</div>
+				    	</div>
+				    	<div id="demo" class="collapse" style="margin-top:5px;">
+				    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					    		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					    			<legend>Tent Section :</legend>
+						    		<div id="dc" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Product Name :</label>
+								    	<input type="text" name="tpid" id="tpid" class="form-control" placeholder="Enter Product Name" list="tidname" onkeyup="tentpsearch()" required>
+						    		</div>
+						    		<script type="text/javascript">
+							    		function tentpsearch(){
+							    			var pid = $('#tpid').val();
+							    			$.post('gettpname',{pid:pid},function(data){
+							    				$("#tidname").html(data);
+							    			});
+							    			return false;
+							    		}
+						    		</script>
+						    		<datalist id="tidname"></datalist>
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Quantity :</label>
+								    	<input type="text" name="tqty" id="tqty" class="form-control" placeholder="Enter Quantity" required>							
+						    		</div>
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Unit :</label>
+								    	<select name="tunit" id="tunit" class="form-control">
+								    		<option>Pcs</option>
+								    		<option>Pkts</option>
+								    		<option>Kg</option>
+								    		<option>Ltr</option>
+								    	</select>							
+						    		</div>
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+						    			<label>Book Date:</label>
+						    			<input type="date" name="tbookdt" id="tbookdt" class="form-control">
+						    		</div>
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+						    			<label>Return Date:</label>
+						    			<input type="date" name="treturndt" id="treturndt" class="form-control" onchange="daysnumber()">
+						    		</div>
+						    		<script type="text/javascript">
+						    			function daysnumber(){						    				
+							    			var pickdt = new Date(document.getElementById("tbookdt").value);
+		                					var dropdt = new Date(document.getElementById("treturndt").value);
+		                					var wdays= (dropdt - pickdt) / (24 * 3600 * 1000);
+		                					document.getElementById('tndays').value=wdays;
+						    			}
+						    		</script>
+						    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group">
+				    					<label>N_Days :</label>
+								    	<input type="text" name="tndays" id="tndays" class="form-control" placeholder="Days" readonly>							
+						    		</div>
+						    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+									    <button type="button" class="btn btn-primary" onclick="addtentitem()">Add</button>
+						    		</div>
+						    	</div>
+						    	<script type="text/javascript">
+							    	function addtentitem(){
+						    			var tbno = $('#tbno').val();
+						    			var tpid = $('#tpid').val();
+						    			var tqty = $('#tqty').val();
+						    			var tunit= $('#tunit').val();
+						    			var bookdt= $('#tbookdt').val();
+						    			var returndt= $('#treturndt').val();
+						    			var tndays = $('#tndays').val();
+						    			$.post('billtent',{tbno:tbno,tpid:tpid,tqty:tqty,tunit:tunit,bookdt:bookdt,returndt:returndt,tndays:tndays},function(data){
+						    				$("#tenttbill").html(data);	
+							    			$("#dc input").each(function() {
+											    this.value = "";
+											});
+						    			});
+						    			return false;	  
+						    		}
+						    	</script>
+								<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="table-responsive">          
+										<table class="table">
+											<thead>
+										      	<tr>
+											        <th>Product_Name</th>
+											        <th>Quantity</th>
+											        <th>Book_Dt</th>
+											        <th>Return_Dt</th>
+											        <th>N_Days</th>
+											        <th>Rate/Day</th>
+											        <th>Amount</th>
+										      	</tr>
+										    </thead>
+										    <tbody id="tenttbill">
+										    </tbody>
+										</table>										
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+									<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"></div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+										<input type="button" class="btn btn-success" value="Total" onclick="tenttotal()" style="padding:7px 20px;margin-top:0px;">
+									</div>
+									<script type="text/javascript">
+							    		function tenttotal(){
+							    			var sum=0;
+							    			$(".tcount").each(function(){
+							    				var value=$(this).text();
+							    				if(!isNaN(value)&&value.length!=0){
+							    					sum += parseInt(value);
+							    				}
+							    			});	
+							    			document.getElementById('ttotal').value=sum;	
+							    		}
+							    	</script>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								    	<input type="text" class="form-control" name="ttotal" id="ttotal" readonly>
+						    		</div>
+								</div>
+							</div>
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<legend>Decoration Section :</legend>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    		<div id="dcd" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				    					<label>Service Name :</label>
+								    	<input type="text" name="tdpid" id="tdpid" class="form-control" placeholder="Enter Product Name" list="tdidname" onkeyup="tdecorpsearch()" required>
+							    		<script type="text/javascript">
+								    		function tdecorpsearch(){
+								    			var pid = $('#tdpid').val();
+								    			$.post('gettdpname',{pid:pid},function(data){
+								    				$("#tdidname").html(data);
+								    			});
+								    			return false;
+								    		}
+							    		</script>
+							    		<datalist id="tdidname"></datalist>
+						    		</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+										<label>Date :</label>
+								    	<input type="date" name="tddate" id="tddate" class="form-control" required>
+									</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+										<label>Time :</label>
+								    	<input type="time" name="tdtime" id="tdtime" class="form-control" required>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+										<label>Venue :</label>
+								    	<input type="text" name="tdvenue" id="tdvenue" class="form-control" required>
+									</div>
+						    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+									    <button type="button" class="btn btn-primary" onclick="addtentditem()">Add</button>
+						    		</div>
+								</div>
+					    		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    	</div>
+						    	<script type="text/javascript">
+							    	function addtentditem(){
+						    			var tbno = $('#tbno').val();
+						    			var tdpid = $('#tdpid').val();
+						    			var tddate = $('#tddate').val();
+						    			var tdtime = $('#tdtime').val();
+						    			var tdvenue = $('#tdvenue').val();
+						    			$.post('billtentdecor',{tbno:tbno,tdpid:tdpid,tddate:tddate,tdtime:tdtime,tdvenue:tdvenue},function(data){
+						    				$("#tentdecorbill").html(data);
+						    				$("#dcd input").each(function() {
+											    this.value = "";
+											});
+						    			});	
+						    			return false;	  
+						    		}
+						    	</script>
+								<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="table-responsive">          
+										<table class="table">
+											<thead>
+										      	<tr>
+											        <th>Service_Name</th>
+											        <th>Date</th>
+											        <th>Time</th>
+											        <th>Venue</th>
+											        <th>Rate/Service</th>
+										      	</tr>
+										    </thead>
+										    <tbody id="tentdecorbill">
+										    </tbody>
+										</table>										
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+									<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"></div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+										<input type="button" class="btn btn-success" value="Total" onclick="tentdtotal()" style="padding:7px 20px;margin-top:0px;">
+									</div>
+									<script type="text/javascript">
+							    		function tentdtotal(){
+							    			var sum=0;
+							    			$(".tdcount").each(function(){
+							    				var value=$(this).text();
+							    				if(!isNaN(value)&&value.length!=0){
+							    					sum += parseInt(value);
+							    				}
+							    			});	
+							    			document.getElementById('tdtotal').value=sum;	
+							    		}
+							    	</script>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								    	<input type="text" class="form-control" name="tdtotal" id="tdtotal" readonly>
+						    		</div>
+								</div>
+							</div>
+							
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+									<input type="button" class="btn btn-success" value="Calculate" onclick="caltenttotal()" style="padding:7px 15px;">
+									<script type="text/javascript">
+							    		function caltenttotal(){
+								    		var tent = 	parseInt(document.getElementById('ttotal').value);
+								    		var decor = parseInt(document.getElementById('tdtotal').value);
+								    		document.getElementById('tamt').value = tent + decor;
+							    		}
+							    	</script>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Total Amount :</label>
+								    	<input type="text" name="tamt" id="tamt" class="form-control" readonly>
+						    		</div> 
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Discount :</label>
+								    	<input type="text" name="tdisc" id="tdisc" class="form-control" onkeyup="caltentnewamt()" required>
+										<script type="text/javascript">
+											function caltentnewamt(){
+										    	var amt=document.getElementById('tamt').value;
+										    	var disc=document.getElementById('tdisc').value;
+										    	document.getElementById('tnamt').value=amt-disc;
+										    }
+										</script>
+						    		</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>New Amount :</label>
+								    	<input type="text" name="tnamt" id="tnamt" class="form-control" readonly>
+						    		</div> 
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Advance Paid :</label>
+								    	<input type="text" name="tadv" id="tadv" class="form-control" onkeyup="caltentballeft()" required>
+								    	<script type="text/javascript">
+											function caltentballeft(){
+										    	var amt=document.getElementById('tnamt').value;
+										    	var adv=document.getElementById('tadv').value;
+										    	document.getElementById('tbal').value=amt-adv;
+										    }
+										</script>
+						    		</div>
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Balance Left :</label>
+								    	<input type="text" name="tbal" id="tbal" class="form-control" readonly>
+						    		</div>
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+										<label>Due Payment Date:</label>
+										<input type="date" class="form-control" name="tduedt" id="tduedt" onchange="interchangetdata()" required>
+										<script type="text/javascript">
+											function interchangetdata(){
+										    	var tbno= document.getElementById('tbno').value;
+										    	document.getElementById('bnot').value = tbno ;
+
+												var tbdate= document.getElementById('tbdate').value;
+												document.getElementById('bdatet').value = tbdate ;
+
+												var tcname= document.getElementById('tcname').value;
+												document.getElementById('cnamet').value = tcname ;
+
+												var tcontact= document.getElementById('tcontact').value;
+												document.getElementById('contactt').value = tcontact ;
+
+												var ttotal= document.getElementById('ttotal').value;
+												document.getElementById('totalt').value = ttotal ;
+
+												var tdtotal= document.getElementById('tdtotal').value;
+												document.getElementById('dtotalt').value = tdtotal ;
+
+												var tamt= document.getElementById('tamt').value;
+												document.getElementById('amtt').value = tamt ;
+
+												var tdisc= document.getElementById('tdisc').value;
+												document.getElementById('disct').value = tdisc ;
+
+												var tnamt= document.getElementById('tnamt').value;
+												document.getElementById('namtt').value = tnamt ;
+
+												var tadv= document.getElementById('tadv').value;
+												document.getElementById('advt').value = tadv ;
+
+												var tbal= document.getElementById('tbal').value;
+												document.getElementById('balt').value = tbal ;
+
+												var tduedt= document.getElementById('tduedt').value;
+												document.getElementById('duedtt').value = tduedt ;
+
+											}
+										</script>
+						    		</div>
+								</div>
+								<script type="text/javascript">
+									$(document).ready(function() {
+										$("#submit").click(function() {
+										var bno = $("#bnot").val();
+										var bdate = $("#bdatet").val();
+										var cname = $("#cnamet").val();
+										var contact = $("#contactt").val();
+										var ttotal = $("#totalt").val();
+										var dtotal = $("#dtotalt").val();
+										var amt = $("#amtt").val();
+										var disc = $("#disct").val();
+										var namt = $("#namtt").val();
+										var adv = $("#advt").val();
+										var bal = $("#balt").val();
+										var duedt = $("#duedtt").val();
+										$.post("tentbilltrans", {bno:bno, bdate:bdate, cname:cname, contact:contact, ttotal:ttotal, dtotal:dtotal, amt:amt, disc:disc, namt:namt, adv:adv, bal:bal, duedt:duedt});
+										});
+									});
+								</script>
+								<form id="form" name="form" method="post">
+									<input type="hidden" id="bnot" name="bnot">
+									<input type="hidden" id="bdatet" name="bdatet">
+									<input type="hidden" id="cnamet" name="cnamet">
+									<input type="hidden" id="contactt" name="contactt">
+									<input type="hidden" id="totalt" name="totalt">
+									<input type="hidden" id="dtotalt" name="dtotalt">
+									<input type="hidden" id="amtt" name="amtt">
+									<input type="hidden" id="disct" name="disct">
+									<input type="hidden" id="namtt" name="namtt">
+									<input type="hidden" id="advt" name="advt">
+									<input type="hidden" id="balt" name="balt">
+									<input type="hidden" id="duedtt" name="duedtt">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;margin-top:10px;">
+										<a id="submit" class="btn btn-success">Bill It</a>
+										<a class="btn btn-danger" href="billtentbill?bno={{tentdata}}" data-toggle="modal" data-target="#tentModal">Print</a>
+									</div>
+									<div class="modal fade" id="tentModal" role="dialog" >
+									    <div class="modal-dialog modal-lg" style="height:fit-content;">
+									    	<div class="modal-content" style="padding:20px;">
+									    	</div>
+									    </div>
+									</div>
+								</form>
+							</div>
+		    			</div>
+					</div>
+					<div id="caterbill" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+				    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+		    					<label>Agreement No. :</label>
+						    	<input type="text" name="cbno" id="cbno" class="form-control" value="{{caterdata}}" readonly>
+				    		</div>
+				    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+		    					<label>Date :</label>
+						    	<input type="date" name="cdate" id="cdate" class="form-control" required>
+				    		</div>
+				    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+		    					<label>Customer Name :</label>
+						    	<input type="text"name="ccname" id="ccname" class="form-control" placeholder="Enter Customer Name" required>
+				    		</div>
+				    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+		    					<label>Contact :</label>
+						    	<input type="text" name="ccontact" id="ccontact" pattern="[0-9]{10}" maxlength="10" class="form-control" placeholder="Enter Your Contact" required>
+				    		</div>
+				    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+						    	<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#democater">Proceed</button>								
+				    		</div>
+				    	</div>
+				    	<div id="democater" class="collapse" style="margin-top:5px;">
+				    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+					    			<label>Event Date:</label>
+					    			<input type="date" name="cedate" id="cedate" onchange="resetpanel()" class="form-control">
+					    			<script type="text/javascript">
+					    				function resetpanel(){
+					    					$("#cb input").each(function() {
+											      this.value = "";
+											  })
+											  $("#cl input").each(function() {
+											      this.value = "";
+											  })
+											  $("#ch input").each(function() {
+											      this.value = "";
+											  })
+											  $("#cd input").each(function() {
+											      this.value = "";
+											  })
+											  document.getElementById("ceventbtn").disabled = false;
+					    				}
+					    			</script>
+					    			<button id="ceventbtn" class="btn btn-primary" onclick="addeventdt()" Disabled>Add Date</button>
+					    			<script type="text/javascript">
+					    				function addeventdt(){
+					    					var bno = $('#cbno').val();
+					    					var edate = $('#cedate').val();
+							    			$.post('addeventdate',{bno:bno,edate:edate});		    			
+											document.getElementById("ceventbtn").disabled = true;
+							    			return false;
+			    				}
+					    			</script>
+					    		</div>
+								<div id="cb" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<legend>Breakfast Section :</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>Time :</label>
+									    	<input type="time" name="cbtime" id="cbtime" class="form-control" required>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+											<label>Venue :</label>
+									    	<input type="text" name="cbvenue" id="cbvenue" class="form-control" required>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>No. of Guests :</label>
+									    	<input type="text" name="cbguest" id="cbguest" class="form-control" required>
+										</div>
+							    		<div id="cdcb" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+					    					<label>Item Name :</label>
+									    	<input type="text" name="cbiname" id="cbiname" class="form-control" placeholder="Enter Product Name" list="cbinamescr" onkeyup="cbinamesearch()" required>
+								    		<script type="text/javascript">
+									    		function cbinamesearch(){
+									    			var sname = $('#cbiname').val();
+									    			$.post('getcsname',{sname:sname},function(data){
+									    				$("#cbinamescr").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+								    		<datalist id="cbinamescr"></datalist>
+							    		</div>
+							    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+										    <button type="button" class="btn btn-primary" onclick="addcbreakitem()">Add</button>
+									    	<script type="text/javascript">
+										    	function addcbreakitem(){
+									    			var cbno = $('#cbno').val();
+									    			var cedate = $('#cedate').val();
+									    			var cbtime = $('#cbtime').val();
+									    			var cbvenue = $('#cbvenue').val();
+									    			var cbguest = $('#cbguest').val();
+									    			var cbiname = $('#cbiname').val();
+									    			$.post('billcaterbreak',{cbno:cbno,cedate:cedate,cbtime:cbtime,cbvenue:cbvenue,cbguest:cbguest,cbiname:cbiname},function(data){
+									    				$("#caterbreakbill").html(data);
+									    				$("#cdcb input").each(function() {
+														    this.value = "";
+														});
+									    			});	
+									    			return false;	  
+									    		}
+									    	</script>
+							    		</div>
+									</div>							    		
+						    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    			<table class="table">
+						    				<thead>
+						    					<tr>
+						    						<th>Item Name</th>
+						    					</tr>
+						    				</thead>
+						    				<tbody id="caterbreakbill">
+						    				</tbody>
+						    			</table>
+							    	</div>
+								</div>
+								<div id="cl" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<legend>Lunch Section :</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>Time :</label>
+									    	<input type="time" name="cltime" id="cltime" class="form-control" required>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+											<label>Venue :</label>
+									    	<input type="text" name="clvenue" id="clvenue" class="form-control" required>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>No. of Guests :</label>
+									    	<input type="text" name="clguest" id="clguest" class="form-control" required>
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="well col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div id="cdclm" class="col-lg-8 col-md-8 col-sm-8 col-xs-8">						
+							    					<label>Main Course Service Item :</label>
+											    	<input type="text" name="clminame" id="clminame" class="form-control" placeholder="Enter Product Name" list="clminamescr" onkeyup="clminamesearch()" required>
+										    		<script type="text/javascript">
+											    		function clminamesearch(){
+											    			var sname = $('#clminame').val();
+											    			$.post('getcsname',{sname:sname},function(data){
+											    				$("#clminamescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="clminamescr"></datalist>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-top:24px;">
+													<button type="button" class="btn btn-primary" style="padding:6px 15px;" onclick="addclunchmainitem()">Add</button>
+											    	<script type="text/javascript">
+												    	function addclunchmainitem(){
+											    			var cbno = $('#cbno').val();
+											    			var cedate = $('#cedate').val();
+											    			var cltime = $('#cltime').val();
+											    			var clvenue = $('#clvenue').val();
+											    			var clguest = $('#clguest').val();
+											    			var clminame = $('#clminame').val();
+											    			$.post('billcaterlunchmain',{cbno:cbno,cedate:cedate,cltime:cltime,clvenue:clvenue,clguest:clguest,clminame:clminame},function(data){
+											    				$("#caterlunchmain").html(data);
+											    				$("#cdclm input").each(function() {
+																    this.value = "";
+																});
+											    			});	
+											    			return false;	  
+											    		}
+											    	</script>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th width="10%">#</th>
+																<th>Main Course</th>
+															</tr>
+														</thead>
+														<tbody id="caterlunchmain">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+										<div class="well col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div>
+												<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+													<label>Other Service Type :</label>
+													<input type="text" class="form-control" name="clostype" id="clostype" placeholder="Enter Sub Menu Type" list="clostypescr" onkeyup="clostypesearch()" required>
+													<script type="text/javascript">
+											    		function clostypesearch(){
+											    			var stype = $('#clostype').val();
+											    			$.post('getostype',{stype:stype},function(data){
+											    				$("#clostypescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="clostypescr"></datalist>
+												</div>
+												<div id="cdclo" class="col-lg-5 col-md-5 col-sm-5 col-xs-5">						
+							    					<label>Item Name :</label>
+											    	<input type="text" name="cloiname" id="cloiname" class="form-control" placeholder="Enter Product Name" list="cloinamescr" onkeyup="cloinamesearch()" required>
+										    		<script type="text/javascript">
+											    		function cloinamesearch(){
+											    			var sname = $('#cloiname').val();
+											    			$.post('getcsname',{sname:sname},function(data){
+											    				$("#cloinamescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="cloinamescr"></datalist>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top:24px;">
+													<button type="button" class="btn btn-primary" style="padding:6px 15px;" onclick="addclunchotheritem()">Add</button>
+													<script type="text/javascript">
+												    	function addclunchotheritem(){
+											    			var cbno = $('#cbno').val();
+											    			var cedate = $('#cedate').val();
+											    			var cltime = $('#cltime').val();
+											    			var clvenue = $('#clvenue').val();
+											    			var clguest = $('#clguest').val();
+											    			var clostype = $('#clostype').val();
+											    			var cloiname = $('#cloiname').val();
+											    			$.post('billcaterlunchother',{cbno:cbno,cedate:cedate,cltime:cltime,clvenue:clvenue,clguest:clguest,clostype:clostype,cloiname:cloiname},function(data){
+											    				$("#caterlunchother").html(data);
+											    				$("#cdclo input").each(function() {
+																    this.value = "";
+																});
+											    			});	
+											    			return false;	  
+											    		}
+											    	</script>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<tbody id="caterlunchother">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
+								<div id="ch" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<legend>High Tea Section :</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>Time :</label>
+									    	<input type="time" name="chtime" id="chtime" class="form-control" required>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+											<label>Venue :</label>
+									    	<input type="text" name="chvenue" id="chvenue" class="form-control" required>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>No. of Guests :</label>
+									    	<input type="text" name="chguest" id="chguest" class="form-control" required>
+										</div>
+							    		<div id="cdch" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+					    					<label>Item Name :</label>
+									    	<input type="text" name="chiname" id="chiname" class="form-control" placeholder="Enter Product Name" list="chinamescr" onkeyup="chinamesearch()" required>
+								    		<script type="text/javascript">
+									    		function chinamesearch(){
+									    			var sname = $('#chiname').val();
+									    			$.post('getcsname',{sname:sname},function(data){
+									    				$("#chinamescr").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+								    		<datalist id="chinamescr"></datalist>
+							    		</div>
+							    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+										    <button type="button" class="btn btn-primary" onclick="addchightitem()">Add</button>
+									    	<script type="text/javascript">
+										    	function addchightitem(){
+									    			var cbno = $('#cbno').val();
+									    			var cedate = $('#cedate').val();
+									    			var chtime = $('#chtime').val();
+									    			var chvenue = $('#chvenue').val();
+									    			var chguest = $('#chguest').val();
+									    			var chiname = $('#chiname').val();
+									    			$.post('billcaterhight',{cbno:cbno,cedate:cedate,chtime:chtime,chvenue:chvenue,chguest:chguest,chiname:chiname},function(data){
+									    				$("#caterhightbill").html(data);
+									    				$("#cdch input").each(function() {
+														    this.value = "";
+														});
+									    			});	
+									    			return false;	  
+									    		}
+									    	</script>
+							    		</div>
+									</div>							    		
+						    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    			<table class="table">
+						    				<thead>
+						    					<tr>
+						    						<th>Item Name</th>
+						    					</tr>
+						    				</thead>
+						    				<tbody id="caterhightbill">
+						    				</tbody>
+						    			</table>
+							    	</div>
+								</div>
+								<div id="cd" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<legend>Dinner Section :</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>Time :</label>
+									    	<input type="time" name="cdtime" id="cdtime" class="form-control" required>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+											<label>Venue :</label>
+									    	<input type="text" name="cdvenue" id="cdvenue" class="form-control" required>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>No. of Guests :</label>
+									    	<input type="text" name="cdguest" id="cdguest" class="form-control" required>
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="well col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div id="cdcrm" class="col-lg-8 col-md-8 col-sm-8 col-xs-8">						
+							    					<label>Main Course Service Item :</label>
+											    	<input type="text" name="cdminame" id="cdminame" class="form-control" placeholder="Enter Product Name" list="cdminamescr" onkeyup="cdminamesearch()" required>
+										    		<script type="text/javascript">
+											    		function cdminamesearch(){
+											    			var sname = $('#cdminame').val();
+											    			$.post('getcsname',{sname:sname},function(data){
+											    				$("#cdminamescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="cdminamescr"></datalist>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-top:24px;">
+													<button type="button" class="btn btn-primary" style="padding:6px 15px;" onclick="addcdinnermainitem()">Add</button>
+											    	<script type="text/javascript">
+												    	function addcdinnermainitem(){
+											    			var cbno = $('#cbno').val();
+											    			var cedate = $('#cedate').val();
+											    			var cdtime = $('#cdtime').val();
+											    			var cdvenue = $('#cdvenue').val();
+											    			var cdguest = $('#cdguest').val();
+											    			var cdminame = $('#cdminame').val();
+											    			$.post('billcaterdinnermain',{cbno:cbno,cedate:cedate,cdtime:cdtime,cdvenue:cdvenue,cdguest:cdguest,cdminame:cdminame},function(data){
+											    				$("#caterdinnermain").html(data);
+											    				$("#cdcrm input").each(function() {
+																    this.value = "";
+																});
+											    			});	
+											    			return false;	  
+											    		}
+											    	</script>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th width="10%">#</th>
+																<th>Main Course</th>
+															</tr>
+														</thead>
+														<tbody id="caterdinnermain">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+										<div class="well col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div>
+												<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+													<label>Other Service Type :</label>
+													<input type="text" class="form-control" name="cdostype" id="cdostype" placeholder="Enter Sub Menu Type" list="cdostypescr" onkeyup="cdostypesearch()" required>
+													<script type="text/javascript">
+											    		function cdostypesearch(){
+											    			var stype = $('#cdostype').val();
+											    			$.post('getostype',{stype:stype},function(data){
+											    				$("#cdostypescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="cdostypescr"></datalist>
+												</div>
+												<div id="cdcro" class="col-lg-5 col-md-5 col-sm-5 col-xs-5">						
+							    					<label>Item Name :</label>
+											    	<input type="text" name="cdoiname" id="cdoiname" class="form-control" placeholder="Enter Product Name" list="cdoinamescr" onkeyup="cdoinamesearch()" required>
+										    		<script type="text/javascript">
+											    		function cdoinamesearch(){
+											    			var sname = $('#cdoiname').val();
+											    			$.post('getcsname',{sname:sname},function(data){
+											    				$("#cdoinamescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="cdoinamescr"></datalist>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top:24px;">
+													<button type="button" class="btn btn-primary" style="padding:6px 15px;" onclick="adddinnerotheritem()">Add</button>
+													<script type="text/javascript">
+												    	function adddinnerotheritem(){
+											    			var cbno = $('#cbno').val();
+											    			var cedate = $('#cedate').val();
+											    			var cdtime = $('#cdtime').val();
+											    			var cdvenue = $('#cdvenue').val();
+											    			var cdguest = $('#cdguest').val();
+											    			var cdostype = $('#cdostype').val();
+											    			var cdoiname = $('#cdoiname').val();
+											    			$.post('billcaterdinnerother',{cbno:cbno,cedate:cedate,cdtime:cdtime,cdvenue:cdvenue,cdguest:cdguest,cdostype:cdostype,cdoiname:cdoiname},function(data){
+											    				$("#caterdinnerother").html(data);
+											    				$("#cdcro input").each(function() {
+																    this.value = "";
+																});
+											    			});	
+											    			return false;	  
+											    		}
+											    	</script>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<tbody id="caterdinnerother">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<legend>Decoration Section :</legend>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+										<label>Date :</label>
+								    	<input type="date" name="cddate" id="cddate" class="form-control" required>
+									</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+										<label>Time :</label>
+								    	<input type="time" name="cddtime" id="cddtime" class="form-control" required>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+										<label>Venue :</label>
+								    	<input type="text" name="cddvenue" id="cddvenue" class="form-control" required>
+									</div>
+						    		<div id="cdcde" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				    					<label>Service Name :</label>
+								    	<input type="text" name="cdpname" id="cdpname" class="form-control" placeholder="Enter Product Name" list="cdidname" onkeyup="cdecorpsearch()" required>
+							    		<script type="text/javascript">
+								    		function cdecorpsearch(){
+								    			var pname = $('#cdpname').val();
+								    			$.post('gettdpname',{pname:pname},function(data){
+								    				$("#cdidname").html(data);
+								    			});
+								    			return false;
+								    		}
+							    		</script>
+							    		<datalist id="cdidname"></datalist>
+						    		</div>
+						    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+									    <button type="button" class="btn btn-primary" onclick="addcaterditem()">Add</button>
+						    		</div>
+								</div>
+						    	<script type="text/javascript">
+							    	function addcaterditem(){
+						    			var cbno = $('#cbno').val();
+						    			var cddate = $('#cddate').val();
+						    			var cdtime = $('#cddtime').val();
+						    			var cdvenue = $('#cddvenue').val();
+						    			var cdpname = $('#cdpname').val();
+						    			$.post('billcaterdecor',{cbno:cbno,cddate:cddate,cdtime:cdtime,cdvenue:cdvenue,cdpname:cdpname},function(data){
+						    				$("#caterdecorbill").html(data);
+						    				$("#cdcde input").each(function() {
+											    this.value = "";
+											});
+						    			});	
+						    			return false;	  
+						    		}
+						    	</script>
+								<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="table-responsive">          
+										<table class="table">
+											<thead>
+										      	<tr>
+										      		<th width="10%">#</th>
+											        <th>Service_Name</th>
+											        <th>Date</th>
+											        <th>Time</th>
+											        <th>Venue</th>
+										      	</tr>
+										    </thead>
+										    <tbody id="caterdecorbill">
+										    </tbody>
+										</table>										
+									</div>
+								</div>
+							</div>
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Total Amount :</label>
+								    	<input type="text" name="camt" id="camt" class="form-control" required>
+						    		</div> 
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Discount :</label>
+								    	<input type="text" name="cdisc" id="cdisc" class="form-control" onkeyup="calcaternewamt()" required>
+										<script type="text/javascript">
+											function calcaternewamt(){
+										    	var amt=document.getElementById('camt').value;
+										    	var disc=document.getElementById('cdisc').value;
+										    	document.getElementById('cnamt').value=amt-disc;
+										    }
+										</script>
+						    		</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>New Amount :</label>
+								    	<input type="text" name="cnamt" id="cnamt" class="form-control" readonly>
+						    		</div> 
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Advance Paid :</label>
+								    	<input type="text" name="cadv" id="cadv" class="form-control" onkeyup="calcaterballeft()" required>
+								    	<script type="text/javascript">
+											function calcaterballeft(){
+										    	var amt=document.getElementById('cnamt').value;
+										    	var adv=document.getElementById('cadv').value;
+										    	document.getElementById('cbal').value=amt-adv;
+										    }
+										</script>
+						    		</div>
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Balance Left :</label>
+								    	<input type="text" name="cbal" id="cbal" class="form-control" readonly>
+						    		</div>
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+										<label>Due Payment Date:</label>
+										<input type="date" class="form-control" name="cduedt" id="cduedt" onchange="interchangecdata()" required>
+										<script type="text/javascript">
+											function interchangecdata(){
+										    	var cbno= document.getElementById('cbno').value;
+										    	document.getElementById('bnoc').value = cbno ;
+
+												var cdate= document.getElementById('cdate').value;
+												document.getElementById('bdatec').value = cdate ;
+
+												var ccname= document.getElementById('ccname').value;
+												document.getElementById('cnamec').value = ccname ;
+
+												var ccontact= document.getElementById('ccontact').value;
+												document.getElementById('contactc').value = ccontact ;
+
+												var camt= document.getElementById('camt').value;
+												document.getElementById('amtc').value = camt ;
+
+												var cdisc= document.getElementById('cdisc').value;
+												document.getElementById('discc').value = cdisc ;
+
+												var cnamt= document.getElementById('cnamt').value;
+												document.getElementById('namtc').value = cnamt ;
+
+												var cadv= document.getElementById('cadv').value;
+												document.getElementById('advc').value = cadv ;
+
+												var cbal= document.getElementById('cbal').value;
+												document.getElementById('balc').value = cbal ;
+
+												var cduedt= document.getElementById('cduedt').value;
+												document.getElementById('duedtc').value = cduedt ;
+
+											}
+										</script>
+						    		</div>
+								</div>
+								<script type="text/javascript">
+									$(document).ready(function() {
+										$("#submitc").click(function() {
+										var bno = $("#bnoc").val();
+										var bdate = $("#bdatec").val();
+										var cname = $("#cnamec").val();
+										var contact = $("#contactc").val();
+										var amt = $("#amtc").val();
+										var disc = $("#discc").val();
+										var namt = $("#namtc").val();
+										var adv = $("#advc").val();
+										var bal = $("#balc").val();
+										var duedt = $("#duedtc").val();
+										$.post("caterbilltrans", {bno:bno, bdate:bdate, cname:cname, contact:contact, amt:amt, disc:disc, namt:namt, adv:adv, bal:bal, duedt:duedt});
+										});
+									});
+								</script>
+								<form id="form" name="form" method="post">
+									<input type="hidden" id="bnoc" name="bnoc">
+									<input type="hidden" id="bdatec" name="bdatec">
+									<input type="hidden" id="cnamec" name="cnamec">
+									<input type="hidden" id="contactc" name="contactc">
+									<input type="hidden" id="amtc" name="amtc">
+									<input type="hidden" id="discc" name="discc">
+									<input type="hidden" id="namtc" name="namtc">
+									<input type="hidden" id="advc" name="advc">
+									<input type="hidden" id="balc" name="balc">
+									<input type="hidden" id="duedtc" name="duedtc">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;margin-top:10px;">
+										<a id="submitc" class="btn btn-success">Bill It</a>
+										</script>
+										<a id="cprnt" class="btn btn-danger" href="billcaterbill?bno={{caterdata}}" data-toggle="modal" data-target="#caterModal">Print</a>
+									</div>
+									<div class="modal fade" id="caterModal" role="dialog" >
+									    <div class="modal-dialog modal-lg" style="height:fit-content;">
+									    	<div class="modal-content" style="padding:20px;">
+									    	</div>
+									    </div>
+									</div>
+								</form>
+							</div>
+		    			</div>
+					</div>
+					<div id="tentbillrcd" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label for="contact">Search By Bill Date :</label>
+							    <input type="text" class="form-control" id="tentbdtInput" class="form-control" onkeyup="tentbdtFunction()" placeholder="Search for Bill Date...">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label for="contact">Search By Bill No. :</label>
+							    <input type="text" class="form-control" id="tentbnoInput" class="form-control" onkeyup="tentbnoFunction()" placeholder="Search for Bill No...">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label for="contact">Search By Cust. Id :</label>
+							    <input type="text" class="form-control" id="tentcidInput" class="form-control" onkeyup="tentcidFunction()" placeholder="Search for Cust. Id..">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label for="contact">Search By Name :</label>
+							    <input type="text" class="form-control" id="tentnameInput" class="form-control" onkeyup="tentnameFunction()" placeholder="Search for names..">
+							</div>
+							<script>
+								function tentbdtFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("tentbdtInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("tentTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[0];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function tentbnoFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("tentbnoInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("tentTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[1];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function tentcidFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("tentcidInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("tentTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[2];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function tentnameFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("tentnameInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("tentTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[3];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+							</script>
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;">
+							<div class="table-responsive">          
+								<table class="table" id="tentTable">
+									<thead>
+								      	<tr>
+								      		<th>B_Date</th>
+									        <th>B_No.</th>
+									        <th>C_Id</th>
+									        <th>Name</th>
+									        <th>Contact</th>
+									        <th>Total</th>
+									        <th>Disc.</th>
+									        <th>Amount</th>
+									        <th>Paid</th>
+									        <th>Balance</th>
+									        <th>Due_Pay_Dt</th>
+									        <th>Action</th>
+								      	</tr>
+								    </thead>
+								    <tbody>
+								    	{% for tview in viewtent %}
+								      	<tr>
+								      		<td>{{tview.Bdate}}</td>
+									        <td>{{tview.Bno}}</td>
+									        <td>{{tview.Cid}}</td>
+									        <td>{{tview.Cname}}</td>
+									        <td>{{tview.Contact}}</td>
+									        <td>{{tview.Totalamt}}</td>
+									        <td>{{tview.Discount}}</td>
+									        <td>{{tview.Newamt}}</td>
+									        <td>{{tview.Paid}}</td>
+									        <td>{{tview.Balance}}</td>
+									        <td>{{tview.Duedt}}</td>
+									        <td>
+									        	<input type="button" style="padding:5px 10px;margin:0;" href="tentbilldt?bno={{tview.Bno}}" data-toggle="modal" data-target="#myModaltent"  value="DETAIL">
+									        </td>						
+								      	</tr>
+								      	{% endfor %}
+								    </tbody>
+								</table>
+								<div class="modal fade" id="myModaltent" role="dialog" >
+								    <div class="modal-dialog modal-lg" style="height:fit-content;">
+								    	<div class="modal-content" style="padding:20px;"></div>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="caterbillrcd" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label for="contact">Search By Bill Date :</label>
+							    <input type="text" class="form-control" id="caterbdtInput" class="form-control" onkeyup="caterbdtFunction()" placeholder="Search for Bill Date...">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label for="contact">Search By Bill No. :</label>
+							    <input type="text" class="form-control" id="caterbnoInput" class="form-control" onkeyup="caterbnoFunction()" placeholder="Search for Bill No...">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label for="contact">Search By Cust. Id :</label>
+							    <input type="text" class="form-control" id="catercidInput" class="form-control" onkeyup="catercidFunction()" placeholder="Search for Cust. Id..">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label for="contact">Search By Name :</label>
+							    <input type="text" class="form-control" id="caternameInput" class="form-control" onkeyup="caternameFunction()" placeholder="Search for names..">
+							</div>
+							<script>
+								function caterbdtFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("caterbdtInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("caterTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[0];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function caterbnoFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("caterbnoInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("caterTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[1];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function catercidFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("catercidInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("caterTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[2];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function caternameFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("caternameInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("caterTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[3];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+							</script>
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;">
+							<div class="table-responsive">          
+								<table class="table" id="caterTable">
+									<thead>
+								      	<tr>
+								      		<th>B_Date</th>
+									        <th>B_No.</th>
+									        <th>C_Id</th>
+									        <th>Name</th>
+									        <th>Contact</th>
+									        <th>Total</th>
+									        <th>Disc.</th>
+									        <th>Amount</th>
+									        <th>Paid</th>
+									        <th>Balance</th>
+									        <th>Due_Pay_Dt</th>
+									        <th>Action</th>
+								      	</tr>
+								    </thead>
+								    <tbody>
+								    	{% for cview in viewcater %}
+								      	<tr>
+								      		<td>{{cview.Bdate}}</td>
+									        <td>{{cview.Bno}}</td>
+									        <td>{{cview.Cid}}</td>
+									        <td>{{cview.Cname}}</td>
+									        <td>{{cview.Contact}}</td>
+									        <td>{{cview.Totalamt}}</td>
+									        <td>{{cview.Discount}}</td>
+									        <td>{{cview.Newamt}}</td>
+									        <td>{{cview.Paid}}</td>
+									        <td>{{cview.Balance}}</td>
+									        <td>{{cview.Duedt}}</td>
+									        <td><input type="button" style="padding:5px 10px;margin:0;" href="caterbilldt?bno={{cview.Bno}}" data-toggle="modal" data-target="#myModalcater" value="DETAIL"></td>						
+								      	</tr>
+								      	{% endfor %}
+								    </tbody>
+								</table>
+								<div class="modal fade" id="myModalcater" role="dialog" >
+								    <div class="modal-dialog modal-lg" style="height:fit-content;">
+								    	<div class="modal-content" style="padding:20px;">
+								    	</div>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="addpayment" class="well tab-pane fade" style="background-color:#616A6B;">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#pay_tentbill" data-toggle="tab">Tent Bill Payment</a></li>
+							<li><a href="#pay_caterbill" data-toggle="tab">Catering Bill Payment</a></li>
+						</ul>
+						<div class="container-fluid">
+							<div class="tab-content">
+								<div id="pay_tentbill" class="tab-pane fade in active">
+									<form class="form-inline" id="paytentbill">
+										<div class="well form-group" style="margin-top:10px;">
+										    <label>Enter Bill No. :</label>
+										    <input type="text" class="form-control" id="cusbno" name="cusbno" placeholder="Enter Bill No." required>
+										    <input type="submit" class="btn btn-default" value="Proceed">
+										</div>
+							    	</form>
+							    	<script type="text/javascript">
+							    		$(function(){
+								    		$("#paytentbill").bind('submit',function(){
+								    			var bno = $('#cusbno').val();
+								    			$.post('tentbillpaydetail',{bno:bno},function(data){
+								    				$("#tentbillpay").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+									<div id="tentbillpay" style="margin-top:10px;"></div>
+								</div>
+								<div id="pay_caterbill" class="tab-pane fade">
+									<form class="form-inline" id="paycaterbill">
+										<div class="well form-group" style="margin-top:10px;">
+										    <label>Enter Bill No. :</label>
+										    <input type="text" class="form-control" id="cusbnoc" name="cusbno" placeholder="Enter Bill No." required>
+										    <input type="submit" class="btn btn-default" value="Proceed">
+										</div>
+							    	</form>
+							    	<script type="text/javascript">
+							    		$(function(){
+								    		$("#paycaterbill").bind('submit',function(){
+								    			var bno = $('#cusbnoc').val();
+								    			$.post('caterbillpaydetail',{bno:bno},function(data){
+								    				$("#caterbillpay").html(data);
+								    			});
+								    			return false;
+								    		});
+										});
+							    	</script>
+									<div id="caterbillpay" style="margin-top:10px;"></div>
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div id="paydetail" class="tab-pane fade" style="background-color:#616A6B;">
+						<form class="form-inline" id="paymentrcd">
+							<div class="well form-group">
+							    <label>Enter Cust_Id :</label>
+							    <select class="form-control" id="category" name="category">
+							    	<option>Tent</option>
+							    	<option>Catering</option>
+							    </select>
+							    <label>Enter Bill No. :</label>
+							    <input type="text" class="form-control" id="pbbno" name="pbbno" placeholder="Enter Bill No." required>
+							    <input type="submit" class="btn btn-default" value="Proceed">
+							</div>
+				    	</form>
+						<script type="text/javascript">
+				    		$(function(){
+					    		$("#paymentrcd").bind('submit',function(){
+					    			var cat = $('#category').val();
+					    			var bno = $('#pbbno').val();
+					    			$.post('paybdetails',{cat:cat,bno:bno},function(data){
+					    				$("#paybdata").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="paybdata" style="margin-top:10px;"></div>
+					</div>
+					<div id="estimatebill" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+				    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+		    					<label>Estimate No. :</label>
+						    	<input type="text" name="ebno" id="ebno" class="form-control" value="{{estimatedata}}" readonly>
+				    		</div>
+				    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+		    					<label>Date :</label>
+						    	<input type="date" name="edate" id="edate" class="form-control" required>
+				    		</div>
+				    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+		    					<label>Customer Name :</label>
+						    	<input type="text"name="ecname" id="ecname" class="form-control" placeholder="Enter Customer Name" required>
+				    		</div>
+				    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+		    					<label>Contact :</label>
+						    	<input type="text" name="econtact" id="econtact" pattern="[0-9]{10}" maxlength="10" class="form-control" placeholder="Enter Your Contact" required>
+				    		</div>
+				    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+						    	<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demoestimate">Proceed</button>								
+				    		</div>
+				    	</div>
+				    	<div id="demoestimate" class="collapse" style="margin-top:5px;">
+				    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+					    			<label>Event Date:</label>
+					    			<input type="date" name="eedate" id="eedate" onchange="resetpanele()" class="form-control">
+					    			<script type="text/javascript">
+					    				function resetpanele(){
+					    					$("#eb input").each(function() {
+											      this.value = "";
+											  })
+											  $("#el input").each(function() {
+											      this.value = "";
+											  })
+											  $("#eh input").each(function() {
+											      this.value = "";
+											  })
+											  $("#ed input").each(function() {
+											      this.value = "";
+											  })		    			
+											document.getElementById("eeventbtn").disabled = false;
+					    				}
+					    			</script>
+					    			<button id="eeventbtn" class="btn btn-primary" onclick="addeventdte()" Disabled>Add Date</button>
+					    			<script type="text/javascript">
+					    				function addeventdte(){
+					    					var bno = $('#ebno').val();
+					    					var edate = $('#eedate').val();
+							    			$.post('eaddeventdate',{bno:bno,edate:edate});		    			
+											document.getElementById("eeventbtn").disabled = true;
+							    			return false;
+			    				}
+					    			</script>
+					    		</div>
+								<div id="eb" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<legend>Breakfast Section :</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>No. of Guests :</label>
+									    	<input type="text" name="ebguest" id="ebguest" class="form-control" required>
+										</div>
+							    		<div id="edeb" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+					    					<label>Item Name :</label>
+									    	<input type="text" name="ebiname" id="ebiname" class="form-control" placeholder="Enter Product Name" list="ebinamescr" onkeyup="ebinamesearch()" required>
+								    		<script type="text/javascript">
+									    		function ebinamesearch(){
+									    			var sname = $('#cbiname').val();
+									    			$.post('getcsname',{sname:sname},function(data){
+									    				$("#ebinamescr").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+								    		<datalist id="ebinamescr"></datalist>
+							    		</div>
+							    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+										    <button type="button" class="btn btn-primary" onclick="addebreakitem()">Add</button>
+									    	<script type="text/javascript">
+										    	function addebreakitem(){
+									    			var cbno = $('#ebno').val();
+									    			var cedate = $('#eedate').val();
+									    			var cbguest = $('#ebguest').val();
+									    			var cbiname = $('#ebiname').val();
+									    			$.post('billestimatebreak',{cbno:cbno,cedate:cedate,cbguest:cbguest,cbiname:cbiname},function(data){
+									    				$("#estimatebreakbill").html(data);
+									    				$("#edeb input").each(function() {
+														    this.value = "";
+														});
+									    			});	
+									    			return false;	  
+									    		}
+									    	</script>
+							    		</div>
+									</div>							    		
+						    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    			<table class="table">
+						    				<thead>
+						    					<tr>
+						    						<th>Item Name</th>
+						    					</tr>
+						    				</thead>
+						    				<tbody id="estimatebreakbill">
+						    				</tbody>
+						    			</table>
+							    	</div>
+								</div>
+								<div id="el" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<legend>Lunch Section :</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>No. of Guests :</label>
+									    	<input type="text" name="elguest" id="elguest" class="form-control" required>
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="well col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div id="edelm" class="col-lg-8 col-md-8 col-sm-8 col-xs-8">						
+							    					<label>Main Course Service Item :</label>
+											    	<input type="text" name="elminame" id="elminame" class="form-control" placeholder="Enter Product Name" list="elminamescr" onkeyup="elminamesearch()" required>
+										    		<script type="text/javascript">
+											    		function elminamesearch(){
+											    			var sname = $('#elminame').val();
+											    			$.post('getcsname',{sname:sname},function(data){
+											    				$("#elminamescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="elminamescr"></datalist>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-top:24px;">
+													<button type="button" class="btn btn-primary" style="padding:6px 15px;" onclick="addelunchmainitem()">Add</button>
+											    	<script type="text/javascript">
+												    	function addelunchmainitem(){
+											    			var cbno = $('#ebno').val();
+											    			var cedate = $('#eedate').val();
+											    			var clguest = $('#elguest').val();
+											    			var clminame = $('#elminame').val();
+											    			$.post('billestimatelunchmain',{cbno:cbno,cedate:cedate,clguest:clguest,clminame:clminame},function(data){
+											    				$("#estimatelunchmain").html(data);
+											    				$("#edelm input").each(function() {
+																    this.value = "";
+																});
+											    			});	
+											    			return false;	  
+											    		}
+											    	</script>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th width="10%">#</th>
+																<th>Main Course</th>
+															</tr>
+														</thead>
+														<tbody id="estimatelunchmain">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+										<div class="well col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div>
+												<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+													<label>Other Service Type :</label>
+													<input type="text" class="form-control" name="elostype" id="elostype" placeholder="Enter Sub Menu Type" list="elostypescr" onkeyup="elostypesearch()" required>
+													<script type="text/javascript">
+											    		function elostypesearch(){
+											    			var stype = $('#elostype').val();
+											    			$.post('getostype',{stype:stype},function(data){
+											    				$("#elostypescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="elostypescr"></datalist>
+												</div>
+												<div id="edelo" class="col-lg-5 col-md-5 col-sm-5 col-xs-5">						
+							    					<label>Item Name :</label>
+											    	<input type="text" name="eloiname" id="eloiname" class="form-control" placeholder="Enter Product Name" list="eloinamescr" onkeyup="eloinamesearch()" required>
+										    		<script type="text/javascript">
+											    		function eloinamesearch(){
+											    			var sname = $('#eloiname').val();
+											    			$.post('getcsname',{sname:sname},function(data){
+											    				$("#eloinamescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="eloinamescr"></datalist>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top:24px;">
+													<button type="button" class="btn btn-primary" style="padding:6px 15px;" onclick="addelunchotheritem()">Add</button>
+													<script type="text/javascript">
+												    	function addelunchotheritem(){
+											    			var cbno = $('#ebno').val();
+											    			var cedate = $('#eedate').val();
+											    			var clguest = $('#elguest').val();
+											    			var clostype = $('#elostype').val();
+											    			var cloiname = $('#eloiname').val();
+											    			$.post('billestimatelunchother',{cbno:cbno,cedate:cedate,clguest:clguest,clostype:clostype,cloiname:cloiname},function(data){
+											    				$("#estimatelunchother").html(data);
+											    				$("#edelo input").each(function() {
+																    this.value = "";
+																});
+											    			});	
+											    			return false;	  
+											    		}
+											    	</script>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<tbody id="estimatelunchother">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
+								<div id="eh" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<legend>High Tea Section :</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>No. of Guests :</label>
+									    	<input type="text" name="ehguest" id="ehguest" class="form-control" required>
+										</div>
+							    		<div id="edeh" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+					    					<label>Item Name :</label>
+									    	<input type="text" name="ehiname" id="ehiname" class="form-control" placeholder="Enter Product Name" list="ehinamescr" onkeyup="ehinamesearch()" required>
+								    		<script type="text/javascript">
+									    		function ehinamesearch(){
+									    			var sname = $('#ehiname').val();
+									    			$.post('getcsname',{sname:sname},function(data){
+									    				$("#ehinamescr").html(data);
+									    			});
+									    			return false;
+									    		}
+								    		</script>
+								    		<datalist id="ehinamescr"></datalist>
+							    		</div>
+							    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+										    <button type="button" class="btn btn-primary" onclick="addehightitem()">Add</button>
+									    	<script type="text/javascript">
+										    	function addehightitem(){
+									    			var cbno = $('#ebno').val();
+									    			var cedate = $('#eedate').val();
+									    			var chguest = $('#ehguest').val();
+									    			var chiname = $('#ehiname').val();
+									    			$.post('billestimatehight',{cbno:cbno,cedate:cedate,chguest:chguest,chiname:chiname},function(data){
+									    				$("#estimatehightbill").html(data);
+									    				$("#edeh input").each(function() {
+														    this.value = "";
+														});
+									    			});	
+									    			return false;	  
+									    		}
+									    	</script>
+							    		</div>
+									</div>							    		
+						    		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    			<table class="table">
+						    				<thead>
+						    					<tr>
+						    						<th>Item Name</th>
+						    					</tr>
+						    				</thead>
+						    				<tbody id="estimatehightbill">
+						    				</tbody>
+						    			</table>
+							    	</div>
+								</div>
+								<div id="cd" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<legend>Dinner Section :</legend>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+											<label>No. of Guests :</label>
+									    	<input type="text" name="edguest" id="edguest" class="form-control" required>
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="well col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div id="ederm" class="col-lg-8 col-md-8 col-sm-8 col-xs-8">						
+							    					<label>Main Course Service Item :</label>
+											    	<input type="text" name="edminame" id="edminame" class="form-control" placeholder="Enter Product Name" list="edminamescr" onkeyup="edminamesearch()" required>
+										    		<script type="text/javascript">
+											    		function edminamesearch(){
+											    			var sname = $('#edminame').val();
+											    			$.post('getcsname',{sname:sname},function(data){
+											    				$("#edminamescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="edminamescr"></datalist>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-top:24px;">
+													<button type="button" class="btn btn-primary" style="padding:6px 15px;" onclick="addedinnermainitem()">Add</button>
+											    	<script type="text/javascript">
+												    	function addedinnermainitem(){
+											    			var cbno = $('#ebno').val();
+											    			var cedate = $('#eedate').val();
+											    			var cdguest = $('#edguest').val();
+											    			var cdminame = $('#edminame').val();
+											    			$.post('billestimatedinnermain',{cbno:cbno,cedate:cedate,cdguest:cdguest,cdminame:cdminame},function(data){
+											    				$("#estimatedinnermain").html(data);
+											    				$("#ederm input").each(function() {
+																    this.value = "";
+																});
+											    			});	
+											    			return false;	  
+											    		}
+											    	</script>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th width="10%">#</th>
+																<th>Main Course</th>
+															</tr>
+														</thead>
+														<tbody id="estimatedinnermain">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+										<div class="well col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div>
+												<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+													<label>Other Service Type :</label>
+													<input type="text" class="form-control" name="edostype" id="edostype" placeholder="Enter Sub Menu Type" list="edostypescr" onkeyup="edostypesearch()" required>
+													<script type="text/javascript">
+											    		function edostypesearch(){
+											    			var stype = $('#edostype').val();
+											    			$.post('getostype',{stype:stype},function(data){
+											    				$("#edostypescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="edostypescr"></datalist>
+												</div>
+												<div id="edero" class="col-lg-5 col-md-5 col-sm-5 col-xs-5">						
+							    					<label>Item Name :</label>
+											    	<input type="text" name="edoiname" id="edoiname" class="form-control" placeholder="Enter Product Name" list="edoinamescr" onkeyup="edoinamesearch()" required>
+										    		<script type="text/javascript">
+											    		function edoinamesearch(){
+											    			var sname = $('#edoiname').val();
+											    			$.post('getcsname',{sname:sname},function(data){
+											    				$("#edoinamescr").html(data);
+											    			});
+											    			return false;
+											    		}
+										    		</script>
+										    		<datalist id="edoinamescr"></datalist>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top:24px;">
+													<button type="button" class="btn btn-primary" style="padding:6px 15px;" onclick="addedinnerotheritem()">Add</button>
+													<script type="text/javascript">
+												    	function addedinnerotheritem(){
+											    			var cbno = $('#ebno').val();
+											    			var cedate = $('#eedate').val();
+											    			var cdguest = $('#edguest').val();
+											    			var cdostype = $('#edostype').val();
+											    			var cdoiname = $('#edoiname').val();
+											    			$.post('billestimatedinnerother',{cbno:cbno,cedate:cedate,cdguest:cdguest,cdostype:cdostype,cdoiname:cdoiname},function(data){
+											    				$("#estimatedinnerother").html(data);
+											    				$("#edero input").each(function() {
+																    this.value = "";
+																});
+											    			});	
+											    			return false;	  
+											    		}
+											    	</script>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<tbody id="estimatedinnerother">
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<legend>Decoration Section :</legend>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+										<label>Date :</label>
+								    	<input type="date" name="eddate" id="eddate" class="form-control" required>
+									</div>
+						    		<div id="ededn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				    					<label>Service Name :</label>
+								    	<input type="text" name="edpname" id="edpname" class="form-control" placeholder="Enter Product Name" list="edidname" onkeyup="edecorpsearch()" required>
+							    		<script type="text/javascript">
+								    		function edecorpsearch(){
+								    			var pname = $('#edpname').val();
+								    			$.post('gettdpname',{pname:pname},function(data){
+								    				$("#edidname").html(data);
+								    			});
+								    			return false;
+								    		}
+							    		</script>
+							    		<datalist id="edidname"></datalist>
+						    		</div>
+						    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top: 24px;">
+									    <button type="button" class="btn btn-primary" onclick="addestimateditem()">Add</button>
+						    		</div>
+								</div>
+						    	<script type="text/javascript">
+							    	function addestimateditem(){
+						    			var cbno = $('#ebno').val();
+						    			var cddate = $('#eddate').val();
+						    			var cdpname = $('#edpname').val();
+						    			$.post('billestimatedecor',{cbno:cbno,cddate:cddate,cdpname:cdpname},function(data){
+						    				$("#estimatedecorbill").html(data);
+						    				$("#ededn input").each(function() {
+											    this.value = "";
+											});
+						    			});	
+						    			return false;	  
+						    		}
+						    	</script>
+								<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="table-responsive">          
+										<table class="table">
+											<thead>
+										      	<tr>
+										      		<th width="10%">#</th>
+											        <th>Service_Name</th>
+											        <th>Date</th
+										      	</tr>
+										    </thead>
+										    <tbody id="estimatedecorbill">
+										    </tbody>
+										</table>										
+									</div>
+								</div>
+							</div>
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Total Amount :</label>
+								    	<input type="text" name="eamt" id="eamt" class="form-control" required>
+						    		</div> 
+						    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>Discount :</label>
+								    	<input type="text" name="edisc" id="edisc" class="form-control" onkeyup="calestimatenewamt()" required>
+										<script type="text/javascript">
+											function calestimatenewamt(){
+										    	var amt=document.getElementById('eamt').value;
+										    	var disc=document.getElementById('edisc').value;
+										    	document.getElementById('enamt').value=amt-disc;
+
+										    	var ebno= document.getElementById('ebno').value;
+										    	document.getElementById('bnoe').value = ebno ;
+
+												var edate= document.getElementById('edate').value;
+												document.getElementById('bdatee').value = edate ;
+
+												var ecname= document.getElementById('ecname').value;
+												document.getElementById('cnamee').value = ecname ;
+
+												var econtact= document.getElementById('econtact').value;
+												document.getElementById('contacte').value = econtact ;
+
+												var eamt= document.getElementById('eamt').value;
+												document.getElementById('amte').value = eamt ;
+
+												var edisc= document.getElementById('edisc').value;
+												document.getElementById('disce').value = edisc ;
+
+												var enamt= document.getElementById('enamt').value;
+												document.getElementById('namte').value = enamt ;
+										    }
+										</script>
+						    		</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+				    					<label>New Amount :</label>
+								    	<input type="text" name="enamt" id="enamt" class="form-control" readonly>
+						    		</div>
+								</div>
+								<script type="text/javascript">
+									$(document).ready(function() {
+										$("#submite").click(function() {
+										var bno = $("#bnoe").val();
+										var bdate = $("#bdatee").val();
+										var cname = $("#cnamee").val();
+										var contact = $("#contacte").val();
+										var amt = $("#amte").val();
+										var disc = $("#disce").val();
+										var namt = $("#namte").val();
+										$.post("estimatebilltrans", {bno:bno, bdate:bdate, cname:cname, contact:contact, amt:amt, disc:disc, namt:namt});
+										});
+									});
+								</script>
+								<form id="form" name="form" method="post">
+									<input type="hidden" id="bnoe" name="bnoe">
+									<input type="hidden" id="bdatee" name="bdatee">
+									<input type="hidden" id="cnamee" name="cnamee">
+									<input type="hidden" id="contacte" name="contacte">
+									<input type="hidden" id="amte" name="amte">
+									<input type="hidden" id="disce" name="disce">
+									<input type="hidden" id="namte" name="namte">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;margin-top:10px;">
+										<a id="submite" class="btn btn-success">Bill It</a>
+										</script>
+										<a id="cprnt" class="btn btn-danger" href="billestimatebill?bno={{estimatedata}}" data-toggle="modal" data-target="#estimateModal">Print</a>
+									</div>
+									<div class="modal fade" id="estimateModal" role="dialog" >
+									    <div class="modal-dialog modal-lg" style="height:fit-content;">
+									    	<div class="modal-content" style="padding:20px;">
+									    	</div>
+									    </div>
+									</div>
+								</form>
+							</div>
+		    			</div>
+					</div>
+					<div id="estimbillrcd" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label>Search By Bill Date :</label>
+							    <input type="text" class="form-control" id="estimbdtInput" class="form-control" onkeyup="estimbdtFunction()" placeholder="Search for Bill Date...">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label>Search By Bill No. :</label>
+							    <input type="text" class="form-control" id="estimbnoInput" class="form-control" onkeyup="estimbnoFunction()" placeholder="Search for Bill No...">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label>Search By Cust. Id :</label>
+							    <input type="text" class="form-control" id="estimcidInput" class="form-control" onkeyup="estimcidFunction()" placeholder="Search for Cust. Id..">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+								<label>Search By Name :</label>
+							    <input type="text" class="form-control" id="estimnameInput" class="form-control" onkeyup="estimnameFunction()" placeholder="Search for names..">
+							</div>
+							<script>
+								function estimbdtFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("estimbdtInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("estimTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[0];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function estimbnoFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("estimbnoInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("estimTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[1];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function estimcidFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("estimcidInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("estimTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[2];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+								function estimnameFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("estimnameInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("estimTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[3];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+							</script>
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;">
+							<div class="table-responsive">          
+								<table class="table" id="estimTable">
+									<thead>
+								      	<tr>
+								      		<th>Bill_Date</th>
+									        <th>B_No.</th>
+									        <th>Cust_Id</th>
+									        <th>Cust_Name</th>
+									        <th>Contact</th>
+									        <th>Total</th>
+									        <th>Discount</th>
+									        <th>Amount</th>
+									        <th>Action</th>
+								      	</tr>
+								    </thead>
+								    <tbody>
+								    	{% for eview in viewestim %}
+								      	<tr>
+								      		<td>{{eview.Bdate}}</td>
+									        <td>{{eview.Bno}}</td>
+									        <td>{{eview.Cid}}</td>
+									        <td>{{eview.Cname}}</td>
+									        <td>{{eview.Contact}}</td>
+									        <td>{{eview.Totalamt}}</td>
+									        <td>{{eview.Discount}}</td>
+									        <td>{{eview.Newamt}}</td>
+									        <td><input type="button" style="padding:5px 10px;margin:0;" href="estimbilldt?bno={{eview.Bno}}" data-toggle="modal" data-target="#myModalestim" value="DETAIL"></td>						
+								      	</tr>
+								      	{% endfor %}
+								    </tbody>
+								</table>
+								<div class="modal fade" id="myModalestim" role="dialog" >
+								    <div class="modal-dialog modal-lg" style="height:fit-content;">
+								    	<div class="modal-content" style="padding:20px;">
+								    	</div>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee Panel</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+
+	<style>
+		.bk i{
+			color:white;
+		}
+
+		input[type=button], input[type=submit], input[type=reset] {
+	    background-color: #4CAF50;
+	    border: none;
+	    color: white;
+	    padding: 10px 32px;
+	    text-decoration: none;
+	    margin: 4px 2px;
+	    cursor: pointer;
+		}
+
+		th, td{
+			text-align: center;
+		}
+
+		a{
+			text-decoration: none;
+			color:#F0F3F4;
+			font-family: "Times New Roman", Georgia, Serif;
+			font-weight: 600;
+		}
+	</style>
+	<script type="text/javascript">
+		function printsalarydetail(){
+			var printContents = document.getElementById('salarypaydetail').innerHTML;
+		     var originalContents = document.body.innerHTML;
+
+		     document.body.innerHTML = printContents;
+
+		     window.print();
+
+		     document.body.innerHTML = originalContents;
+
+		     //window.location.reload(true);
+		     window.location.href = "/employee/index";
+
+	    }
+	</script>
+</head>
+<body style="background-color:#2F4F4F;font-size:15px;">
+	<header class="container-fluid">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom:1px solid black;">
+			<div class="bk col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<h1><a href="/menu/index"><i class="fa fa-arrow-left"></i></a></h1>
+			</div>
+			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<h1 style="color:white;">Employee Section</h1>
+			</div>
+		</div>
+	</header>
+
+	<div class="container-fluid" style="margin-top:10px;">
+		<div class="well large-well" style="background-color:#424949;">
+			<ul class="nav nav-tabs">
+			    <li class="active"><a data-toggle="tab" href="#reg">Register Employee</a></li>
+			    <li><a data-toggle="tab" href="#view">Employee Detail</a></li>
+			    <li><a data-toggle="tab" href="#adpay">Add Payment</a></li>
+			    <li><a data-toggle="tab" href="#salrec">Salary Record</a></li>			    
+			</ul>
+			<div class="container-fluid" style="margin-top:15px;">
+				<div class="tab-content">
+					<div id="reg" class="tab-pane fade in active" style="background-color:#616A6B;">
+						<form method="post" action="register">
+					    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    	<legend>Personal Detail :</legend>
+					    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-group">
+					    				<div>
+					    					<label for="fname">First Name :</label>
+									    	<input type="text" class="form-control" name="fname" placeholder="Enter Your First Name" required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label for="contact">Contact :</label>
+									    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="contact" placeholder="Enter Your Contact" required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label for="email">Email :</label>
+									    	<input type="email" class="form-control" name="email" placeholder="Enter Your Email" required>
+					    				</div>
+					    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:18px;padding-left:0px;">
+					    					<label for="dob">Date Of Birth :</label>
+									    	<input type="date" class="form-control" name="dob" placeholder="Enter Your Date Of Birth" required>
+					    				</div>
+					    				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:18px;padding-right:0px;">
+					    					<label for="gender">Gender :</label>
+									    	<div class="radio">
+		  										<label><input type="radio" name="gender" value="Male" required>Male&nbsp;&nbsp;&nbsp;</label>
+		  										<label><input type="radio" name="gender" value="Female" required>Female</label>
+											</div>
+					    				</div>							    
+									</div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    		</div>
+					    		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					    			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-group">
+									    <div>
+					    					<label for="lname">Last Name :</label>
+									    	<input type="text" class="form-control" name="lname" placeholder="Enter Your Last Name" required>
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label for="acontact">Alternate Contact :</label>
+									    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="acontact" placeholder="Enter Your Alternate Contact">
+					    				</div>
+					    				<div style="margin-top:10px;">
+					    					<label for="address">Address :</label>
+		  									<textarea class="form-control" rows="5" name="address" required></textarea>
+					    				</div>
+									</div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					    		</div>
+					    	</div>
+					    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    	<legend>Professional Detail :</legend>
+						    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				    					<label for="designation">Designation :</label>
+								    	<select name="designation" class="form-control">
+								    		<option>Manager</option>
+								    		<option>Head</option>
+								    		<option>Sub_Head</option>
+								    		<option>Employee</option>
+								    		<option>Worker</option>
+								    	</select>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				    					<label for="salbasis">Salary On Basis Of :</label>
+								    	<select name="salbasis" class="form-control">
+								    		<option>Annually</option>
+								    		<option>Monthly</option>
+								    		<option>Daily</option>
+								    	</select>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				    					<label>Enter Amount :</label>
+				    					<input type="text" class="form-control" name="samount" placeholder="Enter Salary Amount" required>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				    					<label for="joindate">Joining Date :</label>
+				    					<input type="date" class="form-control" name="joindate" placeholder="Enter Joining Date" required>
+						    		</div>
+						    	</div>					    		
+					    	</div>
+					    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+					    		<input type="submit" value="Submit" >
+					    	</div>
+				    	</form>
+					</div>
+					<div id="view" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 0px 0px 0px;">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+								<label>Search By Name :</label>
+							    <input type="text" id="empInput" class="form-control" onkeyup="empnameFunction()" placeholder="Search for names..">
+							</div>
+						</div>
+						<script>
+							function empnameFunction() {
+							  var input, filter, table, tr, td, i;
+							  input = document.getElementById("empInput");
+							  filter = input.value.toUpperCase();
+							  table = document.getElementById("empTable");
+							  tr = table.getElementsByTagName("tr");
+							  for (i = 0; i < tr.length; i++) {
+							    td = tr[i].getElementsByTagName("td")[1];
+							    if (td) {
+							      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+							        tr[i].style.display = "";
+							      } else {
+							        tr[i].style.display = "none";
+							      }
+							    }       
+							  }
+							}
+						</script>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="table-responsive">          
+								<table class="table" id="empTable">
+								    <thead>
+								      <tr>
+								        <th>Eid</th>
+								        <th>Name</th>
+								        <th>Contact</th>
+								        <th>Alt_Contact</th>
+								        <th>Designation</th>
+								        <th>Salbasis</th>
+								        <th>Sal_Amt</th>
+								        <th>Join_Date</th>
+								        <th>Action</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+								    	{% for data in edata %}
+								      <tr>
+								        <td>{{data.Eid}}</td>
+								        <td>{{data.Fname}} {{data.Lname}}</td>
+								        <td>{{data.Contact}}</td>
+								        <td>{{data.Acontact}}</td>
+								        <td>{{data.Designation}}</td>
+								        <td>{{data.Salbasis}}</td>
+								        <td>{{data.Salamount}}</td>
+								        <td>{{data.Joindate}}</td>								        
+								        <td><a href="edit?eid={{data.Eid}}" data-toggle="modal" data-target="#empedit" style="color:blue;">Edit&nbsp;/&nbsp;Delete</a></td>
+								      </tr>
+								      	{% endfor %}
+								    </tbody>
+								</table>
+							</div>
+				    	</div>
+				    	<div class="modal fade" id="empedit" role="dialog" >
+						    <div class="modal-dialog modal-lg" style="border:2px solid lightblue;height:800px;background-color:#117A65;padding:10px;">
+						    	<div class="modal-content">
+						      		<button type="button" class="close" data-dismiss="modal">&times;</button>    
+						      	</div>
+						    </div>
+						</div>
+					</div>
+					<div id="adpay" class="tab-pane fade" style="background-color:#616A6B;">
+				    	<form id="getempdetail">
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+									<label>Enter Employee Id :</label>
+							    	<input type="text" class="form-control" id="entereid" name="entereid" placeholder="Enter Employee Id" list="employeeidname" onkeyup="empnamesearch()" required>
+								</div>
+								<script type="text/javascript">
+						    		function empnamesearch(){
+						    			var eid = $('#entereid').val();
+						    			$.post('getempidpname',{eid:eid},function(data){
+						    				$("#employeeidname").html(data);
+						    			});
+						    			return false;
+						    		}
+					    		</script>
+						    	<datalist id="employeeidname"></datalist>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+									<label>Duration (From) :</label>
+							    	<input type="date" class="form-control" id="dura1" name="dura1" required>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+									<label>Duration (To) :</label>
+							    	<input type="date" class="form-control" id="dura2" name="dura2" required>
+								</div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top:20px;">
+									<input type="submit" class="btn btn-default" value="Proceed" style="padding:6px 15px;">
+								</div>							    
+							</div>
+				    	</form>
+				    	<script type="text/javascript">
+				    		$(function(){
+					    		$("#getempdetail").bind('submit',function(){
+					    			var pickdt = new Date(document.getElementById("dura1").value);
+                					var dropdt = new Date(document.getElementById("dura2").value);
+                					var wdays= (dropdt - pickdt) / (24 * 3600 * 1000);
+					    			var eid = $('#entereid').val();
+					    			var dura1 = $('#dura1').val();
+					    			var dura2 = $('#dura2').val();
+					    			var d1 = $('#dura1').val().split('-');
+					    			var d2 = $('#dura2').val().split('-');
+					    			var year1 = d1[0];
+									var month1 = d1[1];
+									var leap = year1 % '4';
+									var avg = "";
+									if(month1=='1' || month1== '3' || month1== '5' || month1== '7' || month1== '8' || month1== '10' || month== '12'){
+										avg='31';
+									}
+									else if(month1=='4' || month1== '6' || month1== '9' || month1== '11'){
+										avg='30';
+									}else if(month1=='2' && leap=='0'){
+										avg = '29';
+									}else{
+										avg = '28';
+									}
+					    			$.post('adpaydetail',{eid:eid,dura1:dura1,dura2:dura2,avg:avg,wdays:wdays,year1:year1},function(data){
+					    				$("#paydata").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="paydata" style="margin-top:10px;"></div>
+					</div>
+					<div id="salrec" class="tab-pane fade" style="background-color:#616A6B;">
+						<form id="srcpayrcd">
+						  	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+							    <lable>Employee Id :</label>
+							    <input type="text" id="seid" name="seid" class="form-control" placeholder="Enter Employee Id" list="empsalidname" onkeyup="empsalnamesearch()" required>
+								<script type="text/javascript">
+						    		function empsalnamesearch(){
+						    			var eid = $('#seid').val();
+						    			$.post('getempidpname',{eid:eid},function(data){
+						    				$("#empsalidname").html(data);
+						    			});
+						    			return false;
+						    		}
+					    		</script>
+						    	<datalist id="empsalidname"></datalist>
+							    <input type="submit" class="btn btn-default" value="Proceed">
+							</div>
+						</form>
+						<script type="text/javascript">
+				    		$(function(){
+					    		$("#srcpayrcd").bind('submit',function(){
+					    			var eid = $('#seid').val();
+					    			$.post('payrcod',{eid:eid},function(data){
+					    				$("#prcd").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="prcd" style="margin-top:10px;"></div>
+					</div>
+					<!-- <div id="updatepay" class="tab-pane fade" style="background-color:#616A6B;">
+						<form id="upempdetail">
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+									<label>Enter Employee Id :</label>
+							    	<input type="text" class="form-control" id="enterid" name="enterid" placeholder="Enter Employee Id" required>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+									<label>Duration (From) :</label>
+							    	<input type="date" class="form-control" id="dura1" name="dura1" required>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+									<label>Duration (To) :</label>
+							    	<input type="date" class="form-control" id="dura2" name="dura2" required>
+								</div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-group" style="padding-top:20px;">
+									<input type="submit" class="btn btn-default" value="Proceed" style="padding:6px 15px;">
+								</div>							    
+							</div>
+				    	</form>
+				    	<script type="text/javascript">
+				    		$(function(){
+					    		$("#upempdetail").bind('submit',function(){
+					    			var eid = $('#enterid').val();
+					    			var d1 = $('#dura1').val();
+					    			var d2 = $('#dura2').val();
+					    			$.post('uppaydetail',{eid:eid,d1:d1,d2:d2},function(data){
+					    				$("#upaydata").html(data);
+					    			});
+					    			return false;
+					    		});
+							});
+				    	</script>
+				    	<div id="upaydata" style="margin-top:10px;"></div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

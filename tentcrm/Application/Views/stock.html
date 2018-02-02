@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stock Detail</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/bootstrap.theme.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/fa/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/css/animate.css">
+
+	<style>
+		.bk i{
+			color:white;
+		}
+
+		input[type=button], input[type=submit], input[type=reset] {
+	    background-color: #4CAF50;
+	    border: none;
+	    color: white;
+	    padding: 10px 32px;
+	    text-decoration: none;
+	    margin: 4px 2px;
+	    cursor: pointer;
+		}
+
+		th, td{
+			text-align: center;
+		}
+		a{
+			text-decoration: none;
+			color:#F0F3F4;
+			font-family: "Times New Roman", Georgia, Serif;
+			font-weight: 600;
+		}
+	</style>
+	<script type="text/javascript">
+		function printtentbill(){
+			var printContents = document.getElementById('tentreqtable').innerHTML;
+		     var originalContents = document.body.innerHTML;
+
+		     document.body.innerHTML = printContents;
+
+		     window.print();
+
+		     document.body.innerHTML = originalContents;
+		     window.location.reload(true);
+	     }
+	     function printotherbill(){
+			var printContents = document.getElementById('otherreqtable').innerHTML;
+		     var originalContents = document.body.innerHTML;
+
+		     document.body.innerHTML = printContents;
+
+		     window.print();
+
+		     document.body.innerHTML = originalContents;
+		     window.location.reload(true);
+	     }
+	     function printcaterbill(){
+			var printContents = document.getElementById('caterreqtable').innerHTML;
+		     var originalContents = document.body.innerHTML;
+
+		     document.body.innerHTML = printContents;
+
+		     window.print();
+
+		     document.body.innerHTML = originalContents;
+		     window.location.reload(true);
+	     }
+	</script>
+</head>
+<body style="background-color:#2F4F4F;font-size:15px;">
+	<header class="container-fluid">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom:1px solid black;">
+			<div class="bk col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<h1><a href="/menu/index"><i class="fa fa-arrow-left"></i></a></h1>
+			</div>
+			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<h1 style="color:white;">Stock Section</h1>
+			</div>
+		</div>
+	</header>
+
+	<div class="container-fluid" style="margin-top:10px;">
+		<div class="well large-well" style="background-color:#424949;">
+			<ul class="nav nav-tabs">
+			    <li class="active"><a data-toggle="tab" href="#cater">Catering Stock</a></li>
+			    <li><a data-toggle="tab" href="#tent">Tent Stock</a></li>
+			    <li><a data-toggle="tab" href="#other">Other Stock</a></li>
+			</ul>
+			<div class="container-fluid" style="margin-top:30px;">
+				<div class="tab-content">
+					<div id="cater" class="tab-pane fade in active" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+								<label>Search By Name :</label>
+							    <input type="text" id="caterInput" class="form-control" onkeyup="caterFunction()" placeholder="Search for names..">
+							</div>
+							<script>
+								function caterFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("caterInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("caterpTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[0];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+							</script>
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="table-responsive"  style="height:400px;">          
+								<table class="table" id="caterpTable">
+									<thead>
+								      	<tr>
+									        <th>PRODUCT_NAME</th>
+									        <th>QTY. AVAILABLE</th>
+									        <th>QTY. DEMANDED</th>
+									        <th>QTY. REQ.</th>
+									        <th>ACTION</th>
+								      	</tr>
+								    </thead>
+								    <tbody id="ctbody">
+								      	{% for cdata in caterdata %}
+								      	<tr>
+									        <td>{{cdata.Pname}}</td>
+									        <td id="cateravlqty">{{cdata.Qty}}</td>
+									        <td onkeyup="newcater()" contenteditable="true"></td>
+									        <td id="caterreqty">0</td>
+									        <td>
+									        	<button type="button" class="addBtn" style="padding:5px 15px;margin:0;">Add</button>
+									        </td>					
+								      	</tr>
+								      	{% endfor %}
+								    </tbody>
+								</table>
+							</div>
+						</div>
+						<script type="text/javascript">
+							function newcater(){
+								var rk = document.getElementById("caterpTable").rows.length;
+								for(i=0;i<rk;i++){
+									var cavl=document.getElementById('ctbody').rows[i].cells[1].innerHTML;
+									var cdmd=document.getElementById('ctbody').rows[i].cells[2].innerHTML;
+								    document.getElementById('ctbody').rows[i].cells[3].innerHTML=cdmd-cavl;
+								}
+							}
+
+							$('.addBtn').on('click', function() {
+							    var html = $(this).closest("#ctbody tr")
+							               .clone().find('td:last').remove().end().prop('outerHTML');
+							    $("#printcatertable").append(html);
+							 });
+						</script>
+						<div id="caterreqtable" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="table-responsive">          
+								<table class="table" id="printcatertable">
+									<thead>
+								      	<tr>
+									        <th>PRODUCT_NAME</th>
+									        <th>QTY. AVAILABLE</th>
+									        <th>QTY. DEMANDED</th>
+									        <th>QTY. REQ.</th>
+								      	</tr>
+								    </thead>
+								    <tbody id="pcbody">
+								    </tbody>
+								</table>
+							</div>												
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+							<button class="btn btn-danger" onclick="printcaterbill()">Print</button>
+						</div>
+					</div>
+					<div id="tent" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+								<label for="contact">Search By Name :</label>
+							    <input type="text" id="tentInput" class="form-control" onkeyup="tentFunction()" placeholder="Search for names..">
+							</div>
+							<script>
+								function tentFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("tentInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("tentTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[0];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+							</script>
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="table-responsive"  style="height:400px;">          
+								<table class="table"  id="tentTable">
+									<thead>
+								      	<tr>
+									        <th>PRODUCT_NAME</th>
+									        <th>QTY. AVAILABLE</th>
+									        <th>QTY. DEMANDED</th>
+									        <th>QTY. REQ.</th>
+									        <th>ACTION</th>
+								      	</tr>
+								    </thead>
+								    <tbody id="ttbody">
+								      	{% for tdata in tentdata %}
+								      	<tr>
+									        <td>{{tdata.Pname}}</td>
+									        <td id="avlqty">{{tdata.Qty}}</td>
+									        <td onkeyup="calreq()" contenteditable="true"></td>
+									        <td id="reqty">0</td>
+									        <td><button type="button" class="use-button" style="padding:5px 15px;margin:0;">Add</button></td>					
+								      	</tr>
+								      	{% endfor %}
+								    </tbody>
+								</table>							
+							</div>
+						</div>
+						<script type="text/javascript">
+							function calreq(){
+								var rl = document.getElementById("tentTable").rows.length;
+								for(i=0;i<rl;i++){
+									var avl=document.getElementById('ttbody').rows[i].cells[1].innerHTML;
+									var dmd=document.getElementById('ttbody').rows[i].cells[2].innerHTML;
+								    document.getElementById('ttbody').rows[i].cells[3].innerHTML=dmd-avl;
+								}
+							}
+
+							$('.use-button').on('click', function() {
+							    var html = $(this).closest("tr")
+							               .clone().find('td:last').remove().end().prop('outerHTML');
+							    $("#printtable").append(html);
+							 });
+						</script>
+						<div id="tentreqtable" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="table-responsive">          
+								<table class="table" id="printtable">
+									<thead>
+								      	<tr>
+									        <th>PRODUCT_NAME</th>
+									        <th>QTY. AVAILABLE</th>
+									        <th>QTY. DEMANDED</th>
+									        <th>QTY. REQ.</th>
+								      	</tr>
+								    </thead>
+								    <tbody id="ptbody">
+								    </tbody>
+								</table>
+							</div>					
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+							<button class="btn btn-danger" onclick="printtentbill()">Print</button>
+						</div>
+					</div>
+					<div id="other" class="tab-pane fade" style="background-color:#616A6B;">
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+								<label for="contact">Search By Name :</label>
+							    <input type="text" id="otherInput" class="form-control" onkeyup="otherFunction()" placeholder="Search for names..">
+							</div>
+							<script>
+								function otherFunction() {
+								  var input, filter, table, tr, td, i;
+								  input = document.getElementById("otherInput");
+								  filter = input.value.toUpperCase();
+								  table = document.getElementById("otherTable");
+								  tr = table.getElementsByTagName("tr");
+								  for (i = 0; i < tr.length; i++) {
+								    td = tr[i].getElementsByTagName("td")[0];
+								    if (td) {
+								      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								        tr[i].style.display = "";
+								      } else {
+								        tr[i].style.display = "none";
+								      }
+								    }       
+								  }
+								}
+							</script>
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="table-responsive"  style="height:400px;">          
+								<table class="table"  id="otherTable">
+									<thead>
+								      	<tr>
+									        <th>PRODUCT_NAME</th>
+									        <th>QTY. AVAILABLE</th>
+									        <th>QTY. DEMANDED</th>
+									        <th>QTY. REQ.</th>
+									        <th>ACTION</th>
+								      	</tr>
+								    </thead>
+								    <tbody id="otbody">
+								      	{% for odata in otherdata %}
+								      	<tr>
+									        <td>{{odata.Pname}}</td>
+									        <td id="avlqtyo">{{odata.Qty}}</td>
+									        <td onkeyup="calotherreq()" contenteditable="true"></td>
+									        <td id="reqtyo">0</td>
+									        <td><button type="button" class="use-button" style="padding:5px 15px;margin:0;">Add</button></td>					
+								      	</tr>
+								      	{% endfor %}
+								    </tbody>
+								</table>							
+							</div>
+						</div>
+						<script type="text/javascript">
+							function calotherreq(){
+								var rl = document.getElementById("otherTable").rows.length;
+								for(i=0;i<rl;i++){
+									var avl=document.getElementById('otbody').rows[i].cells[1].innerHTML;
+									var dmd=document.getElementById('otbody').rows[i].cells[2].innerHTML;
+								    document.getElementById('otbody').rows[i].cells[3].innerHTML=dmd-avl;
+								}
+							}
+
+							$('.use-button').on('click', function() {
+							    var html = $(this).closest("tr")
+							               .clone().find('td:last').remove().end().prop('outerHTML');
+							    $("#printothertable").append(html);
+							 });
+						</script>
+						<div id="otherreqtable" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="table-responsive">          
+								<table class="table" id="printothertable">
+									<thead>
+								      	<tr>
+									        <th>PRODUCT_NAME</th>
+									        <th>QTY. AVAILABLE</th>
+									        <th>QTY. DEMANDED</th>
+									        <th>QTY. REQ.</th>
+								      	</tr>
+								    </thead>
+								    <tbody id="pobody">
+								    </tbody>
+								</table>
+							</div>					
+						</div>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+							<button class="btn btn-danger" onclick="printotherbill()">Print</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<!--
+	<div class="container-fluid" style="margin-top:10px;">
+		<div class="well large-well">
+			<ul class="nav nav-tabs">
+			    <li class="active"><a data-toggle="tab" href="#tent">Tent Stock</a></li>
+			    <li><a data-toggle="tab" href="#cater">Catering Stock</a></li>
+			</ul>
+			<div class="container-fluid">
+				<div class="tab-content">
+				    <div id="tent" class="tab-pane fade in active">
+
+				    	<script>
+						function tentFunction() {
+						  var input, filter, table, tr, td, i;
+						  input = document.getElementById("tentInput");
+						  filter = input.value.toUpperCase();
+						  table = document.getElementById("tentTable");
+						  tr = table.getElementsByTagName("tr");
+						  for (i = 0; i < tr.length; i++) {
+						    td = tr[i].getElementsByTagName("td")[0];
+						    if (td) {
+						      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+						        tr[i].style.display = "";
+						      } else {
+						        tr[i].style.display = "none";
+						      }
+						    }       
+						  }
+						}
+
+						</script>
+				    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 0px 0px 0px;">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+								<label for="contact">Search By Name :</label>
+							    <input type="text" id="tentInput" class="form-control" onkeyup="tentFunction()" placeholder="Search for names..">
+							</div>
+						</div>
+						<form method="post" action="" style="margin-top:5px;">
+							<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="table-responsive"  style="height:400px;">          
+									<table class="table"  id="tentTable">
+										<thead>
+									      	<tr>
+										        <th>PRODUCT_NAME</th>
+										        <th>QTY. AVAILABLE</th>
+										        <th>QTY. DEMANDED</th>
+										        <th>QTY. REQ.</th>
+										        <th>ACTION</th>
+									      	</tr>
+									    </thead>
+									    <tbody id="ttbody">
+									      	{% for tdata in tentdata %}
+									      	<tr>
+										        <td>{{tdata.P_name}}</td>
+										        <td id="avlqty">{{tdata.Quantity}}</td>
+										        <td onkeyup="calreq()" contenteditable="true"></td>
+										        <td id="reqty">0</td>
+										        <td><button type="button" class="use-button" style="padding:5px 15px;margin:0;">Add</button></td>					
+									      	</tr>
+									      	{% endfor %}
+									    </tbody>
+									</table>
+									<script type="text/javascript">
+										function calreq(){
+											var rl = document.getElementById("tentTable").rows.length;
+											for(i=0;i<rl;i++){
+												var avl=document.getElementById('ttbody').rows[i].cells[1].innerHTML;
+												var dmd=document.getElementById('ttbody').rows[i].cells[2].innerHTML;
+											    document.getElementById('ttbody').rows[i].cells[3].innerHTML=dmd-avl;
+											}
+										}
+
+										$('.use-button').on('click', function() {
+										    var html = $(this).closest("tr")
+										               .clone().find('td:last').remove().end().prop('outerHTML');
+										    $("#printtable").append(html);
+										 });
+									</script>
+								</div>
+							</div>
+						</form>
+						<form method="post" action="" style="margin-top:5px;">
+							<div id="tentreqtable" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="table-responsive"  style="height:400px;">          
+									<table class="table" id="printtable">
+										<thead>
+									      	<tr>
+										        <th>PRODUCT_NAME</th>
+										        <th>QTY. AVAILABLE</th>
+										        <th>QTY. DEMANDED</th>
+										        <th>QTY. REQ.</th>
+									      	</tr>
+									    </thead>
+									    <tbody id="ptbody">
+									    </tbody>
+									</table>
+								</div>
+								<div style="text-align:center;"><button class="button btn-danger" onclick="printtentbill()">Print</button></div>					
+							</div>
+						</form>
+				    </div>
+				    <div id="cater" class="tab-pane fade">
+				    	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 0px 0px 0px;">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+								<label>Search By Name :</label>
+							    <input type="text" id="caterInput" class="form-control" onkeyup="caterFunction()" placeholder="Search for names..">
+							</div>
+						</div>
+
+						<script>
+						function caterFunction() {
+						  var input, filter, table, tr, td, i;
+						  input = document.getElementById("caterInput");
+						  filter = input.value.toUpperCase();
+						  table = document.getElementById("caterpTable");
+						  tr = table.getElementsByTagName("tr");
+						  for (i = 0; i < tr.length; i++) {
+						    td = tr[i].getElementsByTagName("td")[0];
+						    if (td) {
+						      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+						        tr[i].style.display = "";
+						      } else {
+						        tr[i].style.display = "none";
+						      }
+						    }       
+						  }
+						}
+
+						</script>
+						<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="margin-top:5px;">
+							<div class="table-responsive"  style="height:400px;">          
+								<table class="table" id="caterpTable">
+									<thead>
+								      	<tr>
+									        <th>PRODUCT_NAME</th>
+									        <th>QTY. AVAILABLE</th>
+									        <th>QTY. DEMANDED</th>
+									        <th>QTY. REQ.</th>
+									        <th>ACTION</th>
+								      	</tr>
+								    </thead>
+								    <tbody id="ctbody">
+								      	{% for cdata in caterdata %}
+								      	<tr>
+									        <td>{{cdata.P_name}}</td>
+									        <td id="cateravlqty">{{cdata.Quantity}}</td>
+									        <td onkeyup="newcater()" contenteditable="true"></td>
+									        <td id="caterreqty">0</td>
+									        <td>
+									        	<button type="button" class="addBtn" style="padding:5px 15px;margin:0;">Add</button>
+									        </td>					
+								      	</tr>
+								      	{% endfor %}
+								    </tbody>
+								</table>
+							</div>
+						</div>
+						<script type="text/javascript">
+						function newcater(){
+							var rk = document.getElementById("caterpTable").rows.length;
+							for(i=0;i<rk;i++){
+								var cavl=document.getElementById('ctbody').rows[i].cells[1].innerHTML;
+								var cdmd=document.getElementById('ctbody').rows[i].cells[2].innerHTML;
+							    document.getElementById('ctbody').rows[i].cells[3].innerHTML=cdmd-cavl;
+							}
+						}
+
+						$('.addBtn').on('click', function() {
+						    var html = $(this).closest("#ctbody tr")
+						               .clone().find('td:last').remove().end().prop('outerHTML');
+						    $("#printcatertable").append(html);
+						 });
+						</script>
+						<div id="caterreqtable" class="well col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;">
+							<div class="table-responsive"  style="height:400px;">          
+								<table class="table" id="printcatertable">
+									<thead>
+								      	<tr>
+									        <th>PRODUCT_NAME</th>
+									        <th>QTY. AVAILABLE</th>
+									        <th>QTY. DEMANDED</th>
+									        <th>QTY. REQ.</th>
+								      	</tr>
+								    </thead>
+								    <tbody id="pcbody">
+								    </tbody>
+								</table>
+							</div>
+							<div style="text-align:center;"><button class="button btn-danger" onclick="printcaterbill()">Print</button></div>					
+						</div>
+				    </div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+-->
+</body>
+</html>

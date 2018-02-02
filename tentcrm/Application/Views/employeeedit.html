@@ -1,0 +1,88 @@
+<form method="post" action="empupdate">
+	<input type="hidden" name="eid" value="{{edata.Eid}}">
+	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+			<h2>UPDATE&nbsp;/&nbsp;DELETE&nbsp;RECORD</h2>
+		</div>
+		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	    	<legend>Personal Detail :</legend>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+				<div>
+					<label for="fname">First Name :</label>
+			    	<input type="text" class="form-control" name="fname" value="{{edata.Fname}}" required>
+				</div>
+				<div style="margin-top:10px;">
+					<label for="contact">Contact :</label>
+			    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="contact" value="{{edata.Contact}}" required>
+				</div>
+				<div style="margin-top:10px;">
+					<label for="email">Email :</label>
+			    	<input type="email" class="form-control" name="email" value="{{edata.Email}}" required>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:18px;padding-left:0px;">
+					<label for="dob">Date Of Birth :</label>
+			    	<input type="date" class="form-control" name="dob" value="{{edata.Dob}}" required>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:18px;padding-right:0px;">
+					<label for="gender">Gender :</label>
+			    	<div class="radio">
+							<label><input type="radio" name="gender" value="Male" required>Male&nbsp;&nbsp;&nbsp;</label>
+							<label><input type="radio" name="gender" value="Female" required>Female</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group">
+			    <div>
+					<label for="lname">Last Name :</label>
+			    	<input type="text" class="form-control" name="lname" value="{{edata.Lname}}" required>
+				</div>
+				<div style="margin-top:10px;">
+					<label for="acontact">Alternate Contact :</label>
+			    	<input type="text" pattern="[0-9]{10}" maxlength="10" class="form-control" name="acontact" value="{{edata.Acontact}}">
+				</div>
+				<div style="margin-top:10px;">
+					<label for="address">Address :</label>
+					<textarea class="form-control" rows="5" name="address" required>{{edata.Address}}</textarea>
+				</div>
+			</div>
+		</div>
+		<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	    	<legend>Professional Detail :</legend>
+    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				<label for="designation">Designation :</label>
+		    	<select name="designation" class="form-control">
+		    		<option>{{edata.Designation}}</option>
+		    		<option>Manager</option>
+		    		<option>Head</option>
+		    		<option>Sub_Head</option>
+		    		<option>Employee</option>
+		    		<option>Worker</option>
+		    	</select>
+    		</div>
+    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				<label for="salbasis">Salary Basis:</label>
+		    	<select name="salbasis" class="form-control">
+		    		<option>{{edata.Salbasis}}</option>
+		    		<option>Annually</option>
+		    		<option>Monthly</option>
+		    		<option>Daily</option>
+		    		<option>Hourly</option>
+		    		<option>Contract</option>
+		    	</select>
+    		</div>
+    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				<label>Enter Amount :</label>
+				<input type="text" class="form-control" name="samount" value="{{edata.Salamount}}" required>
+    		</div>
+    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+				<label for="joindate">Joining Date :</label>
+				<input type="date" class="form-control" name="joindate" value="{{edata.Joindate}}" required>
+    		</div>					    		
+		</div>
+	</div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+		<a class="btn btn-danger" href="" style="padding:7px 35px;margin-top:-3px;font-size:18px;border-radius:0px;background-color:#C0392B;text-decoration:none;">Close</a>
+		<input type="submit" value="Update" style="font-size:18px;padding:8px 35px;">
+		<a class="btn btn-primary" href="delete?eid={{edata.Eid}}" style="padding:8px 35px;margin-top:-3px;font-size:18px;border-radius:0px;background-color:#2980B9;text-decoration:none;">Delete</a>
+	</div>
+</form>
